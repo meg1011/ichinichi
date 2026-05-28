@@ -167,19 +167,19 @@ function Hero() {
     <section id="top" style={{ position: 'relative', minHeight: '100svh', paddingTop: 64, overflow: 'hidden', background: 'var(--bg)' }}>
       {/* Left: photo */}
       <div className="hero-photo" style={{
-        position: 'absolute', top: 64, bottom: 0, left: 0, width: '75%',
+        position: 'absolute', top: 64, bottom: 0, left: 0, width: '62%',
         backgroundImage: 'url(images/hero.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: '35% center'
       }}>
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to right, rgba(250,250,247,0) 50%, rgba(250,250,247,0.55) 72%, rgba(250,250,247,0.92) 92%, var(--bg) 100%)'
+          background: 'linear-gradient(to right, rgba(250,250,247,0) 40%, rgba(250,250,247,0.5) 65%, rgba(250,250,247,0.9) 88%, var(--bg) 100%)'
         }} />
       </div>
       {/* Right: text on clean bg */}
       <div style={{ position: 'relative', zIndex: 2, minHeight: 'calc(100svh - 64px)', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-        <div className="hero-text-block" style={{ width: '60%', maxWidth: 560, paddingLeft: 24, paddingRight: 48, paddingTop: 40, paddingBottom: 80 }}>
+        <div className="hero-text-block" style={{ width: '52%', maxWidth: 620, paddingLeft: 40, paddingRight: 60, paddingTop: 40, paddingBottom: 80 }}>
           <h1 style={{ fontFamily: 'var(--serif)', fontWeight: 400, lineHeight: 1.75, color: 'var(--text)', marginBottom: 20, fontSize: 'clamp(28px,3.5vw,46px)' }}>
             今しかない「今」を、<br />未来の宝物に。
           </h1>
