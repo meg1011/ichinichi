@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="いち日写真館のギャラリー。家族写真・七五三・お宮参り・マタニティ・ナチュラルニューボーン・バースデーの作例をご覧ください。">
+<title>ギャラリー | いち日写真館</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #F9F9F9;
+  --bg-cream: #F2EDE6;
+  --bg-white: #FFFFFF;
+  --text: #111111;
+  --text-mid: #111111;
+  --text-light: #B8B2AA;
+  --accent: #C07B5E;
+  --accent-light: #E8D5C8;
+  --border: #E2DDD7;
+  --serif: 'Noto Serif JP', Georgia, serif;
+  --sans: 'Noto Sans JP', system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 400; font-size: 15px; line-height: 1.8; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+@media (max-width: 600px) { .container { padding: 0 20px; } }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; font-family: var(--sans); font-size: 12px; font-weight: 400; letter-spacing: 0.1em; border: 1px solid var(--text); color: var(--text); background: transparent; cursor: pointer; transition: background 0.2s, color 0.2s; }
+.btn:hover { background: var(--text); color: var(--bg); }
+.btn--primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn--primary:hover { background: #A8684A; border-color: #A8684A; color: #fff; }
+.img-placeholder { background: var(--bg-cream); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.img-placeholder::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(0,0,0,0.04) 8px, rgba(0,0,0,0.04) 9px); }
+.img-placeholder span { position: relative; font-family: var(--sans); font-size: 11px; letter-spacing: 0.06em; color: var(--text-light); text-align: center; padding: 12px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+function Nav() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', fn);
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+  const links = [
+        { href: 'index.html', label: 'TOP' },
+    { href: 'index.html#menu', label: '撮影メニュー' },
+    { href: 'gallery.html', label: 'ギャラリー', active: true },
+    { href: 'pricing.html', label: '料金' },
+    { href: 'index.html#faq', label: 'FAQ' },
+  ];
+  return (
+    <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: '#F2EDE6', borderBottom: '1px solid var(--border)', backdropFilter: 'blur(8px)' }}>
+      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 88 }}>
+        <a href="index.html" style={{ display: 'flex', alignItems: 'center' }}>
+          <img src="images/logo.png" alt="いち日写真館" style={{ height: 56, width: 'auto' }} />
+        </a>
+        <nav style={{ display: 'flex', gap: 44, alignItems: 'center' }} className="desk-nav">
+          {links.map(l => (
+            <a key={l.href} href={l.href} style={{ fontSize: 12, letterSpacing: '0.08em', color: l.active ? 'var(--accent)' : 'var(--text-mid)', borderBottom: l.active ? '1px solid var(--accent)' : 'none', paddingBottom: 2 }}>{l.label}</a>
+          ))}
+          <a href="contact.html" className="btn btn--primary" style={{ padding: '10px 20px', fontSize: 11 }}>ご予約・お問い合わせ</a>
+        </nav>
+        <button onClick={() => setOpen(!open)} className="ham-btn" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 5, padding: 4 }}>
+          {[0,1,2].map(i => <span key={i} style={{ display: 'block', width: 22, height: 1, background: 'var(--text)', transition: 'all 0.3s', transform: open && i===0 ? 'rotate(45deg) translate(4px,4px)' : open && i===2 ? 'rotate(-45deg) translate(4px,-4px)' : 'none', opacity: open && i===1 ? 0 : 1 }}/>)}
+        </button>
+      </div>
+      {open && (
+        <div style={{ background: 'var(--bg-white)', borderTop: '1px solid var(--border)', padding: '20px 32px 28px' }}>
+          {links.map(l => <a key={l.href} href={l.href} onClick={() => setOpen(false)} style={{ display: 'block', padding: '12px 0', fontSize: 14, borderBottom: '1px solid var(--border)', color: l.active ? 'var(--accent)' : 'var(--text)' }}>{l.label}</a>)}
+          <a href="contact.html" className="btn btn--primary" style={{ marginTop: 20, display: 'inline-flex' }}>ご予約・お問い合わせ</a>
+        </div>
+      )}
+      <style>{`@media (min-width: 800px) { .ham-btn { display: none !important; } } @media (max-width: 799px) { .desk-nav { display: none !important; } }`}</style>
+    </header>
+  );
+}
+
+const genres = [
+  {
+    id: 'family',
+    label: '家族写真・バースデー',
+    en: 'Family / Birthday',
+    desc: '公園や自宅、思い出の場所で。家族全員の自然な表情と、その日の空気感を残します。通年受付中です。',
+    photos: [
+      { src: 'images/uploads/family/190326_0102.jpg', label: '春の公園で家族' },
+      { src: 'images/uploads/family/200712_0081.jpg', label: '夏の日差しの中で' },
+      { src: 'images/uploads/family/200712_0103.jpg', label: '笑顔の家族' },
+      { src: 'images/uploads/family/200712_0111.jpg', label: '親子のやさしい時間' },
+      { src: 'images/uploads/family/DSC_2348.jpg', label: '秋の公園で' },
+      { src: 'images/uploads/family/180813_295.jpg', label: '夏の思い出' },
+      { src: 'images/uploads/family/210911_0093.jpg', label: '子どもの笑顔' },
+      { src: 'images/uploads/family/220402_0121.jpg', label: '春の思い出' },
+      { src: 'images/uploads/family/220402_0100.jpg', label: '緑の中で' },
+      { src: 'images/uploads/family/210725_0014.jpg', label: 'バースデー撮影' },
+      { src: 'images/uploads/family/BDS_4131.jpg', label: '1歳のお誕生日' },
+      { src: 'images/uploads/family/200607_0098.jpg', label: 'ケーキスマッシュ' },
+      { src: 'images/uploads/family/BDS_5262.jpg', label: 'パパと一緒に' },
+      { src: 'images/uploads/family/GGG_7722.MOV.00_00_07_38.静止画001.jpg', label: 'ママと赤ちゃん' },
+      { src: 'images/uploads/family/MDS_7697.jpg', label: '三世代の家族' },
+      { src: 'images/uploads/family/230821_013.jpg', label: 'きょうだいで' },
+      { src: 'images/uploads/family/DSC_1800.jpg', label: 'ふんわりした光の中で' },
+      { src: 'images/uploads/family/220430_1_16.jpg', label: '家族の日常' },
+      { src: 'images/uploads/family/180813_167.jpg', label: '夏の家族' },
+      { src: 'images/uploads/family/220523_137.jpg', label: '緑の季節' },
+      { src: 'images/uploads/family/menu_family.jpg', label: '家族写真' },
+    ],
+  },
+  {
+    id: 'ceremony',
+    label: '七五三・お宮参り',
+    en: 'Ceremony',
+    desc: 'お子さんの大切な節目を、神社や自宅周辺でやわらかく記録します。衣装の着付け前後のお支度シーンも。',
+    photos: [
+      { src: 'images/uploads/ceremony/220621_029.jpg', label: 'お宮参り' },
+      { src: 'images/uploads/ceremony/220626_037.jpg', label: '白無垢のひととき' },
+      { src: 'images/uploads/ceremony/201215_0086.jpg', label: '秋の七五三' },
+      { src: 'images/uploads/ceremony/Z62_5215.jpg', label: '七五三の記念' },
+      { src: 'images/uploads/ceremony/1810070021.jpg', label: '境内のひととき' },
+      { src: 'images/uploads/ceremony/1811040026.jpg', label: '晴れの日' },
+      { src: 'images/uploads/ceremony/201215_0097.jpg', label: '笑顔の参拝' },
+      { src: 'images/uploads/ceremony/220626_078.jpg', label: '神社の境内で' },
+      { src: 'images/uploads/ceremony/1810070031.jpg', label: 'やわらかい光の中で' },
+      { src: 'images/uploads/ceremony/_BDS2430 (1).jpg', label: '千歳飴と一緒に' },
+      { src: 'images/uploads/ceremony/251020_100.jpg', label: '凛とした姿' },
+      { src: 'images/uploads/ceremony/211030_0148.jpg', label: '着物の女の子' },
+      { src: 'images/uploads/ceremony/_CDS2191.jpg', label: '石段の上で' },
+      { src: 'images/uploads/ceremony/_BDS2872.jpg', label: '木陰のひととき' },
+      { src: 'images/uploads/ceremony/211128_0171.jpg', label: '紅葉の境内' },
+      { src: 'images/uploads/ceremony/ADS_1491.jpg', label: '家族みんなで参拝' },
+      { src: 'images/uploads/ceremony/201031_0097.jpg', label: 'ふたりで参拝' },
+      { src: 'images/uploads/ceremony/MDS_4350.jpg', label: '番傘と振袖' },
+      { src: 'images/uploads/ceremony/211023_0237.jpg', label: 'おすまし顔' },
+      { src: 'images/uploads/ceremony/231102_113.jpg', label: '祈願のひととき' },
+      { src: 'images/uploads/ceremony/231102_213.jpg', label: '着付けのひとシーン' },
+      { src: 'images/uploads/ceremony/211205_0047.jpg', label: '晴れの日' },
+      { src: 'images/uploads/ceremony/Z62_3694.jpg', label: '神社の境内で' },
+      { src: 'images/uploads/ceremony/211030_0115.jpg', label: '七五三の記念' },
+      { src: 'images/uploads/ceremony/211128_0050.jpg', label: '家族の笑顔' },
+      { src: 'images/uploads/ceremony/251020_165.jpg', label: '秋の境内' },
+      { src: 'images/uploads/ceremony/1810050061.jpg', label: 'お宮参りの日' },
+    ],
+  },
+  {
+    id: 'maternity',
+    label: 'マタニティ',
+    en: 'Maternity',
+    desc: '新しい命を迎える前の、特別で美しい時間を大切に。自然光の中で、しなやかな姿を残します。',
+    photos: [
+      { src: 'images/uploads/maternity/ADS_1306.jpg', label: 'マタニティアート' },
+      { src: 'images/uploads/maternity/ADS_1248.jpg', label: 'ベビーへのメッセージ' },
+      { src: 'images/uploads/maternity/ADS_1312.jpg', label: '命のつながり' },
+      { src: 'images/uploads/maternity/170328_0009.jpg', label: '赤ちゃんの準備' },
+      { src: 'images/uploads/maternity/170217_0059.jpg', label: '大きなお腹の記念に' },
+      { src: 'images/uploads/maternity/mm0056.jpg', label: 'やわらかい光の中で' },
+      { src: 'images/uploads/maternity/180225_009.jpg', label: '自然光の中で' },
+      { src: 'images/uploads/maternity/2202020098.jpg', label: '穏やかなマタニティ' },
+      { src: 'images/uploads/maternity/2202020172.jpg', label: '家族で迎える新しい命' },
+      { src: 'images/uploads/maternity/mm0135.jpg', label: 'しなやかな姿' },
+      { src: 'images/uploads/maternity/171206m_172.jpg', label: '夫婦で' },
+      { src: 'images/uploads/maternity/171206m_207.jpg', label: '家族の時間' },
+      { src: 'images/uploads/maternity/_BDS1477.jpg', label: '和の空間で' },
+      { src: 'images/uploads/maternity/160519_0114.jpg', label: '光の中のふたり' },
+      { src: 'images/uploads/maternity/210218_0055.jpg', label: '自然光の中で' },
+      { src: 'images/uploads/maternity/ADS_1428.jpg', label: '屋外マタニティ' },
+      { src: 'images/uploads/maternity/mm0036.jpg', label: 'しなやかな姿' },
+      { src: 'images/uploads/maternity/_BDS1693.jpg', label: '穏やかな時間' },
+      { src: 'images/uploads/maternity/DSC_9871.jpg', label: '桜の季節に' },
+      { src: 'images/uploads/maternity/DSC_9886.jpg', label: '大切な記念に' },
+      { src: 'images/uploads/maternity/DSC_9893.jpg', label: '春のマタニティ' },
+    ],
+  },
+  {
+    id: 'newborn',
+    label: 'ナチュラルニューボーン',
+    en: 'Natural Newborn',
+    desc: '誕生後2〜3週間以内のかけがえない姿を、やわらかく丁寧に残します。ご自宅への出張撮影です。',
+    photos: [
+      { src: 'images/uploads/newborn/210617_0037.jpg', label: 'うとうとする新生児' },
+      { src: 'images/uploads/newborn/2208240122.jpg', label: '家族みんなで' },
+      { src: 'images/uploads/newborn/210213_0063.jpg', label: '初めての笑顔' },
+      { src: 'images/uploads/newborn/210617_0045.jpg', label: 'やわらかな光の中で' },
+      { src: 'images/uploads/newborn/2208240156.jpg', label: 'ふんわり包まれて' },
+      { src: 'images/uploads/newborn/Z62_1299.jpg', label: 'ご自宅での撮影' },
+      { src: 'images/uploads/newborn/220718_048.jpg', label: 'すやすやと眠る' },
+      { src: 'images/uploads/newborn/210213_0093.jpg', label: 'ママの腕の中で' },
+      { src: 'images/uploads/newborn/_BDS3577.jpg', label: '小さな手と足' },
+      { src: 'images/uploads/newborn/Z62_1486.jpg', label: 'ふたりの宝もの' },
+      { src: 'images/uploads/newborn/Z62_1457.jpg', label: 'パパの大きな手に' },
+      { src: 'images/uploads/newborn/Z62_1498.jpg', label: '包まれてすやすや' },
+      { src: 'images/uploads/newborn/Z62_1292.jpg', label: 'やわらかな眠り' },
+      { src: 'images/uploads/newborn/240326_2_024.jpg', label: '生まれたての瞬間' },
+      { src: 'images/uploads/newborn/210213_0082.jpg', label: 'ママと赤ちゃん' },
+    ],
+  },
+  {
+    id: 'coming-of-age',
+    label: 'ハーフ成人式・成人式',
+    en: 'Coming of Age',
+    desc: '10歳・20歳の晴れやかな節目を、着物や衣装とともに。凛とした姿と自然な笑顔の両方を残します。',
+    photos: [
+      { src: 'images/uploads/coming-of-age/240608_046.jpg', label: '番傘と振袖' },
+      { src: 'images/uploads/coming-of-age/2112020024.jpg', label: '着物で記念撮影' },
+      { src: 'images/uploads/coming-of-age/211207_0077.jpg', label: 'やわらかい光の中で' },
+      { src: 'images/uploads/coming-of-age/240608_116.jpg', label: 'ふんわりした雰囲気で' },
+      { src: 'images/uploads/coming-of-age/240608_061.jpg', label: '春の日差しの中で' },
+      { src: 'images/uploads/coming-of-age/240608_105.jpg', label: '凛とした表情' },
+      { src: 'images/uploads/coming-of-age/2112020139.jpg', label: '自然な笑顔' },
+      { src: 'images/uploads/coming-of-age/2112020041.jpg', label: '紅葉の中で' },
+      { src: 'images/uploads/coming-of-age/2112020186.jpg', label: '親子の記念' },
+      { src: 'images/uploads/coming-of-age/211207_0184.jpg', label: 'やわらかな光' },
+      { src: 'images/uploads/coming-of-age/211207_0183.jpg', label: '縁側でひとやすみ' },
+      { src: 'images/uploads/coming-of-age/211207_0085.jpg', label: '思い出の一枚' },
+      { src: 'images/uploads/coming-of-age/211207_0105.jpg', label: '紅葉と振袖' },
+      { src: 'images/uploads/coming-of-age/211207_0178.jpg', label: '洋館前で' },
+      { src: 'images/uploads/coming-of-age/211207_0150.jpg', label: '赤ポストと振袖' },
+    ],
+  },
+  {
+    id: 'school',
+    label: '入学・卒業',
+    en: 'School Milestone',
+    desc: '入学式・卒業式の晴れやかな日を、家族みんなの自然な笑顔とともに。桜や校舎を背景に大切な1日を。',
+    photos: [
+      { src: 'images/uploads/school/220528_3_024.jpg', label: '卒業式の廊下' },
+      { src: 'images/uploads/school/DSC_8998.jpg', label: '晴れやかな笑顔' },
+      { src: 'images/uploads/school/LINE_ALBUM_2026.4.7_260407_4.jpg', label: '思い出の春' },
+      { src: 'images/uploads/school/220528_3_044.jpg', label: '仲よしふたりで' },
+      { src: 'images/uploads/school/220528_3_073.jpg', label: 'ジャンプ！' },
+      { src: 'images/uploads/school/220528_1_012.jpg', label: '廊下を走る' },
+      { src: 'images/uploads/school/240330_037.jpg', label: '桜の下で' },
+      { src: 'images/uploads/school/240330_087.jpg', label: '卒業式の記念' },
+      { src: 'images/uploads/school/250403_037.jpg', label: '春の光の中で' },
+      { src: 'images/uploads/school/0330_8_0040.jpg', label: 'ランドセルと笑顔' },
+      { src: 'images/uploads/school/DSC_3820.jpg', label: 'やわらかい春の光' },
+      { src: 'images/uploads/school/0330_9_0034.jpg', label: '入学式の朝' },
+      { src: 'images/uploads/school/0330_4_0043.jpg', label: '新しい一歩' },
+      { src: 'images/uploads/school/0330_7_0009.jpg', label: '家族みんなで' },
+      { src: 'images/uploads/school/0330_5_0072.jpg', label: 'きょうだいで' },
+    ],
+  },
+];
+
+function PhotoCard({ label, aspect }) {
+  return (
+    <div className="img-placeholder" style={{ width: '100%', aspectRatio: String(aspect) }}>
+      <span>{label}</span>
+    </div>
+  );
+}
+
+function GenreSection({ genre, index }) {
+  const isEven = index % 2 === 0;
+  return (
+    <section id={genre.id} style={{ padding: '80px 0', borderBottom: '1px solid var(--border)', background: index % 2 === 0 ? 'var(--bg)' : 'var(--bg-white)' }}>
+      <div className="container">
+        {/* Genre header */}
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 40, flexWrap: 'wrap', gap: 16 }}>
+          <div>
+            <p style={{ fontSize: 10, letterSpacing: '0.2em', color: 'var(--accent)', marginBottom: 8, fontFamily: 'var(--sans)' }}>{genre.en}</p>
+            <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(22px, 3vw, 30px)', fontWeight: 400 }}>{genre.label}</h2>
+            <div style={{ width: 28, height: 1, background: 'var(--accent)', margin: '14px 0' }}/>
+            <p style={{ fontSize: 15, color: 'var(--text-mid)', maxWidth: 520, lineHeight: 1.9 }}>{genre.desc}</p>
+          </div>
+          <a href="contact.html" className="btn btn--primary" style={{ padding: '11px 24px', fontSize: 11, flexShrink: 0 }}>この撮影を予約する</a>
+        </div>
+        {/* Photo grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, alignItems: 'start' }} className="gallery-inner">
+          {genre.photos.map((p, i) => (
+            p.src ? (
+              <div key={i} style={{ aspectRatio: '1/1', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 8 }}>
+                <img src={p.src} alt={p.label} loading="lazy" style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', objectFit: 'contain', transition: 'transform 0.4s' }}
+                  onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.03)'}
+                  onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                />
+              </div>
+            ) : (
+              <div key={i} className="img-placeholder" style={{ aspectRatio: '1/1' }}>
+                <span>{p.label}</span>
+              </div>
+            )
+          ))}
+        </div>
+      </div>
+      <style>{`@media (max-width: 700px) { .gallery-inner { grid-template-columns: repeat(2, 1fr) !important; } }`}</style>
+    </section>
+  );
+}
+
+function App() {
+  const [activeTab, setActiveTab] = useState('all');
+
+  return (
+    <>
+      <Nav />
+      {/* Page header */}
+      <div style={{ paddingTop: 64 }}>
+        <div style={{ background: 'var(--bg-cream)', padding: '60px 0 48px', textAlign: 'center' }}>
+          <p style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--accent)', marginBottom: 12 }}>GALLERY</p>
+          <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 400, marginBottom: 12 }}>ギャラリー</h1>
+          <div style={{ width: 28, height: 1, background: 'var(--accent)', margin: '0 auto 16px' }}/>
+          <p style={{ fontSize: 15, color: 'var(--text-mid)', maxWidth: 480, margin: '0 auto', lineHeight: 1.9 }}>
+            ジャンルごとに作例をご覧いただけます。<br/>実際の撮影の雰囲気の参考にしてください。
+          </p>
+        </div>
+
+        {/* Tab / Jump nav */}
+        <div style={{ position: 'sticky', top: 88, zIndex: 100, background: 'var(--bg-cream)', borderBottom: '1px solid var(--border)', padding: '14px 0' }}>
+          <div className="container" style={{ overflowX: 'auto' }}>
+            <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+              {genres.map(g => (
+                <a key={g.id} href={`#${g.id}`}
+                  style={{
+                    padding: '8px 18px', fontSize: 12, letterSpacing: '0.06em',
+                    color: 'var(--text)', border: '1px solid var(--border)',
+                    borderRadius: 20, background: 'var(--bg)',
+                    transition: 'all 0.2s', whiteSpace: 'nowrap', cursor: 'pointer',
+                    textDecoration: 'none', display: 'inline-block',
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.background = 'var(--accent)';
+                    e.currentTarget.style.borderColor = 'var(--accent)';
+                    e.currentTarget.style.color = '#fff';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.background = 'var(--bg)';
+                    e.currentTarget.style.borderColor = 'var(--border)';
+                    e.currentTarget.style.color = 'var(--text)';
+                  }}
+                >
+                  {g.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Sections */}
+        {genres.map((g, i) => <GenreSection key={g.id} genre={g} index={i} />)}
+
+        {/* CTA */}
+        <section style={{ padding: '72px 0', background: 'var(--bg-cream)', textAlign: 'center' }}>
+          <div className="container">
+            <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(18px, 3vw, 26px)', marginBottom: 12, fontWeight: 400 }}>
+              撮影のご相談、お気軽にどうぞ
+            </p>
+            <p style={{ fontSize: 15, color: 'var(--text-mid)', marginBottom: 32, lineHeight: 2 }}>
+              どんな写真を残したいか、まずはお気軽にお問い合わせください。
+            </p>
+            <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a href="https://lin.ee/pSxLqqB" target="_blank" rel="noopener" className="btn btn--primary" style={{ background: '#06C755', borderColor: '#06C755' }}>LINEでご相談・ご予約</a>
+              <a href="pricing.html" className="btn">料金を確認する</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* Footer */}
+      <footer style={{ background: 'var(--text)', color: 'rgba(255,255,255,0.7)', padding: '40px 0 28px' }}>
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
+          <a href="index.html" style={{ display: 'flex', alignItems: 'center' }}>
+            <img src="images/logo.png" alt="いち日写真館" style={{ height: 28, width: 'auto', filter: 'invert(1)', opacity: 0.85 }} />
+          </a>
+          <p style={{ fontSize: 11 }}>© 2026 いち日写真館. All rights reserved.</p>
+        </div>
+      </footer>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

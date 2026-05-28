@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="いち日写真館｜家族写真・バースデーフォトの料金プラン。ショート・スタンダード・movieプランをご用意しています。">
+<title>家族写真・バースデー 料金 | いち日写真館</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAFAF7;--bg-cream:#F2EDE6;--bg-white:#FFFFFF;
+  --text:#1a1818;--text-mid:#1a1818;--text-light:#9A948C;
+  --accent:#C07B5E;--accent-light:#E8D5C8;--border:#E2DDD7;
+  --serif:'Noto Serif JP',Georgia,serif;
+  --sans:'Noto Sans JP',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:400;font-size:15px;line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{max-width:860px;margin:0 auto;padding:0 32px}
+@media(max-width:600px){.container{padding:0 20px}}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;font-family:var(--sans);font-size:12px;font-weight:400;letter-spacing:0.1em;border:1px solid var(--text);color:var(--text);background:transparent;cursor:pointer;transition:background 0.2s,color 0.2s}
+.btn:hover{background:var(--text);color:var(--bg)}
+.btn--primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn--primary:hover{background:#A8684A;border-color:#A8684A;color:#fff}
+.btn--sm{padding:10px 20px;font-size:11px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+
+
+const { useState } = React;
+
+function Nav() {
+  const [open, setOpen] = useState(false);
+  const links = [
+  { href: 'index.html', label: 'TOP' },
+  { href: 'index.html#menu', label: '撮影メニュー' },
+  { href: 'gallery.html', label: 'ギャラリー' },
+  { href: 'pricing.html', label: '料金' },
+  { href: 'index.html#faq', label: 'FAQ' }];
+
+  return (
+    <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: '#F2EDE6', borderBottom: '1px solid var(--border)', backdropFilter: 'blur(8px)' }}>
+      <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 88 }}>
+        <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 56, width: 'auto' }} /></a>
+        <nav style={{ display: 'flex', gap: 44, alignItems: 'center' }} className="desk-nav">
+          {links.map((l) =>
+          <a key={l.href} href={l.href} style={{ fontSize: 13, letterSpacing: '0.06em', color: 'var(--text-mid)', transition: 'color 0.2s' }}
+          onMouseEnter={(e) => e.target.style.color = 'var(--text)'}
+          onMouseLeave={(e) => e.target.style.color = 'var(--text-mid)'}>{l.label}</a>
+          )}
+          <a href="contact.html" className="btn btn--primary btn--sm">ご予約・お問い合わせ</a>
+        </nav>
+        <button onClick={() => setOpen(!open)} className="ham-btn" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 5, padding: 4 }}>
+          {[0, 1, 2].map((i) => <span key={i} style={{ display: 'block', width: 22, height: 1, background: 'var(--text)' }} />)}
+        </button>
+      </div>
+      {open &&
+      <div style={{ background: 'var(--bg-white)', borderTop: '1px solid var(--border)', padding: '20px 32px 28px' }}>
+          {links.map((l) => <a key={l.href} href={l.href} onClick={() => setOpen(false)} style={{ display: 'block', padding: '12px 0', fontSize: 14, borderBottom: '1px solid var(--border)', color: 'var(--text)' }}>{l.label}</a>)}
+          <a href="contact.html" className="btn btn--primary" style={{ marginTop: 20, display: 'inline-flex' }}>ご予約・お問い合わせ</a>
+        </div>
+      }
+      <style>{`@media(min-width:800px){.ham-btn{display:none !important}}@media(max-width:799px){.desk-nav{display:none !important}}`}</style>
+    </header>);
+
+}
+
+function SectionBlock({ label, children }) {
+  return (
+    <div style={{ display: 'flex', gap: 0, marginBottom: 0 }}>
+      <div style={{ background: 'var(--bg-cream)', border: '1px solid var(--border)', writingMode: 'vertical-rl', textOrientation: 'mixed', padding: '20px 14px', fontSize: 12, letterSpacing: '0.12em', color: 'var(--text-mid)', flexShrink: 0, fontFamily: 'var(--serif)', display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: 48 }}>
+        {label}
+      </div>
+      <div style={{ flex: 1 }}>{children}</div>
+    </div>);
+
+}
+
+function PlanCard({ plan }) {
+  return (
+    <div style={{ background: 'var(--bg-white)', borderRadius: 12, padding: '32px 28px 28px', width: '100%', maxWidth: 360, margin: '0 auto', textAlign: 'center', boxShadow: '0 2px 16px rgba(0,0,0,0.06)', border: '1px solid var(--border)' }}>
+      <p style={{ fontFamily: 'var(--serif)', fontSize: 20, fontWeight: 400, color: 'var(--text)', marginBottom: 14 }}>{plan.name}</p>
+      <p style={{ fontFamily: 'var(--serif)', fontSize: 34, fontWeight: 400, color: 'var(--text)', lineHeight: 1.1, marginBottom: 6, letterSpacing: '0.02em' }}>
+        ¥{plan.price}<span style={{ fontSize: 11, fontFamily: 'var(--sans)', fontWeight: 300, color: 'var(--text-mid)', marginLeft: 4 }}>(税込)</span>
+      </p>
+      <p style={{ fontSize: 12, color: 'var(--text-mid)', marginBottom: 22 }}>＋出張費</p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start', textAlign: 'left', maxWidth: 240, margin: '0 auto', paddingTop: 18, borderTop: '1px solid var(--border)' }}>
+        {plan.details.map((d, i) =>
+          <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 15, color: 'var(--text)' }}>
+            <span style={{ flexShrink: 0, color: 'var(--text-mid)', width: 18, textAlign: 'center', lineHeight: 1.6 }}>{d.icon}</span>
+            <span style={{ lineHeight: 1.6 }}>{d.text}</span>
+          </div>
+        )}
+      </div>
+    </div>);
+
+}
+
+function NoteItem({ title, children }) {
+  return (
+    <div style={{ marginBottom: 28 }}>
+      <p style={{ fontSize: 15, fontWeight: 500, color: 'var(--text)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <span style={{ display: 'inline-block', width: 6, height: 6, background: 'var(--accent)', flexShrink: 0 }} />
+        {title}
+      </p>
+      <div style={{ fontSize: 15, color: 'var(--text-mid)', lineHeight: 2, paddingLeft: 14 }}>{children}</div>
+    </div>);
+
+}
+
+function App() {
+  const plans = [
+  {
+    name: '平日撮影',
+    price: '33,000',
+    details: [
+      { icon: '📷', text: '撮影時間 50〜60分' },
+      { icon: '🖼', text: '全データ 85カット以上' },
+      { icon: '✨', text: '全カットレタッチ' }]
+  },
+  {
+    name: '土日祝撮影',
+    price: '38,000',
+    details: [
+      { icon: '📷', text: '撮影時間 50〜60分' },
+      { icon: '🖼', text: '全データ 85カット以上' },
+      { icon: '✨', text: '全カットレタッチ' }]
+  }];
+
+
+  const options = [
+  { label: 'ショートムービー撮影・編集', value: '＋30,000円' },
+  { label: '超過料金（30分ごと）', value: '＋5,000円' },
+  { label: 'DVD（送料込み）', value: '＋3,000円（2枚目〜 ＋1,500円）' },
+  { label: 'ブルーレイ（送料込み）\n※ショートムービーをご注文いただいた方対象', value: '＋5,500円（2枚目〜 ＋3,500円）' },
+  { label: 'アルバム制作（送料込み）', value: 'アルバム代＋8,000円〜' }];
+
+
+  const travelFees = [
+  { label: '電車・バス・徒歩で片道20分以内', value: '無料' },
+  { label: '電車・バス・徒歩で片道20分〜40分', value: '1,000円' },
+  { label: '電車・バス・徒歩で片道40分〜60分', value: '2,000円' },
+  { label: '電車・バス・徒歩で片道60分以上（延長20分ごと）', value: '＋1,000円' },
+  { label: '新幹線や飛行機利用の場合（国内）', value: '移動交通費＋移動等の拘束時間費' }];
+
+
+  const photoGrid = [
+  { src: 'images/menu_family.jpg', label: '家族写真' },
+  { src: 'images/menu_birthday.jpg', label: 'バースデー' },
+  { src: 'images/menu_maternity.jpg', label: 'マタニティ' },
+  { src: 'images/menu_birthday.jpg', label: '入園・入学' },
+  { src: 'images/menu_seijin.jpg', label: '卒園・卒業' },
+  { src: 'images/menu_family.jpg', label: '記念写真' },
+  { src: 'images/menu_birthday.jpg', label: '誕生日' },
+  { src: 'images/menu_ceremony.jpg', label: 'ファミリー' },
+  { src: 'images/menu_newborn2.jpg', label: '記念日' }];
+
+
+  return (
+    <>
+      <Nav />
+      <div style={{ paddingTop: 64 }}>
+
+        {/* Hero */}
+        <div style={{ position: 'relative', width: '100%', height: 'clamp(200px,28vw,300px)', overflow: 'hidden', background: 'var(--bg-cream)' }}>
+          <div style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: '55%', overflow: 'hidden' }} className="hero-img-wrap">
+            <img src="images/menu_family.jpg" alt="家族写真・バースデー" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}/>
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, var(--bg-cream) 0%, rgba(242,237,230,0.6) 12%, rgba(242,237,230,0) 30%)' }}/>
+          </div>
+          <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center' }}>
+            <div style={{ paddingLeft: 'clamp(32px,8vw,100px)', maxWidth: '50%' }} className="hero-text">
+              <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(28px,4.2vw,46px)', fontWeight: 400, color: 'var(--text)', letterSpacing: '0.02em', marginBottom: 10, lineHeight: 1.2 }}>Family &amp; Birthday</h1>
+              <p style={{ fontSize: 'clamp(13px,1.4vw,16px)', color: 'var(--text-mid)', letterSpacing: '0.1em' }}>家族写真・バースデー</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="container" style={{ paddingTop: 56, paddingBottom: 100 }}>
+
+          {/* Plans */}
+          <div style={{ marginBottom: 72 }}>
+            <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(22px,2.6vw,30px)', fontWeight: 400, textAlign: 'center', marginBottom: 40, color: 'var(--text)' }}>料金プラン</h2>
+            <div style={{ display: 'flex', gap: 20, alignItems: 'stretch', justifyContent: 'center', flexWrap: 'wrap' }} className="plan-row">
+              {plans.map((p) => <PlanCard key={p.name} plan={p} />)}
+            </div>
+
+            {/* Repeater discount */}
+            <div style={{ maxWidth: 740, margin: '24px auto 0', background: 'var(--bg-cream)', borderRadius: 12, padding: '24px 28px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 28, borderRadius: '50%', border: '1px solid var(--accent)', color: 'var(--accent)', fontSize: 14, flexShrink: 0 }}>↻</span>
+                <p style={{ fontSize: 15, fontWeight: 500, color: 'var(--text)' }}>リピーター割引</p>
+              </div>
+              <p style={{ fontSize: 15, color: 'var(--text-mid)', lineHeight: 1.8, paddingLeft: 40, marginBottom: 10 }}>出張撮影を一度でもご利用の方は、合計から割引します。</p>
+              <p style={{ fontFamily: 'var(--serif)', fontSize: 22, fontWeight: 400, color: 'var(--text)', paddingLeft: 40 }}>－3,000円</p>
+            </div>
+          </div>
+
+          {/* オプション */}
+          <div style={{ marginBottom: 48 }}>
+            <SectionBlock label="オプション">
+              <div style={{ border: '1px solid var(--border)', borderLeft: 'none', borderBottom: 'none' }}>
+                {options.map((o, i) =>
+                <div key={i} style={{ display: 'flex', borderBottom: '1px solid var(--border)' }}>
+                    <div style={{ padding: '14px 16px', background: 'var(--bg-cream)', fontSize: 14, color: 'var(--text-mid)', flexShrink: 0, width: 220, borderRight: '1px solid var(--border)', whiteSpace: 'pre-line', lineHeight: 1.7 }}>{o.label}</div>
+                    <div style={{ padding: '14px 16px', fontSize: 14, color: 'var(--text)', flex: 1, display: 'flex', alignItems: 'center', fontFamily: 'var(--serif)', letterSpacing: '0.04em' }}>{o.value}</div>
+                  </div>
+                )}
+              </div>
+            </SectionBlock>
+          </div>
+
+          {/* 出張料 */}
+          <div style={{ marginBottom: 64 }}>
+            <SectionBlock label="出張料">
+              <div style={{ border: '1px solid var(--border)', borderLeft: 'none' }}>
+                <div style={{ padding: '16px 20px', background: 'var(--bg-cream)', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span style={{ fontSize: 18 }}>🚃</span>
+                  <p style={{ fontSize: 15, fontWeight: 500, color: 'var(--text)' }}>JR東小金井駅が基点です</p>
+                </div>
+                {travelFees.map((f, i) =>
+                <div key={i} style={{ display: 'flex', borderBottom: i < travelFees.length - 1 ? '1px solid var(--border)' : 'none' }}>
+                    <div style={{ padding: '13px 16px', background: 'var(--bg-white)', fontSize: 14, color: 'var(--text-mid)', flex: 1, borderRight: '1px solid var(--border)' }}>{f.label}</div>
+                    <div style={{ padding: '13px 20px', fontSize: 14, color: 'var(--text)', flexShrink: 0, width: 180, fontFamily: 'var(--serif)', letterSpacing: '0.04em' }}>{f.value}</div>
+                  </div>
+                )}
+                <div style={{ padding: '14px 16px', background: 'var(--bg-cream)', fontSize: 13, color: 'var(--text-mid)', lineHeight: 2 }}>
+                  ※公共の乗り物以外（タクシーなど）の移動が必要となる場合は、実費分が加算されます。<br />
+                  ※前泊が必要と判断される場合、宿泊費等も算させていただく場合がございます。<br />
+                  ※不明な場合は、お問い合わせください。
+                </div>
+              </div>
+            </SectionBlock>
+          </div>
+
+          {/* ご確認事項 */}
+          <div style={{ marginBottom: 64 }}>
+            <SectionBlock label="必ずお読みください">
+              <div style={{ border: '1px solid var(--border)', borderLeft: 'none', padding: '32px 32px' }}>
+                <NoteItem title="別途、料金が発生する場合があります">
+                  スタジオや公園使用料金の発生する場合は、お客様でご負担になります。<br />
+                  入園料などが発生する場合はカメラマンの分もご負担お願いします。
+                </NoteItem>
+                <NoteItem title="場所の撮影許可が必要な場合がございます">
+                  公園などの公共の場所は、安心して撮影に望めるよう、お客様自身で公園へ撮影許可を取るようお願いします。撮影NGや事前に許可を取らなければいけない場所が増えてきております。
+                </NoteItem>
+                <NoteItem title="ショートムービーについて">
+                  ２〜３分程のBGM付き動画です。BGMはイメージに合わせていち日写真館がセレクトしますが、ご希望がある場合は事前にお知らせください。<br />
+                  写真と同時進行での撮影となるため、機材準備等を含め通常の撮影時間に＋1時間が必要です。<br /><br />
+                  <span style={{fontWeight: 500}}>動画データのお渡しについて</span><br />
+                  MP4形式（フルHD）でのオンラインダウンロード納品となります。スマートフォン・PCなど一般的な端末で再生可能です。<br />
+                  物理メディアへの保存をご希望の方は、Blu-ray納品もご相談ください（別途料金）。
+                </NoteItem>
+                <NoteItem title="納品について">
+                  お写真および動画はオンライン（ダウンロード形式）で、2週間以内に納品いたします。<br />
+                  ダウンロード期限は納品時にご案内しますので、期限までにご自宅でのバックアップをお願いいたします。
+                </NoteItem>
+                <NoteItem title="お客様の画像データの保管期間">
+                  いち日写真館での画像データ保存期間は3ヶ月となります。<br />
+                  万が一データを紛失された場合は、この期間内にお知らせください。<br />
+                  期間を過ぎますと対応いたしかねますので、必ずご自宅で複数のバックアップをお取りくださいますようお願いいたします。
+                </NoteItem>
+                <NoteItem title="キャンセル規定">
+                  <p>やむを得ない悪天候・体調不良の場合は延期可能です。当日でも日程変更いただけます。延期日程は別途ご連絡にてご調整いたします。</p>
+                  <p style={{ marginTop: 8 }}>ただし、延期をご希望でない場合や無断キャンセルにつきましては、下記のキャンセル料が発生いたします。</p>
+                  <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    {['20〜7日前　各プラン料金の10%', '7〜4日前　各プラン料金の20%', '3〜2日前　各プラン料金の50%', '前日　各プラン料金の80%', '当日　各プラン料金の100%'].map((t) =>
+                    <p key={t} style={{ fontSize: 15, color: 'var(--text-mid)' }}>・{t}</p>
+                    )}
+                  </div>
+                </NoteItem>
+              </div>
+            </SectionBlock>
+          </div>
+
+          {/* CTA */}
+          <div style={{ textAlign: 'center', padding: '48px 0', borderTop: '1px solid var(--border)' }}>
+            <p style={{ fontFamily: 'var(--serif)', fontSize: 20, marginBottom: 8 }}>撮影のご予約・ご相談</p>
+            <p style={{ fontSize: 15, color: 'var(--text-mid)', marginBottom: 28, lineHeight: 2 }}>
+              空き状況のご確認・ご質問もお気軽にどうぞ。<br />3営業日以内にご返信します。
+            </p>
+            <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a href="https://lin.ee/pSxLqqB" target="_blank" rel="noopener" className="btn btn--primary" style={{ background: '#06C755', borderColor: '#06C755' }}>LINEでご相談・ご予約</a>
+              <a href="index.html#menu" className="btn">撮影メニューに戻る</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer style={{ background: 'var(--text)', color: 'rgba(255,255,255,0.7)', padding: '40px 0 28px' }}>
+        <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
+          <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 28, width: 'auto', filter: 'invert(1)', opacity: 0.85 }} /></a>
+          <p style={{ fontSize: 11 }}>© 2026 いち日写真館. All rights reserved.</p>
+        </div>
+      </footer>
+
+      <style>{`
+        @media(max-width:700px){
+          .plan-row{flex-direction:column !important}
+          .hero-grid-4{grid-template-columns:1fr 1fr !important}
+          .hero-text{max-width:60% !important}
+          .hero-img-wrap{width:45% !important}
+          .gallery-grid{grid-template-columns:repeat(2, 1fr) !important}
+        }
+      `}</style>
+    </>);
+
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="いち日写真館へのご予約・お問い合わせ。LINEでお気軽にご連絡ください。">
+<title>ご予約・お問い合わせ | いち日写真館</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAFAF7;--bg-cream:#F2EDE6;--bg-white:#FFFFFF;
+  --text:#1a1818;--text-mid:#1a1818;--text-light:#B8B2AA;
+  --accent:#C07B5E;--accent-light:#E8D5C8;--border:#E2DDD7;
+  --line:#06C755;--line-dark:#05A847;
+  --serif:'Noto Serif JP',Georgia,serif;
+  --sans:'Noto Sans JP',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:400;font-size:15px;line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{max-width:720px;margin:0 auto;padding:0 32px}
+@media(max-width:600px){.container{padding:0 20px}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 32px;font-family:var(--sans);font-size:13px;font-weight:400;letter-spacing:0.08em;border:1px solid var(--text);color:var(--text);background:transparent;cursor:pointer;transition:background 0.2s,color 0.2s;text-decoration:none}
+.btn:hover{background:var(--text);color:var(--bg)}
+.btn--line{background:var(--line);border-color:var(--line);color:#fff}
+.btn--line:hover{background:var(--line-dark);border-color:var(--line-dark);color:#fff}
+.btn--sm{padding:10px 20px;font-size:11px}
+input,select,textarea{font-family:var(--sans);font-size:13px;color:var(--text);background:var(--bg-white);border:1px solid var(--border);outline:none;width:100%;padding:12px 14px;transition:border-color 0.2s;-webkit-appearance:none}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{resize:vertical}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState } = React;
+
+const LINE_URL = 'https://lin.ee/pSxLqqB';
+
+function Nav() {
+  const [open, setOpen] = useState(false);
+  const links = [
+    { href: 'index.html', label: 'TOP' },
+    { href: 'index.html#menu', label: '撮影メニュー' },
+    { href: 'gallery.html', label: 'ギャラリー' },
+    { href: 'pricing.html', label: '料金' },
+    { href: 'faq.html', label: 'FAQ' },
+    { href: 'contact.html', label: 'お問い合わせ', active: true },
+  ];
+  return (
+    <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: '#F2EDE6', borderBottom: '1px solid var(--border)', backdropFilter: 'blur(8px)' }}>
+      <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 88 }}>
+        <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 56, width: 'auto' }}/></a>
+        <nav style={{ display: 'flex', gap: 44, alignItems: 'center' }} className="desk-nav">
+          {links.map(l => (
+            <a key={l.href} href={l.href} style={{ fontSize: 12, letterSpacing: '0.08em', color: l.active ? 'var(--accent)' : 'var(--text-mid)', borderBottom: l.active ? '1px solid var(--accent)' : 'none', paddingBottom: 2, transition: 'color 0.2s' }}
+              onMouseEnter={e => e.target.style.color = 'var(--text)'}
+              onMouseLeave={e => e.target.style.color = l.active ? 'var(--accent)' : 'var(--text-mid)'}
+            >{l.label}</a>
+          ))}
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"
+            style={{ display: 'inline-flex', color: 'var(--text-mid)', transition: 'color 0.2s' }}
+            onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
+            onMouseLeave={e => e.currentTarget.style.color = 'var(--text-mid)'}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line btn--sm">LINEで相談する</a>
+        </nav>
+        <button onClick={() => setOpen(!open)} className="ham-btn" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 5, padding: 4 }}>
+          {[0,1,2].map(i => <span key={i} style={{ display: 'block', width: 22, height: 1, background: 'var(--text)' }}/>)}
+        </button>
+      </div>
+      {open && (
+        <div style={{ background: 'var(--bg-white)', borderTop: '1px solid var(--border)', padding: '20px 32px 28px' }}>
+          {links.map(l => <a key={l.href} href={l.href} onClick={() => setOpen(false)} style={{ display: 'block', padding: '12px 0', fontSize: 14, borderBottom: '1px solid var(--border)', color: l.active ? 'var(--accent)' : 'var(--text)' }}>{l.label}</a>)}
+          <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line" style={{ marginTop: 20, display: 'inline-flex' }}>LINEで相談する</a>
+        </div>
+      )}
+      <style>{`@media(min-width:800px){.ham-btn{display:none !important}}@media(max-width:799px){.desk-nav{display:none !important}}`}</style>
+    </header>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Nav />
+      <div style={{ paddingTop: 88 }}>
+
+        {/* Main contact block */}
+        <div style={{ background: 'var(--bg-cream)', padding: '72px 32px 56px' }}>
+          <div className="container" style={{ textAlign: 'center' }}>
+            <p style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--accent)', marginBottom: 20 }}>CONTACT & RESERVATION</p>
+            <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(28px,4vw,40px)', fontWeight: 400, marginBottom: 16 }}>ご予約・お問い合わせ</h2>
+            <div style={{ width: 36, height: 2, background: 'var(--accent)', margin: '0 auto 24px' }}/>
+            <p style={{ fontSize: 15, color: 'var(--text-mid)', lineHeight: 2, marginBottom: 36 }}>
+              LINEからお気軽にご相談いただけます。<br/>
+              日程のご相談やご質問だけでも大丈夫です。
+            </p>
+
+            <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 48 }}>
+              <a href={LINE_URL} target="_blank" rel="noopener" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 12,
+                background: '#06C755', color: '#fff',
+                padding: '18px 36px', fontSize: 16, fontFamily: 'var(--sans)',
+                fontWeight: 500, letterSpacing: '0.05em', minWidth: 260,
+                justifyContent: 'center', transition: 'background 0.2s',
+                textDecoration: 'none',
+              }}
+                onMouseEnter={e => e.currentTarget.style.background = '#05A847'}
+                onMouseLeave={e => e.currentTarget.style.background = '#06C755'}
+              >
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                  <path d="M14 2C7.925 2 3 6.477 3 12c0 3.09 1.54 5.858 3.97 7.726L6 24l5.09-2.545A12.3 12.3 0 0 0 14 21.8c6.075 0 11-4.477 11-10S20.075 2 14 2z" fill="white"/>
+                </svg>
+                LINEで相談する（おすすめ）
+              </a>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSfX1NCJgV27AiOstA-2oayB2_Ica-QFhw0A1E3lk7ysCUGZBw/viewform" target="_blank" rel="noopener" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 12,
+                background: 'var(--bg-white)', color: 'var(--text)',
+                border: '1.5px solid var(--border)',
+                padding: '18px 36px', fontSize: 14, fontFamily: 'var(--sans)',
+                fontWeight: 400, letterSpacing: '0.05em', minWidth: 220,
+                justifyContent: 'center', transition: 'border-color 0.2s',
+                flexDirection: 'column', lineHeight: 1.5, textDecoration: 'none',
+              }}
+                onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--text)'}
+                onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--border)'}
+              >
+                <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+                    <rect x="1" y="1" width="20" height="16" rx="1.5" stroke="#2C2825" strokeWidth="1.2" fill="none"/>
+                    <path d="M1 4l10 7 10-7" stroke="#2C2825" strokeWidth="1.2"/>
+                  </svg>
+                  フォームで問い合わせる
+                </span>
+                <span style={{ fontSize: 13, color: 'var(--text-mid)' }}>（メール）</span>
+              </a>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, background: 'var(--bg-white)', border: '1px solid var(--border)', maxWidth: 840, margin: '0 auto 36px' }} className="features-grid">
+              <div style={{ padding: '28px 24px', textAlign: 'center', borderRight: '1px solid var(--border)' }}>
+                <div style={{ marginBottom: 14 }}>
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                    <rect x="3" y="6" width="30" height="26" rx="2" stroke="#C07B5E" strokeWidth="1.2" fill="none"/>
+                    <path d="M3 13h30" stroke="#C07B5E" strokeWidth="1.2"/>
+                    <path d="M11 3v6M25 3v6" stroke="#C07B5E" strokeWidth="1.2" strokeLinecap="round"/>
+                    <rect x="8" y="18" width="4" height="3" rx="0.5" fill="#E8D5C8"/>
+                    <rect x="16" y="18" width="4" height="3" rx="0.5" fill="#E8D5C8"/>
+                    <rect x="24" y="18" width="4" height="3" rx="0.5" fill="#C07B5E"/>
+                    <rect x="8" y="25" width="4" height="3" rx="0.5" fill="#E8D5C8"/>
+                    <rect x="16" y="25" width="4" height="3" rx="0.5" fill="#E8D5C8"/>
+                  </svg>
+                </div>
+                <p style={{ fontSize: 14, color: 'var(--text)', marginBottom: 12, lineHeight: 1.7 }}>空き状況を<br/>ご確認ください</p>
+                <a href="#calendar" style={{ fontSize: 12, color: 'var(--accent)', letterSpacing: '0.05em' }}>こちら →</a>
+              </div>
+              <div style={{ padding: '28px 24px', textAlign: 'center', borderRight: '1px solid var(--border)' }}>
+                <div style={{ marginBottom: 14 }}>
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                    <path d="M6 10a3 3 0 0 1 3-3h18a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H22l-4 4-4-4H9a3 3 0 0 1-3-3V10z" stroke="#C07B5E" strokeWidth="1.2" fill="none"/>
+                    <circle cx="12" cy="15" r="1.5" fill="#C07B5E"/>
+                    <circle cx="18" cy="15" r="1.5" fill="#C07B5E"/>
+                    <circle cx="24" cy="15" r="1.5" fill="#C07B5E"/>
+                  </svg>
+                </div>
+                <p style={{ fontSize: 14, color: 'var(--text)', marginBottom: 10, lineHeight: 1.7 }}>やりとりが<br/>スムーズです</p>
+                <p style={{ fontSize: 13, color: 'var(--text-mid)', lineHeight: 1.9 }}>LINEでお気軽にご相談いただけます。<br/>お早めにご案内できます</p>
+              </div>
+              <div style={{ padding: '28px 24px', textAlign: 'center' }}>
+                <div style={{ marginBottom: 14 }}>
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                    <path d="M18 6C12.477 6 8 9.86 8 14.6c0 2.8 1.4 5.3 3.6 7l-.6 4 4.2-2.1c.9.2 1.8.3 2.8.3 5.523 0 10-3.86 10-8.6S23.523 6 18 6z" stroke="#C07B5E" strokeWidth="1.2" fill="none"/>
+                    <path d="M18 19a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" stroke="#C07B5E" strokeWidth="1"/>
+                  </svg>
+                </div>
+                <p style={{ fontSize: 14, color: 'var(--text)', marginBottom: 10, lineHeight: 1.7 }}>小さなご相談でも<br/>大丈夫です</p>
+                <p style={{ fontSize: 13, color: 'var(--text-mid)', lineHeight: 1.9 }}>「こんなこと聞いてもいいのかな？」<br/>そんなこともお気軽にどうぞ</p>
+              </div>
+            </div>
+
+            <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 2 }}>
+              通常3日以内にお返事いたします。<br/>
+              お急ぎの場合はLINEからご連絡いただけるとスムーズです
+            </p>
+          </div>
+        </div>
+
+        {/* Calendar */}
+        <div id="calendar" style={{ background: 'var(--bg-cream)', padding: '56px 32px' }}>
+          <div className="container">
+            <div style={{ textAlign: 'center', marginBottom: 32 }}>
+              <p style={{ fontSize: 10, letterSpacing: '0.2em', color: 'var(--accent)', marginBottom: 8 }}>CALENDAR</p>
+              <h2 style={{ fontFamily: 'var(--serif)', fontSize: 22, fontWeight: 400, marginBottom: 8 }}>空き状況カレンダー</h2>
+              <div style={{ width: 24, height: 1, background: 'var(--accent)', margin: '0 auto 12px' }}/>
+              <p style={{ fontSize: 15, color: 'var(--text-mid)' }}>LINEでご連絡の前に、ご希望日の空きをご確認いただけます。</p>
+            </div>
+
+            <div style={{ background: 'var(--bg-white)', border: '1px solid var(--border)', padding: 8 }}>
+              <iframe
+                src="https://calendar.google.com/calendar/embed?src=a04ec05df7552207940d54a933d7b77d8262b1c325525cb6bfcf87c406f01110%40group.calendar.google.com&ctz=Asia%2FTokyo&mode=AGENDA&showTitle=0&showPrint=0&showCalendars=0&showTz=0"
+                style={{ border: 0, width: '100%', height: 600, display: 'block' }}
+                frameBorder="0"
+                scrolling="no"
+                title="いち日写真館 空き状況カレンダー"
+              />
+            </div>
+            <p style={{ fontSize: 13, color: 'var(--text-light)', marginTop: 10, textAlign: 'center' }}>
+              ※ カレンダーに空きがなくてもご相談可能な場合があります。まずはLINEでお気軽にどうぞ。
+            </p>
+          </div>
+        </div>
+
+        <div style={{ padding: '40px 32px', background: 'var(--bg-cream)', textAlign: 'center', borderTop: '1px solid var(--border)' }}>
+          <p style={{ fontSize: 15, color: 'var(--text-mid)', marginBottom: 16 }}>よくあるご質問はこちらからご確認いただけます</p>
+          <a href="faq.html" className="btn btn--sm" style={{ fontSize: 11 }}>よくある質問を見る</a>
+        </div>
+      </div>
+
+      <footer style={{ background: 'var(--text)', color: 'rgba(255,255,255,0.7)', padding: '40px 0 28px' }}>
+        <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
+          <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 28, width: 'auto', filter: 'invert(1)', opacity: 0.85 }}/></a>
+          <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap' }}>
+            <a href="privacy.html" style={{ fontSize: 11, color: 'rgba(255,255,255,0.85)', borderBottom: '1px solid rgba(255,255,255,0.3)', paddingBottom: 1 }}>プライバシーポリシー</a>
+            <p style={{ fontSize: 11 }}>© 2026 いち日写真館. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+
+      <style>{`
+        @media(max-width:600px){
+          .features-grid{grid-template-columns:1fr !important}
+          .contact-form{padding:24px 16px !important}
+          .form-2col{grid-template-columns:1fr !important}
+        }
+      `}</style>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

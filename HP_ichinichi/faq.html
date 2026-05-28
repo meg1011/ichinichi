@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="いち日写真館によくいただくご質問にお答えします。撮影場所・雨天時・データ納品・出張範囲などについて。">
+<title>よくあるご質問 | いち日写真館</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAFAF7;--bg-cream:#F2EDE6;--bg-white:#FFFFFF;
+  --text:#1a1818;--text-mid:#1a1818;--text-light:#B8B2AA;
+  --accent:#C07B5E;--accent-light:#E8D5C8;--border:#E2DDD7;
+  --line:#06C755;--line-dark:#05A847;
+  --serif:'Noto Serif JP',Georgia,serif;
+  --sans:'Noto Sans JP',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:400;font-size:15px;line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{max-width:880px;margin:0 auto;padding:0 32px}
+@media(max-width:600px){.container{padding:0 20px}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 32px;font-family:var(--sans);font-size:13px;font-weight:400;letter-spacing:0.08em;border:1px solid var(--text);color:var(--text);background:transparent;cursor:pointer;transition:background 0.2s,color 0.2s;text-decoration:none}
+.btn:hover{background:var(--text);color:var(--bg)}
+.btn--line{background:var(--line);border-color:var(--line);color:#fff}
+.btn--line:hover{background:var(--line-dark);border-color:var(--line-dark);color:#fff}
+.btn--sm{padding:10px 20px;font-size:11px}
+.section-label{font-family:var(--sans);font-size:10px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.section-heading{font-family:var(--serif);font-size:clamp(22px,4vw,34px);font-weight:400;line-height:1.6;color:var(--text);margin-bottom:12px}
+.divider{width:32px;height:1px;background:var(--accent);margin:20px 0}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState } = React;
+
+const LINE_URL = 'https://lin.ee/pSxLqqB';
+
+function Nav() {
+  const [open, setOpen] = useState(false);
+  const links = [
+    { href: 'index.html', label: 'TOP' },
+    { href: 'index.html#menu', label: '撮影メニュー' },
+    { href: 'gallery.html', label: 'ギャラリー' },
+    { href: 'pricing.html', label: '料金' },
+    { href: 'faq.html', label: 'FAQ', active: true },
+    { href: 'contact.html', label: 'お問い合わせ' },
+  ];
+  return (
+    <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: '#F2EDE6', borderBottom: '1px solid var(--border)', backdropFilter: 'blur(8px)' }}>
+      <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 88 }}>
+        <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 56, width: 'auto' }}/></a>
+        <nav style={{ display: 'flex', gap: 44, alignItems: 'center' }} className="desk-nav">
+          {links.map(l => (
+            <a key={l.href} href={l.href} style={{ fontSize: 12, letterSpacing: '0.08em', color: l.active ? 'var(--accent)' : 'var(--text-mid)', borderBottom: l.active ? '1px solid var(--accent)' : 'none', paddingBottom: 2, transition: 'color 0.2s' }}
+              onMouseEnter={e => e.target.style.color = 'var(--text)'}
+              onMouseLeave={e => e.target.style.color = l.active ? 'var(--accent)' : 'var(--text-mid)'}
+            >{l.label}</a>
+          ))}
+          <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line btn--sm">LINEで相談する</a>
+        </nav>
+        <button onClick={() => setOpen(!open)} className="ham-btn" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 5, padding: 4 }}>
+          {[0,1,2].map(i => <span key={i} style={{ display: 'block', width: 22, height: 1, background: 'var(--text)' }}/>)}
+        </button>
+      </div>
+      {open && (
+        <div style={{ background: 'var(--bg-white)', borderTop: '1px solid var(--border)', padding: '20px 32px 28px' }}>
+          {links.map(l => <a key={l.href} href={l.href} onClick={() => setOpen(false)} style={{ display: 'block', padding: '12px 0', fontSize: 14, borderBottom: '1px solid var(--border)', color: l.active ? 'var(--accent)' : 'var(--text)' }}>{l.label}</a>)}
+          <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line" style={{ marginTop: 20, display: 'inline-flex' }}>LINEで相談する</a>
+        </div>
+      )}
+      <style>{`
+        @media(min-width:800px){.ham-btn{display:none !important}}
+        @media(max-width:799px){.desk-nav{display:none !important}}
+      `}</style>
+    </header>
+  );
+}
+
+const FAQ_GROUPS = [
+  {
+    title: '撮影について',
+    items: [
+      { q: '撮影場所はどうやって決めますか？', a: 'お客様のご希望をお聞きして一緒に決めます。ご自宅近くの公園や、ご自宅、神社など、その家族らしい場所でお撮りすることが多いです。撮影場所が決まっていなくても、お住まいの地域やご希望の雰囲気を伺いながらご提案しますのでお気軽にご相談ください。' },
+      { q: '子どもがうまく動いてくれるか心配です。', a: 'ご安心ください。撮影に慣れていないお子さんでも、まずはその場の雰囲気に慣れることを大切にしています。無理にポーズをお願いすることはなく、自然な表情や仕草を引き出すように撮影を進めます。' },
+      { q: '赤ちゃんや小さい子がいますが大丈夫ですか？', a: 'もちろんです。ナチュラルニューボーンや0〜1歳のお子さんの撮影も多く行っています。授乳やおむつ替えのための休憩も自由に取っていただけます。お子さんのペースに合わせて進めますので、ご安心ください。' },
+      { q: '雨天の場合はどうなりますか？', a: '小雨程度であれば撮影可能なことも多いです。悪天候の場合は日程変更を承りますので、ご相談ください。' },
+    ],
+  },
+  {
+    title: 'ご予約・データ納品',
+    items: [
+      { q: 'どのくらい前に予約すればよいですか？', a: '七五三シーズン（9月下旬〜12月初旬）など繁忙期は3〜4ヶ月前のご予約をおすすめします。マタニティやニューボーンは予定日が決まり次第お早めにご相談ください。' },
+      { q: 'データの納品はいつ頃になりますか？', a: '撮影日から2週間以内にお届けしています。七五三など繁忙期は前後する場合があります。納品はGoogle Photo（高画質）で行います。' },
+      { q: '撮影データは何枚届きますか？', a: '全プランで85カット以上のレタッチ済みデータをお渡ししています。撮影時間・状況により多少前後する場合があります。' },
+      { q: 'キャンセル・日程変更はできますか？', a: '日程変更は無料で承ります。キャンセルの場合、撮影日の20日前まで無料、それ以降は所定のキャンセル料を頂戴いたします。詳細はご予約時にご案内します。' },
+    ],
+  },
+  {
+    title: '料金・出張について',
+    items: [
+      { q: '出張範囲に制限はありますか？', a: '基本は東京都内・近郊エリアです。小金井周辺から距離に応じて出張料が変わります。遠方の場合もご相談いただけますのでお問い合わせください。' },
+      { q: '富山での撮影はどうやって申し込めますか？', a: '富山での撮影は年2回ほどの期間限定開催です。開催時期はInstagramでご案内しますので、フォローいただくか、お問い合わせにてご希望をお知らせください。' },
+      { q: '料金はどこで確認できますか？', a: <>すべてのジャンルの料金は<a href="pricing.html" style={{color:'var(--accent)',textDecoration:'underline',textUnderlineOffset:'3px'}}>料金ページ</a>に掲載しています。基本料金・出張料・オプション料金についてご確認いただけます。</> },
+      { q: '撮影料を見積もってもらえますか？', a: <><a href="https://lin.ee/pSxLqqB" style={{color:'var(--accent)',textDecoration:'underline',textUnderlineOffset:'3px'}}>LINE</a>か<a href="contact.html" style={{color:'var(--accent)',textDecoration:'underline',textUnderlineOffset:'3px'}}>コンタクトフォーム</a>で、撮影ジャンルと撮影ご希望場所、オプションをお知らせいただければ、合計金額をお見積りいたします。お気軽にお問い合わせください。</> },
+      { q: '支払い方法を教えてください。', a: '当日現金支払い、もしくは後日銀行振込をお願いしています。後日銀行振込の場合は、納品時に合わせて振込先をご案内いたします。' },
+      { q: '領収書は発行してもらえますか？', a: 'はい、可能です。必要であればお申し付けください。' },
+    ],
+  },
+];
+
+function FAQItem({ q, a, isOpen, onToggle }) {
+  return (
+    <div style={{ borderBottom: '1px solid var(--border)' }}>
+      <button onClick={onToggle} style={{
+        width: '100%', textAlign: 'left', padding: '22px 0',
+        background: 'none', border: 'none', cursor: 'pointer',
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16,
+        fontFamily: 'var(--sans)', fontSize: 14, color: 'var(--text)', lineHeight: 1.7,
+      }}>
+        <span style={{ display: 'flex', gap: 14, alignItems: 'baseline' }}>
+          <span style={{ fontFamily: 'var(--serif)', color: 'var(--accent)', fontSize: 14 }}>Q.</span>
+          <span>{q}</span>
+        </span>
+        <span style={{ flexShrink: 0, fontSize: 20, color: 'var(--accent)', fontWeight: 300, transform: isOpen ? 'rotate(45deg)' : 'none', transition: 'transform 0.2s' }}>+</span>
+      </button>
+      {isOpen && (
+        <div style={{ display: 'flex', gap: 14, alignItems: 'baseline', paddingBottom: 24, paddingRight: 28 }}>
+          <span style={{ fontFamily: 'var(--serif)', color: 'var(--text-mid)', fontSize: 14, flexShrink: 0 }}>A.</span>
+          <p style={{ fontSize: 15, color: 'var(--text-mid)', lineHeight: 2 }}>{a}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function FAQList() {
+  const [openKey, setOpenKey] = useState(null);
+  return (
+    <div>
+      {FAQ_GROUPS.map((group, gi) => (
+        <div key={group.title} style={{ marginBottom: 56 }}>
+          <h2 style={{ fontFamily: 'var(--serif)', fontSize: 18, fontWeight: 400, marginBottom: 8, color: 'var(--text)' }}>{group.title}</h2>
+          <div style={{ width: 24, height: 1, background: 'var(--accent)', marginBottom: 20 }} />
+          {group.items.map((it, ii) => {
+            const key = `${gi}-${ii}`;
+            return (
+              <FAQItem key={key} q={it.q} a={it.a}
+                isOpen={openKey === key}
+                onToggle={() => setOpenKey(openKey === key ? null : key)} />
+            );
+          })}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Nav />
+      <main style={{ paddingTop: 88 }}>
+        <section style={{ padding: '72px 0 32px', textAlign: 'center', background: 'var(--bg-cream)' }}>
+          <div className="container">
+            <p className="section-label" style={{ display: 'flex', justifyContent: 'center' }}>FAQ</p>
+            <h1 className="section-heading">よくあるご質問</h1>
+            <div className="divider" style={{ margin: '20px auto' }} />
+            <p style={{ fontSize: 15, color: 'var(--text-mid)', lineHeight: 2, maxWidth: 480, margin: '0 auto' }}>
+              撮影をご検討中の方からよくお寄せいただくご質問をまとめました。<br/>こちらに記載のない内容は、お気軽にお問い合わせください。
+            </p>
+          </div>
+        </section>
+
+        <section style={{ padding: '64px 0 96px' }}>
+          <div className="container">
+            <FAQList />
+          </div>
+        </section>
+
+        <section style={{ padding: '72px 0', background: 'var(--bg-cream)', textAlign: 'center' }}>
+          <div className="container" style={{ maxWidth: 520 }}>
+            <p className="section-label" style={{ display: 'flex', justifyContent: 'center' }}>Contact</p>
+            <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(20px,3vw,28px)', fontWeight: 400, marginBottom: 16 }}>その他のご質問・ご相談</h2>
+            <div className="divider" style={{ margin: '0 auto 20px' }} />
+            <p style={{ fontSize: 15, color: 'var(--text-mid)', lineHeight: 2, marginBottom: 28 }}>
+              ご不明な点・ご相談はLINEまたはお問い合わせフォームから<br/>お気軽にお寄せください。
+            </p>
+            <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line">LINEで相談する</a>
+              <a href="contact.html" className="btn">お問い合わせフォーム</a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer style={{ background: 'var(--text)', color: 'rgba(255,255,255,0.7)', padding: '40px 0 28px' }}>
+        <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
+          <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 28, width: 'auto', filter: 'invert(1)', opacity: 0.85 }}/></a>
+          <p style={{ fontSize: 11 }}>© 2026 いち日写真館. All rights reserved.</p>
+        </div>
+      </footer>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

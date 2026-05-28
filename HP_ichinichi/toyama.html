@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="いち日写真館｜富山。期間限定でひらく、白い写真館。家族の時間を、そのまま残します。">
+<title>いち日写真館｜富山</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAFAF7;--bg-cream:#F5F0E8;--bg-white:#FFFFFF;
+  --text:#1a1818;--text-mid:#4A4540;--text-light:#9A948C;
+  --accent:#B5952A;--accent-light:#F0E8CC;--border:#E2DDD7;
+  --serif:'Noto Serif JP',Georgia,serif;
+  --sans:'Noto Sans JP',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;overflow-x:hidden;width:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:400;font-size:15px;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden;width:100%}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{max-width:1080px;margin:0 auto;padding:0 32px}
+@media(max-width:600px){.container{padding:0 20px}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 28px;font-family:var(--sans);font-size:12px;font-weight:400;letter-spacing:0.1em;border:1px solid var(--text);color:var(--text);background:transparent;cursor:pointer;transition:background 0.2s,color 0.2s;text-decoration:none;white-space:nowrap}
+.btn:hover{background:var(--text);color:var(--bg)}
+.btn--accent{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn--accent:hover{background:#9A7D20;border-color:#9A7D20;color:#fff}
+.btn--dark{background:var(--text);border-color:var(--text);color:#fff}
+.btn--dark:hover{background:#3a3030;border-color:#3a3030;color:#fff}
+.btn--sm{padding:10px 22px;font-size:11px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState } = React;
+
+const LINE_URL = 'https://lin.ee/pSxLqqB';
+const INSTAGRAM_URL = 'https://www.instagram.com/1nichi_photo/';
+
+function Nav() {
+  const [open, setOpen] = useState(false);
+  const links = [
+    { href: 'index.html', label: 'TOP' },
+    { href: 'index.html#menu', label: '撮影メニュー' },
+    { href: 'gallery.html', label: 'ギャラリー' },
+    { href: 'pricing.html', label: '料金' },
+    { href: 'faq.html', label: 'FAQ' },
+    { href: 'contact.html', label: 'お問い合わせ' },
+  ];
+  return (
+    <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: '#F2EDE6', borderBottom: '1px solid var(--border)' }}>
+      <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 88 }}>
+        <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 56, width: 'auto' }}/></a>
+        <nav style={{ display: 'flex', gap: 28, alignItems: 'center' }} className="desk-nav">
+          {links.map(l => (
+            <a key={l.href} href={l.href} style={{ fontSize: 12, letterSpacing: '0.08em', color: 'var(--text-mid)', transition: 'color 0.2s' }}
+              onMouseEnter={e => e.target.style.color = 'var(--text)'}
+              onMouseLeave={e => e.target.style.color = 'var(--text-mid)'}
+            >{l.label}</a>
+          ))}
+          <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--sm" style={{ background: '#06C755', borderColor: '#06C755', color: '#fff' }}>LINEで相談する</a>
+        </nav>
+        <button onClick={() => setOpen(!open)} className="ham-btn" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 5, padding: 4 }}>
+          {[0,1,2].map(i => <span key={i} style={{ display: 'block', width: 22, height: 1, background: 'var(--text)' }}/>)}
+        </button>
+      </div>
+      {open && (
+        <div style={{ background: 'var(--bg-white)', borderTop: '1px solid var(--border)', padding: '20px 32px 28px' }}>
+          {links.map(l => <a key={l.href} href={l.href} onClick={() => setOpen(false)} style={{ display: 'block', padding: '12px 0', fontSize: 14, borderBottom: '1px solid var(--border)', color: 'var(--text)' }}>{l.label}</a>)}
+          <a href={LINE_URL} target="_blank" rel="noopener" className="btn" style={{ marginTop: 20, display: 'inline-flex', background: '#06C755', borderColor: '#06C755', color: '#fff' }}>LINEで相談する</a>
+        </div>
+      )}
+      <style>{`@media(min-width:1000px){.ham-btn{display:none !important}}@media(max-width:999px){.desk-nav{display:none !important}}`}</style>
+    </header>
+  );
+}
+
+function Divider() {
+  return <div style={{ margin: '20px 0', borderBottom: '1px dashed var(--border)' }}/>;
+}
+
+function App() {
+  return (
+    <>
+      <Nav />
+      <div style={{ paddingTop: 88 }}>
+
+        {/* ① Hero */}
+        <div style={{ background: 'var(--bg)', padding: '0 32px 0' }}>
+          <div style={{ position: 'relative', maxWidth: 780, margin: '0 auto', height: 'clamp(220px, 36vw, 460px)', overflow: 'hidden' }}>
+            <img
+              src="images/240824_044.jpg"
+              alt="いち日写真館 富山スタジオ"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block' }}
+            />
+            {/* 左右グラデーション */}
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #FAFAF7 0%, transparent 18%, transparent 82%, #FAFAF7 100%)', pointerEvents: 'none' }}/>
+            {/* テキストオーバーレイ（PC用） */}
+            <div className="hero-text-overlay" style={{
+              position: 'absolute', top: '50%', left: 28,
+              transform: 'translateY(-50%)',
+              maxWidth: 300,
+            }}>
+              <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(16px,2vw,22px)', fontWeight: 400, color: 'var(--text)', marginBottom: 12, lineHeight: 1.5 }}>
+                いち日写真館｜富山
+              </p>
+              <p style={{ fontSize: 13, color: 'var(--text-mid)', lineHeight: 2 }}>
+                期間限定でひらく、白い写真館。<br/>家族の時間を、そのまま残します。
+              </p>
+            </div>
+          </div>
+          {/* テキスト（スマホ用） */}
+          <div className="hero-text-mobile" style={{ display: 'none', maxWidth: 780, margin: '0 auto', padding: '20px 4px 0' }}>
+            <p style={{ fontFamily: 'var(--serif)', fontSize: 20, fontWeight: 400, color: 'var(--text)', marginBottom: 10, lineHeight: 1.5 }}>
+              いち日写真館｜富山
+            </p>
+            <p style={{ fontSize: 13, color: 'var(--text-mid)', lineHeight: 2 }}>
+              期間限定でひらく、白い写真館。家族の時間を、そのまま残します。
+            </p>
+          </div>
+        </div>
+        <style>{`
+          @media(max-width:600px){
+            .hero-text-overlay{display:none !important}
+            .hero-text-mobile{display:block !important}
+          }
+        `}</style>
+
+        {/* ② 3つの特徴アイコン */}
+        <div style={{ background: 'var(--bg-white)', padding: '48px 32px 40px', borderBottom: '1px solid var(--border)' }}>
+          <div className="container">
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, maxWidth: 460, margin: '0 auto' }} className="features-row">
+              {[
+                { label: '赤ちゃんも安心', img: 'images/il_baby.png' },
+                { label: 'ペットOK', img: 'images/il_dog.png' },
+                { label: 'ご家族のペースで\nゆっくり撮影', img: 'images/il_fm.png' },
+              ].map((f, i) => (
+                <div key={i} style={{ textAlign: 'center', padding: '0 12px' }}>
+                  <div style={{ marginBottom: 12, display: 'flex', justifyContent: 'center' }}>
+                    <img src={f.img} alt={f.label} style={{ width: 64, height: 64, objectFit: 'contain' }}/>
+                  </div>
+                  <p style={{ fontSize: 12, color: 'var(--text-mid)', lineHeight: 1.8, whiteSpace: 'pre-line' }}>{f.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ③ はじめての方へメッセージ */}
+        <div style={{ background: 'var(--bg-cream)', padding: '52px 32px' }}>
+          <div className="container" style={{ textAlign: 'center' }}>
+            <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(18px,2.5vw,24px)', fontWeight: 400, color: 'var(--text)', marginBottom: 16 }}>
+              はじめての方でもご安心ください
+            </h2>
+            <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 2.2 }}>
+              特別な準備は必要ありません。<br/>お気軽にお越しください。
+            </p>
+          </div>
+        </div>
+
+        {/* ④ ストーリーセクション */}
+        <div style={{ background: 'var(--bg-white)', padding: '80px 32px' }}>
+          <div className="container">
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, alignItems: 'center' }} className="story-grid">
+              <div style={{ paddingLeft: 120 }} className="story-text">
+                <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(20px,2.5vw,26px)', fontWeight: 400, lineHeight: 1.7, marginBottom: 28, color: 'var(--text)' }}>
+                  この写真館は、<br/>私の実家の一角から<br/>はじまりました
+                </h2>
+                <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 2.3, marginBottom: 32 }}>
+                  東京で活動する中で、<br/>「生まれ育った場所でも写真を残したい」<br/>そんな想いから、期間限定でひらいています。<br/>ここが、ふと戻ってきたくなる場所に<br/>なれたら嬉しいです。
+                </p>
+                <p style={{ fontSize: 12, color: 'var(--text-light)', marginBottom: 12, letterSpacing: '0.04em' }}>
+                  オープン期間はこちらで↓
+                </p>
+                <a href={INSTAGRAM_URL} target="_blank" rel="noopener" className="btn btn--dark btn--sm" style={{ gap: 10 }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                  </svg>
+                  Instagram
+                </a>
+              </div>
+              <div style={{ overflow: 'hidden' }} className="story-img">
+                <img
+                  src="images/area_toyama.jpg"
+                  alt="いち日写真館 富山"
+                  style={{ width: '100%', height: 380, objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+                />
+              </div>
+            </div>
+          </div>
+          <style>{`
+            @media(max-width:700px){
+              .story-grid{grid-template-columns:1fr !important;gap:0 !important}
+              .story-text{padding-left:0 !important}
+              .story-img img{height:280px !important}
+            }
+          `}</style>
+        </div>
+
+        {/* ⑤ 料金プラン */}
+        <div style={{ background: 'var(--bg-cream)', padding: '56px 32px 40px', textAlign: 'center', borderBottom: '1px solid var(--border)' }}>
+          <p style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--accent)', marginBottom: 10 }}>PRICING</p>
+          <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(22px,3vw,28px)', fontWeight: 400, marginBottom: 12, color: 'var(--text)' }}>料金プラン</h2>
+          <div style={{ width: 28, height: 1, background: 'var(--accent)', margin: '0 auto' }}/>
+        </div>
+
+        {/* クイックフォト */}
+        <div style={{ background: 'var(--bg-white)', padding: '64px 32px', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ maxWidth: 860, margin: '0 auto', padding: '0 40px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', gap: 60, alignItems: 'flex-start' }} className="plan-grid">
+              <div style={{ background: 'var(--bg-cream)', aspectRatio: '1/1', overflow: 'hidden' }}>
+                <img src="images/Z62_8525.jpg" alt="クイックフォト" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={e => { e.target.style.display='none'; }}/>
+              </div>
+              <div>
+                <h3 style={{ fontFamily: 'var(--serif)', fontSize: 26, fontWeight: 400, color: 'var(--accent)', marginBottom: 14, letterSpacing: '0.04em' }}>クイックフォト</h3>
+                <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 2 }}>
+                  1枚だけ写真を撮って欲しい方はこちら。証明写真、私服での家族写真、記念写真など
+                </p>
+                <Divider />
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+                  <span style={{ fontSize: 13, color: 'var(--text-mid)' }}>1枚/データ納品</span>
+                  <span style={{ fontFamily: 'var(--serif)', fontSize: 36, fontWeight: 400, color: 'var(--text)' }}>3,500</span>
+                  <span style={{ fontSize: 14, color: 'var(--text-mid)' }}>円（税込）</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* フルコレクション */}
+        <div style={{ background: 'var(--bg-cream)', padding: '64px 32px', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ maxWidth: 860, margin: '0 auto', padding: '0 40px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', gap: 60, alignItems: 'flex-start' }} className="plan-grid">
+              <div style={{ background: '#E8E4DE', aspectRatio: '1/1', overflow: 'hidden' }}>
+                <img src="images/240824_003.jpg" alt="フルコレクション" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={e => { e.target.style.display='none'; }}/>
+              </div>
+              <div>
+                <div style={{ position: 'relative', display: 'inline-block', marginBottom: 4 }}>
+                  <div style={{ position: 'absolute', top: -26, right: -8, background: '#E07050', color: '#fff', fontSize: 11, padding: '3px 12px', borderRadius: '12px 12px 12px 2px', whiteSpace: 'nowrap', letterSpacing: '0.06em' }}>おすすめ！</div>
+                  <h3 style={{ fontFamily: 'var(--serif)', fontSize: 26, fontWeight: 400, color: 'var(--accent)', letterSpacing: '0.04em' }}>フルコレクション</h3>
+                </div>
+                <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 2, marginTop: 14 }}>
+                  1時間のプライベート空間で、多彩なバリエーションのお写真を撮影します（撮影時間は約45分間）
+                </p>
+                <Divider />
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 18 }}>
+                  <span style={{ fontSize: 13, color: 'var(--text-mid)' }}>50カット/データ納品</span>
+                  <span style={{ fontFamily: 'var(--serif)', fontSize: 36, fontWeight: 400, color: 'var(--text)' }}>20,000</span>
+                  <span style={{ fontSize: 14, color: 'var(--text-mid)' }}>円（税込）</span>
+                </div>
+                <div style={{ background: 'var(--bg-white)', borderRadius: 8, padding: '18px 20px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M23 4v6h-6"/>
+                      <path d="M1 20v-6h6"/>
+                      <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                    </svg>
+                    <p style={{ fontSize: 13, fontWeight: 400, color: 'var(--text)' }}>リピーター割引</p>
+                  </div>
+                  <p style={{ fontSize: 13, color: 'var(--text-mid)', lineHeight: 1.9, paddingLeft: 26, marginBottom: 10 }}>
+                    再度お越しいただいた方はリピート割適用
+                  </p>
+                  <p style={{ paddingLeft: 26, fontFamily: 'var(--serif)', fontSize: 26, fontWeight: 400, color: 'var(--accent)', letterSpacing: '0.02em' }}>
+                    － 1,000<span style={{ fontSize: 14, marginLeft: 4 }}>円</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 出張撮影 */}
+        <div style={{ background: 'var(--bg-white)', padding: '64px 32px', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ maxWidth: 860, margin: '0 auto', padding: '0 40px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', gap: 60, alignItems: 'flex-start' }} className="plan-grid">
+              <div style={{ background: 'var(--bg-cream)', aspectRatio: '1/1', overflow: 'hidden' }}>
+                <img src="images/_BDS2430.jpg" alt="出張撮影" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={e => { e.target.style.display='none'; }}/>
+              </div>
+              <div>
+                <h3 style={{ fontFamily: 'var(--serif)', fontSize: 26, fontWeight: 400, color: 'var(--accent)', letterSpacing: '0.04em', marginBottom: 14 }}>出張撮影</h3>
+                <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 2 }}>
+                  『いち日写真館｜富山』のオープン期間中、出張撮影も承っております。
+                </p>
+                <Divider />
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 14 }}>
+                  <span style={{ fontFamily: 'var(--serif)', fontSize: 36, fontWeight: 400, color: 'var(--text)' }}>33,000</span>
+                  <span style={{ fontSize: 14, color: 'var(--text-mid)' }}>円〜</span>
+                  <span style={{ fontSize: 13, color: 'var(--text-mid)' }}>＋ 出張料<sup style={{ fontSize: 10 }}>※</sup>（税込）</span>
+                </div>
+                <a href="pricing.html" className="btn btn--accent btn--sm" style={{ marginBottom: 24 }}>出張撮影プラン</a>
+                <div style={{ background: 'var(--bg-cream)', borderRadius: 8, padding: '18px 20px', marginTop: 8 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10"/>
+                      <path d="M12 6v6l4 2"/>
+                    </svg>
+                    <p style={{ fontSize: 13, fontWeight: 400, color: 'var(--text)' }}>出張料について</p>
+                  </div>
+                  <p style={{ fontSize: 12, color: 'var(--text-mid)', marginBottom: 12, paddingLeft: 26 }}>いち日写真館（富山）を基点として</p>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px 12px', paddingLeft: 26, marginBottom: 16 }}>
+                    {[
+                      ['〜5km', '無料'],
+                      ['〜10km', '800円'],
+                      ['〜20km', '1,500円'],
+                      ['〜30km', '2,300円'],
+                    ].map(([dist, price]) => (
+                      <div key={dist} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, padding: '5px 0', borderBottom: '1px solid var(--border)' }}>
+                        <span style={{ color: 'var(--text-mid)' }}>{dist}</span>
+                        <span style={{ color: 'var(--text)', fontFamily: 'var(--serif)' }}>{price}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div style={{ paddingTop: 14 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M23 4v6h-6"/>
+                        <path d="M1 20v-6h6"/>
+                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                      </svg>
+                      <p style={{ fontSize: 13, fontWeight: 400, color: 'var(--text)' }}>リピーター割引</p>
+                    </div>
+                    <p style={{ fontSize: 13, color: 'var(--text-mid)', marginBottom: 8, paddingLeft: 26 }}>リピート割も適用いたします</p>
+                    <p style={{ paddingLeft: 26, fontFamily: 'var(--serif)', fontSize: 26, fontWeight: 400, color: 'var(--accent)', letterSpacing: '0.02em' }}>
+                      － 3,000<span style={{ fontSize: 14, marginLeft: 4 }}>円</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 料金注意事項 */}
+        <div style={{ background: 'var(--bg-cream)', padding: '52px 32px', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ maxWidth: 860, margin: '0 auto', padding: '0 40px' }}>
+            <h3 style={{ fontFamily: 'var(--serif)', fontSize: 17, fontWeight: 400, marginBottom: 22, color: 'var(--text)' }}>料金に関するご注意</h3>
+            {[
+              ['料金', '表示はすべて税込です。'],
+              ['写真館', '富山県八尾町樫尾周辺にて行います。詳細住所はご予約後にご案内します。'],
+              ['データ納品', 'オンライン（ダウンロード形式）で2週間以内にお届けします。'],
+              ['データ保管', 'データの保存期間は3ヶ月です。必ずご自宅でバックアップをお取りください。'],
+              ['キャンセル', '20〜7日前10% / 7〜4日前20% / 3〜2日前50% / 前日80% / 当日100%。ただし変更日時が限られますので変更はお早めにご相談下さい。'],
+              ['開催期間', '富山スタジオは期間限定のオープンです。次回日程はInstagramにてお知らせします。'],
+            ].map(([label, val]) => (
+              <div key={label} style={{ display: 'flex', gap: 24, padding: '12px 0', borderBottom: '1px solid var(--border)', fontSize: 13 }}>
+                <span style={{ color: 'var(--text-light)', flexShrink: 0, width: 80 }}>{label}</span>
+                <span style={{ color: 'var(--text-mid)', lineHeight: 1.9 }}>{val}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <style>{`@media(max-width:640px){.plan-grid{grid-template-columns:1fr !important;gap:28px !important}}`}</style>
+
+        {/* ⑤.5 作品ギャラリー */}
+        <div style={{ background: 'var(--bg)', padding: '72px 32px' }}>
+          <div className="container">
+            <div style={{ textAlign: 'center', marginBottom: 40 }}>
+              <p style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--accent)', marginBottom: 10 }}>GALLERY</p>
+              <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(20px,2.5vw,26px)', fontWeight: 400, color: 'var(--text)' }}>写真館の作品</h2>
+            </div>
+            {/* 3×3グリッド */}
+            <div className="toyama-gallery" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 6 }}>
+              {[
+                'images/uploads/toyama/240326_1_014.jpg',
+                'images/uploads/toyama/240824_093.jpg',
+                'images/uploads/toyama/250321_062.jpg',
+                'images/uploads/toyama/240326_2_022.jpg',
+                'images/uploads/toyama/DSC_6030.jpg',
+                'images/uploads/toyama/240326_2_024.jpg',
+                'images/uploads/toyama/DSC_5955.jpg',
+                'images/uploads/toyama/250323_007.jpg',
+                'images/uploads/toyama/Z62_8172.jpg',
+              ].map((src, i) => (
+                <div key={i} style={{ aspectRatio: '1/1', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                  <img src={src} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}/>
+                </div>
+              ))}
+            </div>
+          </div>
+          <style>{`@media(max-width:600px){.toyama-gallery{grid-template-columns:repeat(2,1fr) !important}}`}</style>
+        </div>
+
+        {/* ⑥ アクセス */}
+        <div style={{ background: 'var(--bg-white)', padding: '80px 32px' }}>
+          <div className="container">
+            <div style={{ textAlign: 'center', marginBottom: 48 }}>
+              <p style={{ fontFamily: 'var(--serif)', fontSize: 13, letterSpacing: '0.15em', color: 'var(--accent)', marginBottom: 12 }}>Access</p>
+              <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(22px,3vw,30px)', fontWeight: 400, marginBottom: 12, color: 'var(--text)' }}>
+                アクセス
+              </h2>
+              <div style={{ width: 28, height: 1, background: 'var(--accent)', margin: '0 auto 20px' }}/>
+              <p style={{ fontSize: 14, color: 'var(--text-mid)' }}>静かな場所にある、小さな写真館です</p>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 48, alignItems: 'start' }} className="access-grid">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+
+                {/* 所在地 */}
+                <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B5952A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 2 }}>
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                  <div>
+                    <p style={{ fontSize: 14, fontWeight: 400, color: 'var(--text)', marginBottom: 6 }}>所在地</p>
+                    <p style={{ fontSize: 13, color: 'var(--text-mid)', lineHeight: 2 }}>
+                      富山県八尾町樫尾周辺<br/>
+                      <span style={{ fontSize: 11, color: 'var(--text-light)' }}>※詳細はご予約後にご案内いたします</span>
+                    </p>
+                  </div>
+                </div>
+
+                {/* アクセス（距離表） */}
+                <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B5952A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 2 }}>
+                    <path d="M5 17H3v-5l2-5h14l2 5v5h-2"/>
+                    <circle cx="7.5" cy="17" r="2"/>
+                    <circle cx="16.5" cy="17" r="2"/>
+                    <path d="M5 12h14"/>
+                  </svg>
+                  <div style={{ flex: 1 }}>
+                    <p style={{ fontSize: 14, fontWeight: 400, color: 'var(--text)', marginBottom: 12 }}>アクセス</p>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 0, border: '1px solid var(--border)' }}>
+                      {[
+                        { from: '富山駅から', how: '車で約40分' },
+                        { from: '高岡から', how: '車で約50分' },
+                        { from: '越中八尾駅から', how: '車で約6分' },
+                      ].map((row, i) => (
+                        <div key={i} style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          padding: '10px 14px',
+                          borderBottom: i < 2 ? '1px solid var(--border)' : 'none',
+                          background: i % 2 === 0 ? 'var(--bg)' : 'var(--bg-white)',
+                        }}>
+                          <span style={{ fontSize: 13, color: 'var(--text-mid)' }}>{row.from}</span>
+                          <span style={{ fontSize: 13, color: 'var(--text)', fontWeight: 400 }}>{row.how}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* 特徴ボックス2つ */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                  <div style={{ background: 'var(--bg-cream)', padding: '24px 16px', textAlign: 'center', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                      <circle cx="16" cy="16" r="13" stroke="#B5952A" strokeWidth="1.4"/>
+                      <text x="16" y="21" textAnchor="middle" fontSize="13" fill="#B5952A" fontFamily="'Noto Serif JP', Georgia, serif">P</text>
+                    </svg>
+                    <p style={{ fontSize: 12, fontWeight: 400, color: 'var(--text)' }}>駐車スペースあり</p>
+                    <p style={{ fontSize: 11, color: 'var(--text-light)', lineHeight: 1.7 }}>お車でお越しいただけます</p>
+                  </div>
+                  <div style={{ background: 'var(--bg-cream)', padding: '24px 16px', textAlign: 'center', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                      {/* 中央の木 */}
+                      <polygon points="16,4 22,14 10,14" stroke="#B5952A" strokeWidth="1.3" fill="none" strokeLinejoin="round"/>
+                      <rect x="15" y="14" width="2" height="4" fill="#B5952A" opacity="0.6"/>
+                      {/* 左の木 */}
+                      <polygon points="8,10 13,18 3,18" stroke="#B5952A" strokeWidth="1.1" fill="none" strokeLinejoin="round"/>
+                      <rect x="7" y="18" width="2" height="3" fill="#B5952A" opacity="0.5"/>
+                      {/* 右の木 */}
+                      <polygon points="24,10 29,18 19,18" stroke="#B5952A" strokeWidth="1.1" fill="none" strokeLinejoin="round"/>
+                      <rect x="23" y="18" width="2" height="3" fill="#B5952A" opacity="0.5"/>
+                      {/* 地面 */}
+                      <path d="M2 22h28" stroke="#B5952A" strokeWidth="1" strokeLinecap="round" opacity="0.4"/>
+                    </svg>
+                    <p style={{ fontSize: 12, fontWeight: 400, color: 'var(--text)' }}>自然に恵まれた環境</p>
+                    <p style={{ fontSize: 11, color: 'var(--text-light)', lineHeight: 1.7, textAlign: 'center' }}>周りは自然に恵まれた<br/>静かな環境です</p>
+                  </div>
+                </div>
+
+              </div>
+
+              <div style={{ border: '1px solid var(--border)', overflow: 'hidden' }}>
+                <iframe
+                  src="https://www.google.com/maps?q=富山市八尾町樫尾&output=embed&z=14"
+                  width="100%"
+                  height="370"
+                  style={{ border: 0, display: 'block' }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </div>
+          </div>
+          <style>{`@media(max-width:700px){.access-grid{grid-template-columns:1fr !important;gap:36px !important}}`}</style>
+        </div>
+
+        {/* ⑦ CTA */}
+        <div style={{ background: 'var(--bg-cream)', padding: '64px 32px', textAlign: 'center' }}>
+          <div className="container">
+            <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(16px,2vw,20px)', color: 'var(--text)', marginBottom: 12 }}>
+              ご予約・お問い合わせ
+            </p>
+            <div style={{ width: 28, height: 1, background: 'var(--accent)', margin: '0 auto 20px' }}/>
+            <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 2.2, marginBottom: 32 }}>
+              開催前でも、ご希望やご質問はお気軽にどうぞ。
+            </p>
+            <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a href={LINE_URL} target="_blank" rel="noopener" className="btn" style={{ background: '#06C755', borderColor: '#06C755', color: '#fff' }}>LINEで相談する</a>
+              <a href="contact.html" className="btn">お問い合わせフォーム</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <footer style={{ background: 'var(--text)', color: 'rgba(255,255,255,0.7)', padding: '40px 0 28px' }}>
+        <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
+          <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 28, width: 'auto', filter: 'invert(1)', opacity: 0.85 }}/></a>
+          <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap' }}>
+            <a href="privacy.html" style={{ fontSize: 11, color: 'rgba(255,255,255,0.85)', borderBottom: '1px solid rgba(255,255,255,0.3)', paddingBottom: 1 }}>プライバシーポリシー</a>
+            <p style={{ fontSize: 11 }}>© 2026 いち日写真館. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
