@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="いち日写真館について — 東京・富山を拠点に活動するフォトグラファー・松田恵美の写真館。">
+<title>ABOUT | いち日写真館</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAFAF7;--bg-cream:#F2EDE6;--bg-white:#FFFFFF;
+  --text:#1a1818;--text-mid:#1a1818;--text-light:#888080;
+  --accent:#C07B5E;--accent-light:#E8D5C8;--border:#E2DDD7;
+  --serif:'Noto Serif JP',Georgia,serif;
+  --sans:'Noto Sans JP',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;overflow-x:hidden;width:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:400;font-size:15px;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden;width:100%}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{max-width:1080px;margin:0 auto;padding:0 32px}
+@media(max-width:600px){.container{padding:0 20px}}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;font-family:var(--sans);font-size:12px;font-weight:400;letter-spacing:0.1em;border:1px solid var(--text);color:var(--text);background:transparent;cursor:pointer;transition:background 0.2s,color 0.2s}
+.btn:hover{background:var(--text);color:var(--bg)}
+.btn--primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn--primary:hover{background:#A8684A;border-color:#A8684A;color:#fff}
+.btn--sm{padding:10px 20px;font-size:11px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+const { useState, useEffect } = React;
+
+/* ---- Nav ---- */
+function Nav() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', fn);
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+
+  const links = [
+    { href: 'index.html', label: 'TOP' },
+    { href: 'index.html#menu', label: '撮影メニュー' },
+    { href: 'pricing.html', label: '料金' },
+    { href: 'gallery.html', label: 'ギャラリー' },
+    { href: 'photographer.html', label: 'ABOUT' },
+  ];
+
+  return (
+    <header style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
+      background: scrolled ? 'rgba(250,250,247,0.96)' : '#F2EDE6',
+      borderBottom: '1px solid var(--border)',
+      transition: 'all 0.3s',
+      backdropFilter: scrolled ? 'blur(8px)' : 'none'
+    }}>
+      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 88 }}>
+        <a href="index.html" style={{ display: 'flex', alignItems: 'center' }}>
+          <img src="images/logo.png" alt="いち日写真館" style={{ height: 56, width: 'auto' }} />
+        </a>
+        <nav style={{ display: 'flex', gap: 32, alignItems: 'center' }} className="desk-nav">
+          {links.map((l) =>
+            <a key={l.label} href={l.href}
+               style={{ fontSize: 12, letterSpacing: '0.08em', color: l.href === 'photographer.html' ? 'var(--accent)' : '#000000', transition: 'color 0.2s' }}>
+              {l.label}
+            </a>
+          )}
+          <a href="contact.html" className="btn btn--primary btn--sm" style={{ whiteSpace: 'nowrap' }}>LINEでご相談・ご予約</a>
+        </nav>
+        <button onClick={() => setOpen(!open)} className="ham-btn" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 5, padding: 4 }}>
+          {[0, 1, 2].map((i) =>
+            <span key={i} style={{ display: 'block', width: 22, height: 1, background: 'var(--text)', transition: 'all 0.3s',
+              transform: open && i === 0 ? 'rotate(45deg) translate(4px,4px)' : open && i === 2 ? 'rotate(-45deg) translate(4px,-4px)' : 'none',
+              opacity: open && i === 1 ? 0 : 1 }} />
+          )}
+        </button>
+      </div>
+      {open &&
+        <div style={{ background: 'var(--bg-white)', borderTop: '1px solid var(--border)', padding: '20px 32px 28px' }}>
+          {links.map((l) =>
+            <a key={l.label} href={l.href} onClick={() => setOpen(false)}
+               style={{ display: 'block', padding: '12px 0', fontSize: 14, borderBottom: '1px solid var(--border)', color: 'var(--text)' }}>
+              {l.label}
+            </a>
+          )}
+          <a href="contact.html" className="btn btn--primary" style={{ marginTop: 20, display: 'inline-flex' }} onClick={() => setOpen(false)}>ご予約・お問い合わせ</a>
+        </div>
+      }
+      <style>{`
+        @media(min-width:800px){.ham-btn{display:none !important}}
+        @media(max-width:799px){.desk-nav{display:none !important}}
+      `}</style>
+    </header>
+  );
+}
+
+/* ---- Divider ---- */
+function Divider() {
+  return <div style={{ width: '100%', height: 1, background: 'var(--border)' }} />;
+}
+
+/* ---- Page Header ---- */
+function PageHeader() {
+  return (
+    <div style={{ background: 'var(--bg-cream)', paddingTop: 128, paddingBottom: 64, textAlign: 'center' }}>
+      <div className="container">
+        <p style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--accent)', marginBottom: 14 }}>ABOUT</p>
+        <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(24px,3vw,36px)', fontWeight: 400, color: 'var(--text)', lineHeight: 1.6 }}>
+          いち日写真館について
+        </h1>
+      </div>
+    </div>
+  );
+}
+
+/* ---- Studio About ---- */
+function StudioAbout() {
+  const ps = [
+    '出張撮影を続ける中で、たくさんのご家族と出会ってきました。\nそして、ありがたいことに、「また来年もお願いします」と、毎年撮影をご依頼くださるご家族も少しずつ増えていきました。',
+    'お子さんの成長を一緒に見守るように、家族の時間を記録させてもらえることが、とても嬉しく、大切な時間になっています。',
+    'そんな中で、「この関係が、ずっと続いていけばいいな」と思うようになりました。',
+    'もちろん、私がご家族のもとへ伺う出張撮影も大好きです。\nでもいつか、大きく成長した子どもたちが、\n「久しぶりに遊びに来たよ」\nと、ふらっと立ち寄ってくれるような、\nそんな写真館を作れたらいいなと思うようになりました。',
+    'その一歩として、東京都内で、1日だけ場所を借りながら開催する、\n"移動型の写真館" として「いち日写真館」をスタートしました。',
+    'その後、私の生まれ育った富山にも、小さな真っ白な空間「いち日写真館｜富山」を作りました。\n帰省する時にしか開けられない小さな写真館ですが、それでも、かつての友人や親戚、そのご紹介などを通して、毎回たくさんのご家族が遊びに来てくださっています。',
+    '現在、東京では店舗を持たず、出張撮影を中心に活動しています。\nけれどいつか、「いち日写真館｜東京」として、家族がふらっと遊びに来られるような場所を作ることが、ひとつの夢です。',
+  ];
+
+  const closing = [
+    '何気なく過ぎていく毎日も、\nあとから振り返れば、かけがえのない時間になります。',
+    '子どもの仕草。\n家族の会話。\nその時、その場所に流れていた空気。',
+    '写真には、\n未来の自分たちを支えてくれる力があると感じています。',
+  ];
+
+  const textWithBreaks = (str) =>
+    str.split('\n').map((line, i, arr) => (
+      <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+    ));
+
+  return (
+    <section style={{ background: 'var(--bg)', padding: '96px 0' }}>
+      <div className="container">
+        <div style={{ maxWidth: 600, margin: '0 auto', textAlign: 'center' }}>
+          {/* 本文 */}
+          {ps.map((p, i) => (
+            <p key={i} style={{ fontSize: 14, lineHeight: 2.6, color: 'var(--text-mid)', marginBottom: 36, textAlign: 'left' }}>
+              {textWithBreaks(p)}
+            </p>
+          ))}
+
+          {/* 締めくくり */}
+          {closing.map((p, i) => (
+            <p key={i} style={{ fontSize: 14, lineHeight: 2.6, color: 'var(--text-mid)', marginBottom: 36, textAlign: 'left' }}>
+              {textWithBreaks(p)}
+            </p>
+          ))}
+          <p style={{ fontSize: 14, lineHeight: 2.6, color: 'var(--text-mid)', marginBottom: 36, textAlign: 'left' }}>
+            いち日いち日が、この家族の全部になる。
+          </p>
+          <p style={{ fontSize: 14, lineHeight: 2.6, color: 'var(--text-mid)', textAlign: 'left' }}>
+            そんな思いで、今日の時間を記録しています。
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---- Profile ---- */
+function Profile() {
+  return (
+    <section style={{ background: 'var(--bg-cream)', padding: '96px 0' }}>
+      <div className="container">
+        <p style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--accent)', marginBottom: 16, textAlign: 'center' }}>PHOTOGRAPHER</p>
+        <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(20px,2.5vw,28px)', fontWeight: 400, color: 'var(--text)', textAlign: 'center', marginBottom: 64 }}>
+          カメラマン紹介
+        </h2>
+        <div style={{ maxWidth: 600, margin: '0 auto' }}>
+
+          {/* 写真 */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 36 }}>
+            <img
+              src="images/profile.jpg"
+              alt="松田恵美"
+              style={{ width: 340, display: 'block' }}
+              onError={(e) => { e.target.style.display = 'none'; }}
+            />
+          </div>
+
+          {/* 名前 */}
+          <div style={{ textAlign: 'center', marginBottom: 40 }}>
+            <h3 style={{ fontFamily: 'var(--serif)', fontSize: 18, fontWeight: 400, color: 'var(--text)', marginBottom: 4, lineHeight: 1.5 }}>
+              松田 恵美
+            </h3>
+            <p style={{ fontSize: 12, letterSpacing: '0.15em', color: 'var(--text-light)' }}>
+              Matsuda Megumi
+            </p>
+          </div>
+
+          <div style={{ width: 32, height: 1, background: 'var(--accent)', margin: '0 auto 40px' }} />
+
+          {/* テキスト */}
+          <p style={{ fontSize: 14, lineHeight: 2.2, color: 'var(--text-mid)', marginBottom: 28 }}>
+            富山県出身富山育ち。富山の大学で環境工学を4年間学んだのち、富山の薬品会社に就職。
+          </p>
+          <p style={{ fontSize: 14, lineHeight: 2.2, color: 'var(--text-mid)', marginBottom: 28 }}>
+            旅先で訪れたカンボジアの風景に感動したこと、友人の結婚式でコンパクトデジカメで撮った写真をプレゼントして喜ばれたこと。そうした写真への魅力が重なり、2008年に写真を学ぶため上京。クオリティーフォトスクールに入校し、現在もOGとして在学中。
+          </p>
+          <p style={{ fontSize: 14, lineHeight: 2.2, color: 'var(--text-mid)', marginBottom: 28 }}>
+            2010年よりプロのフォトグラファーとして活動開始。ウェディング・家族写真・七五三・成人式などのロケーション撮影を中心に、企業撮影・スクールフォト・イベント撮影・動画撮影など幅広いジャンルで活動。
+          </p>
+          <p style={{ fontSize: 14, lineHeight: 2.2, color: 'var(--text-mid)', marginBottom: 36 }}>
+            2018年に長男、2023年に次男を出産。現在は東京・富山の2拠点を中心に出張撮影を行っています。
+          </p>
+          <div style={{ borderTop: '1px solid var(--border)', paddingTop: 28 }}>
+            <p style={{ fontSize: 13, color: 'var(--text-mid)', lineHeight: 2, marginBottom: 16 }}>
+              日々の暮らしや、自分の家族の記録、写真について感じていることなどを、noteにも綴っています。
+            </p>
+            <a href="https://note.com/hitoandhito" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 13, color: 'var(--accent)', letterSpacing: '0.05em', borderBottom: '1px solid var(--accent)', paddingBottom: 2 }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              noteはこちら
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---- Footer ---- */
+function Footer() {
+  return (
+    <footer style={{ background: 'var(--text)', color: '#fff', padding: '56px 0 32px' }}>
+      <div className="container">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 48, flexWrap: 'wrap', gap: 32 }}>
+          <div>
+            <img src="images/logo.png" alt="いち日写真館" style={{ height: 48, width: 'auto', filter: 'brightness(0) invert(1)', marginBottom: 16 }} />
+            <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', lineHeight: 2 }}>
+              東京・小金井 / 富山を拠点に活動する<br />フォトグラファー・松田恵美の写真館
+            </p>
+          </div>
+          <nav style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
+            {[
+              { href: 'index.html', label: 'TOP' },
+              { href: 'photographer.html', label: 'ABOUT' },
+              { href: 'pricing.html', label: '料金' },
+              { href: 'gallery.html', label: 'ギャラリー' },
+              { href: 'contact.html', label: 'お問い合わせ' },
+            ].map(l =>
+              <a key={l.href} href={l.href} style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', letterSpacing: '0.08em', transition: 'color 0.2s' }}
+                 onMouseEnter={(e) => e.target.style.color = '#fff'}
+                 onMouseLeave={(e) => e.target.style.color = 'rgba(255,255,255,0.6)'}>
+                {l.label}
+              </a>
+            )}
+          </nav>
+        </div>
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)', paddingTop: 24, textAlign: 'center' }}>
+          <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.08em' }}>
+            © 2024 いち日写真館 All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ---- App ---- */
+function App() {
+  return (
+    <>
+      <Nav />
+      <div style={{ paddingTop: 88 }}>
+        <PageHeader />
+        <Divider />
+        <StudioAbout />
+        <Divider />
+        <Profile />
+        <Footer />
+      </div>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

@@ -54,11 +54,11 @@ function Nav() {
     return () => window.removeEventListener('scroll', fn);
   }, []);
   const links = [
-        { href: 'index.html', label: 'TOP' },
+    { href: 'index.html', label: 'TOP' },
     { href: 'index.html#menu', label: '撮影メニュー' },
-    { href: 'gallery.html', label: 'ギャラリー', active: true },
     { href: 'pricing.html', label: '料金' },
-    { href: 'index.html#faq', label: 'FAQ' },
+    { href: 'gallery.html', label: 'ギャラリー' },
+    { href: 'photographer.html', label: 'ABOUT' },
   ];
   return (
     <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: '#F2EDE6', borderBottom: '1px solid var(--border)', backdropFilter: 'blur(8px)' }}>
@@ -350,17 +350,17 @@ function App() {
         {genres.map((g, i) => <GenreSection key={g.id} genre={g} index={i} />)}
 
         {/* CTA */}
-        <section style={{ padding: '72px 0', background: 'var(--bg-cream)', textAlign: 'center' }}>
+        <section style={{ padding: '40px 0', background: 'var(--bg-cream)', textAlign: 'center' }}>
           <div className="container">
-            <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(18px, 3vw, 26px)', marginBottom: 12, fontWeight: 400 }}>
+            <p style={{ fontFamily: 'var(--serif)', fontSize: 16, marginBottom: 8, fontWeight: 400 }}>
               撮影のご相談、お気軽にどうぞ
             </p>
-            <p style={{ fontSize: 15, color: 'var(--text-mid)', marginBottom: 32, lineHeight: 2 }}>
+            <p style={{ fontSize: 12, color: 'var(--text-mid)', marginBottom: 20, lineHeight: 2 }}>
               どんな写真を残したいか、まずはお気軽にお問い合わせください。
             </p>
-            <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <a href="https://lin.ee/pSxLqqB" target="_blank" rel="noopener" className="btn btn--primary" style={{ background: '#06C755', borderColor: '#06C755' }}>LINEでご相談・ご予約</a>
-              <a href="pricing.html" className="btn">料金を確認する</a>
+            <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a href="https://lin.ee/pSxLqqB" target="_blank" rel="noopener" className="btn btn--primary btn--sm" style={{ background: '#06C755', borderColor: '#06C755' }}>LINEでご相談・ご予約</a>
+              <a href="pricing.html" className="btn btn--sm">料金を確認する</a>
             </div>
           </div>
         </section>

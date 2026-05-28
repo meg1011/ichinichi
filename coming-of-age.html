@@ -43,13 +43,15 @@ const { useState } = React;
 function Nav() {
   const [open, setOpen] = useState(false);
   const links = [
-  { href: 'index.html', label: 'TOP' },
-  { href: 'index.html#menu', label: '撮影メニュー' },
-  { href: 'gallery.html', label: 'ギャラリー' },
-  { href: 'pricing.html', label: '料金' },
-  { href: 'index.html#faq', label: 'FAQ' }];
+    { href: 'index.html', label: 'TOP' },
+    { href: 'index.html#menu', label: '撮影メニュー' },
+    { href: 'pricing.html', label: '料金' },
+    { href: 'gallery.html', label: 'ギャラリー' },
+    { href: 'photographer.html', label: 'ABOUT' },
+  ];
 
-  return (
+
+    return (
     <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: '#F2EDE6', borderBottom: '1px solid var(--border)', backdropFilter: 'blur(8px)' }}>
       <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 88 }}>
         <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 56, width: 'auto' }} /></a>

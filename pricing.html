@@ -39,11 +39,11 @@ const { useState } = React;
 function Nav() {
   const [open, setOpen] = useState(false);
   const links = [
-        { href: 'index.html', label: 'TOP' },
+    { href: 'index.html', label: 'TOP' },
     { href: 'index.html#menu', label: '撮影メニュー' },
+    { href: 'pricing.html', label: '料金' },
     { href: 'gallery.html', label: 'ギャラリー' },
-    { href: 'pricing.html', label: '料金', active: true },
-    { href: 'index.html#faq', label: 'FAQ' },
+    { href: 'photographer.html', label: 'ABOUT' },
   ];
   return (
     <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: '#F2EDE6', borderBottom: '1px solid var(--border)', backdropFilter: 'blur(8px)' }}>
@@ -294,11 +294,11 @@ function App() {
         </section>
 
         {/* CTA */}
-        <section style={{ padding: '72px 0', background: 'var(--bg-white)', textAlign: 'center' }}>
+        <section style={{ padding: '40px 0', background: 'var(--bg-white)', textAlign: 'center' }}>
           <div className="container">
-            <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(18px, 3vw, 24px)', marginBottom: 12 }}>撮影のご相談、お気軽にどうぞ</p>
-            <p style={{ fontSize: 15, color: 'var(--text-mid)', marginBottom: 32 }}>プランや料金についてご不明な点はお気軽にお問い合わせください。</p>
-            <a href="contact.html" className="btn btn--primary">ご予約・お問い合わせ</a>
+            <p style={{ fontFamily: 'var(--serif)', fontSize: 16, marginBottom: 8 }}>撮影のご相談、お気軽にどうぞ</p>
+            <p style={{ fontSize: 12, color: 'var(--text-mid)', marginBottom: 20 }}>プランや料金についてご不明な点はお気軽にお問い合わせください。</p>
+            <a href="contact.html" className="btn btn--primary btn--sm">ご予約・お問い合わせ</a>
           </div>
         </section>
       </div>
