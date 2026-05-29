@@ -484,12 +484,13 @@ function Pricing() {
 function FAQ() {
   const [open, setOpen] = useState(null);
   const faqs = [
-  { q: '撮影場所はどうやって決めますか？', a: 'お客様のご希望をお聞きして一緒に決めます。東京・小金井周辺の公園や、ご自宅、神社など、その家族らしい場所でお撮りすることが多いです。お気軽にご相談ください。' },
+  { q: '撮影場所はどうやって決めますか？', a: 'お客様のご希望をお聞きして一緒に決めます。公園や、ご自宅、神社など、その家族らしい場所でお撮りすることが多いです。公園は撮影許可が必要になるケースが多いのでその辺もお問い合わせの際にご説明いたします。お気軽にご相談ください。' },
   { q: '子どもがうまく動いてくれるか心配です。', a: 'ご安心ください。撮影に慣れていないお子さんでも、まずはその場の雰囲気に慣れることを大切にしています。無理にポーズをお願いすることはありません。' },
-  { q: '雨天の場合はどうなりますか？', a: '小雨程度であれば撮影可能なことも多いです。悪天候の場合は日程変更（1回まで無料）を承りますので、ご相談ください。' },
+  { q: '雨天の場合はどうなりますか？', a: '小雨程度であれば撮影可能なことも多いです。悪天候の場合は日程変更を承りますので、ご相談ください。' },
   { q: 'データの納品はいつ頃になりますか？', a: '撮影日から2〜3週間程度でお届けしています。七五三など繁忙期は前後する場合があります。' },
   { q: '赤ちゃんや小さい子がいますが大丈夫ですか？', a: 'もちろんです。ナチュラルニューボーンや0〜1歳のお子さんの撮影も多く行っています。授乳やおむつ替えのための休憩も自由に取っていただけます。' },
-  { q: '富山での撮影はどうやって申し込めますか？', a: '富山での撮影は年2回ほどの期間限定開催です。開催時期はSNSやお知らせページでご案内しますので、フォローいただくか、お問い合わせにてご希望をお知らせください。' },
+  { q: '富山での撮影はどうやって申し込めますか？', a: '富山での撮影は年2回ほどの期間限定開催です。開催のお知らせは公式LINEでお知らせしています。また、Instagramのハイライトでもご確認いただけます。', link: { label: 'Instagramを見る', href: 'https://www.instagram.com/1nichi_photo/' } },
+  { q: '東京の店舗（スタジオ）はありますか？', a: 'ありません。出張撮影のみ対応ですが、レンタルスタジオなどを予約しての撮影は可能ですのでご相談ください。（スタジオレンタル料金はお客様ご負担となります）' },
   { q: '出張範囲に制限はありますか？', a: '基本は東京都内・近郊エリアです。小金井周辺から距離に応じて出張料が変わります。遠方の場合はご相談ください。' }];
 
   return (
@@ -515,7 +516,13 @@ function FAQ() {
                   <span>{f.q}</span>
                   <span style={{ flexShrink: 0, fontSize: 20, color: 'var(--accent)', fontWeight: 300, transform: open === i ? 'rotate(45deg)' : 'none', transition: 'transform 0.2s' }}>+</span>
                 </button>
-                {open === i && <p style={{ fontSize: 15, color: 'var(--text-mid)', lineHeight: 2, paddingBottom: 22 }}>{f.a}</p>}
+                {open === i && <div style={{ paddingBottom: 22 }}>
+                  <p style={{ fontSize: 15, color: 'var(--text-mid)', lineHeight: 2 }}>{f.a}</p>
+                  {f.link && <a href={f.link.href} target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 10, fontSize: 12, color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: 1 }}>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    {f.link.label}
+                  </a>}
+                </div>}
               </div>
             )}
           </div>
