@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="小金井・武蔵野エリアのおすすめ撮影スポットをご紹介。小金井公園・武蔵野公園・野川公園・貫井神社など、いち日写真館がよく使うロケ地を季節ごとの魅力とともにお伝えします。">
+<meta name="keywords" content="小金井 出張撮影,小金井 家族写真,武蔵野 撮影スポット,野川公園 撮影,小金井公園 撮影,貫井神社 七五三,はけの道 撮影,いち日写真館">
+<title>小金井・武蔵野の撮影スポット | いち日写真館</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAFAF7;--bg-cream:#F2EDE6;--bg-white:#FFFFFF;
+  --text:#1a1818;--text-mid:#1a1818;--text-light:#9A948C;
+  --accent:#C07B5E;--accent-light:#E8D5C8;--border:#E2DDD7;
+  --serif:'Noto Serif JP',Georgia,serif;
+  --sans:'Noto Sans JP',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:400;font-size:15px;line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{max-width:860px;margin:0 auto;padding:0 32px}
+@media(max-width:600px){.container{padding:0 20px}}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;font-family:var(--sans);font-size:12px;font-weight:400;letter-spacing:0.1em;border:1px solid var(--text);color:var(--text);background:transparent;cursor:pointer;transition:background 0.2s,color 0.2s}
+.btn:hover{background:var(--text);color:var(--bg)}
+.btn--primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn--primary:hover{background:#A8684A;border-color:#A8684A;color:#fff}
+.btn--sm{padding:10px 20px;font-size:11px}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SG2NXMZXGD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SG2NXMZXGD');
+</script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+const { useState } = React;
+
+function Nav() {
+  const [open, setOpen] = useState(false);
+  const links = [
+    { href: 'index.html', label: 'TOP' },
+    { href: 'index.html#menu', label: '撮影メニュー' },
+    { href: 'pricing.html', label: '料金' },
+    { href: 'gallery.html', label: 'ギャラリー' },
+    { href: 'photographer.html', label: 'ABOUT' },
+  ];
+  return (
+    <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: '#F2EDE6', borderBottom: '1px solid var(--border)', backdropFilter: 'blur(8px)' }}>
+      <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 88 }}>
+        <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 56, width: 'auto' }} /></a>
+        <nav style={{ display: 'flex', gap: 44, alignItems: 'center' }} className="desk-nav">
+          {links.map((l) =>
+            <a key={l.href} href={l.href} style={{ fontSize: 13, letterSpacing: '0.06em', color: 'var(--text-mid)', transition: 'color 0.2s' }}
+              onMouseEnter={(e) => e.target.style.color = 'var(--text)'}
+              onMouseLeave={(e) => e.target.style.color = 'var(--text-mid)'}>{l.label}</a>
+          )}
+          <a href="contact.html" className="btn btn--primary btn--sm">ご予約・お問い合わせ</a>
+        </nav>
+        <button onClick={() => setOpen(!open)} className="ham-btn" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 5, padding: 4 }}>
+          {[0, 1, 2].map((i) => <span key={i} style={{ display: 'block', width: 22, height: 1, background: 'var(--text)' }} />)}
+        </button>
+      </div>
+      {open &&
+        <div style={{ background: 'var(--bg-white)', borderTop: '1px solid var(--border)', padding: '20px 32px 28px' }}>
+          {links.map((l) => <a key={l.href} href={l.href} onClick={() => setOpen(false)} style={{ display: 'block', padding: '12px 0', fontSize: 14, borderBottom: '1px solid var(--border)', color: 'var(--text)' }}>{l.label}</a>)}
+          <a href="contact.html" className="btn btn--primary" style={{ marginTop: 20, display: 'inline-flex' }}>ご予約・お問い合わせ</a>
+        </div>
+      }
+      <style>{`@media(min-width:800px){.ham-btn{display:none !important}}@media(max-width:799px){.desk-nav{display:none !important}}`}</style>
+    </header>
+  );
+}
+
+function Footer() {
+  return (
+    <footer style={{ background: 'var(--bg-cream)', borderTop: '1px solid var(--border)', padding: '56px 32px 40px', textAlign: 'center' }}>
+      <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 48, margin: '0 auto 20px' }} /></a>
+      <p style={{ fontSize: 12, color: 'var(--text-light)', letterSpacing: '0.06em', marginBottom: 24 }}>東京・小金井 / 富山（期間限定）</p>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 32, flexWrap: 'wrap', fontSize: 12, color: 'var(--text-light)', marginBottom: 32 }}>
+        <a href="index.html">TOP</a>
+        <a href="index.html#menu">撮影メニュー</a>
+        <a href="pricing.html">料金</a>
+        <a href="gallery.html">ギャラリー</a>
+        <a href="photographer.html">ABOUT</a>
+        <a href="contact.html">お問い合わせ</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+      </div>
+      <p style={{ fontSize: 11, color: 'var(--text-light)' }}>© 2024 いち日写真館</p>
+    </footer>
+  );
+}
+
+const spots = [
+  {
+    name: '小金井公園',
+    area: '東京都小金井市',
+    image: 'images/fam_01.jpg',
+    season: '春・秋おすすめ',
+    tags: ['家族写真', 'バースデー', '七五三'],
+    desc: '武蔵野の自然が残る広大な都立公園。春はソメイヨシノが咲き誇り、お花見がてら撮影される方も多いです。広い芝生広場では子どもが自由に走り回れるので、自然な表情が引き出しやすい場所です。秋は銀杏や紅葉が美しく、一年を通じて表情豊かな撮影が楽しめます。',
+    access: '西武多摩湖線「武蔵小金井駅」よりバス約10分',
+  },
+  {
+    name: '武蔵野公園',
+    area: '東京都府中市・小金井市',
+    image: 'images/fam_02.jpg',
+    season: '通年おすすめ',
+    tags: ['家族写真', 'マタニティ', 'ニューボーン'],
+    desc: '野川沿いに広がる自然豊かな公園。雑木林の木漏れ日がとても美しく、柔らかな光の中での撮影が得意な私がとくに好きな場所のひとつです。芝生が広く、赤ちゃんを連れたご家族でも安心してお過ごしいただけます。',
+    access: '京王線「武蔵野台駅」より徒歩約10分',
+  },
+  {
+    name: '野川公園',
+    area: '東京都小金井市・調布市',
+    image: 'images/fam_03.jpg',
+    season: '春・夏おすすめ',
+    tags: ['家族写真', 'バースデー', 'マタニティ'],
+    desc: '野川の清流沿いに整備された緑豊かな公園。川のせせらぎを感じながらの撮影ができ、夏は木陰が多く涼しいため、小さいお子さんとのご家族に人気です。春は桜並木が続き、水辺と花のコントラストが美しい写真が撮れます。',
+    access: 'JR中央線「東小金井駅」よりバス約15分',
+  },
+  {
+    name: '貫井神社',
+    area: '東京都小金井市',
+    image: 'images/cer_01.jpg',
+    season: '通年おすすめ',
+    tags: ['七五三', 'お宮参り', 'お祝い'],
+    desc: '小金井市内にある歴史ある神社。境内の鳥居や木々を背景に、七五三やお宮参りのお祝い写真を撮られる方が多いです。神社周辺の緑も豊かで、和の雰囲気の中で特別な一日を記念に残せます。凛とした空気の中で撮る写真は、きっと長く大切にされる一枚になります。',
+    access: 'JR中央線「武蔵小金井駅」より徒歩約15分',
+  },
+  {
+    name: 'はけの道',
+    area: '東京都小金井市',
+    image: 'images/fam_04.jpg',
+    season: '春・秋おすすめ',
+    tags: ['家族写真', 'マタニティ'],
+    desc: '国分寺崖線（はけ）沿いに続く静かな小道。木漏れ日が美しく、映画のワンシーンのような雰囲気で撮影ができる隠れた名所です。人が少なく落ち着いた雰囲気なので、のんびり歩きながら自然体な家族の姿を撮るのに向いています。',
+    access: 'JR中央線「武蔵小金井駅」より徒歩約20分',
+  },
+  {
+    name: '武蔵野の森公園',
+    area: '東京都府中市・調布市',
+    image: 'images/fam_05.jpg',
+    season: '春・秋おすすめ',
+    tags: ['家族写真', 'バースデー'],
+    desc: '広大な芝生と雑木林が広がる公園。空が広く、開放感あふれる写真が撮れます。子どもが走り回れる広さがあり、元気いっぱいの自然な表情を引き出しやすい場所です。調布・府中エリアにお住まいのご家族にもアクセスしやすいロケ地です。',
+    access: '京王線「西調布駅」より徒歩約10分',
+  },
+];
+
+function SpotCard({ spot, index }) {
+  const isEven = index % 2 === 0;
+  return (
+    <div style={{ marginBottom: 80 }}>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: 0,
+        background: 'var(--bg-white)',
+        border: '1px solid var(--border)',
+        overflow: 'hidden',
+      }}>
+        <div style={{ order: isEven ? 0 : 1 }}>
+          <img
+            src={spot.image}
+            alt={`${spot.name}での撮影`}
+            loading="lazy"
+            style={{ width: '100%', height: 320, objectFit: 'cover', display: 'block' }}
+          />
+        </div>
+        <div style={{ padding: '40px 36px', order: isEven ? 1 : 0 }}>
+          <p style={{ fontSize: 10, letterSpacing: '0.2em', color: 'var(--accent)', marginBottom: 10, fontFamily: 'var(--sans)' }}>LOCATION 0{index + 1}</p>
+          <h2 style={{ fontFamily: 'var(--serif)', fontSize: 26, fontWeight: 400, marginBottom: 6 }}>{spot.name}</h2>
+          <p style={{ fontSize: 12, color: 'var(--text-light)', marginBottom: 16 }}>{spot.area}</p>
+          <div style={{ width: 28, height: 1, background: 'var(--accent)', marginBottom: 20 }} />
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20 }}>
+            {spot.tags.map((tag) => (
+              <span key={tag} style={{ fontSize: 11, padding: '4px 12px', border: '1px solid var(--border)', color: 'var(--text-light)', letterSpacing: '0.05em' }}>{tag}</span>
+            ))}
+          </div>
+          <p style={{ fontSize: 14, lineHeight: 2, color: 'var(--text)', marginBottom: 20 }}>{spot.desc}</p>
+          <p style={{ fontSize: 12, color: 'var(--text-light)', display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+            <span style={{ flexShrink: 0 }}>🚃</span>
+            <span>{spot.access}</span>
+          </p>
+          <p style={{ fontSize: 11, color: 'var(--accent)', marginTop: 12 }}>おすすめシーズン：{spot.season}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Nav />
+      <main style={{ paddingTop: 88 }}>
+
+        {/* Page Header */}
+        <div style={{ background: 'var(--bg-cream)', padding: '72px 32px 64px', textAlign: 'center' }}>
+          <p style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--accent)', marginBottom: 16, fontFamily: 'var(--sans)' }}>LOCATIONS</p>
+          <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 400, lineHeight: 1.6, marginBottom: 20 }}>
+            小金井・武蔵野エリアの<br />おすすめ撮影スポット
+          </h1>
+          <div style={{ width: 28, height: 1, background: 'var(--accent)', margin: '0 auto 24px' }} />
+          <p style={{ fontSize: 14, color: 'var(--text-light)', lineHeight: 2, maxWidth: 500, margin: '0 auto' }}>
+            いち日写真館がよく使う、小金井・武蔵野エリアのロケ地をご紹介します。<br />
+            撮影場所はご希望をお聞きして一緒に決めますので、お気軽にご相談ください。
+          </p>
+        </div>
+
+        {/* Spots List */}
+        <div style={{ padding: '72px 0' }}>
+          <div className="container">
+            {spots.map((spot, i) => (
+              <SpotCard key={spot.name} spot={spot} index={i} />
+            ))}
+          </div>
+        </div>
+
+        {/* Note */}
+        <div style={{ background: 'var(--bg-cream)', padding: '56px 32px' }}>
+          <div className="container">
+            <p style={{ fontSize: 10, letterSpacing: '0.2em', color: 'var(--accent)', marginBottom: 16 }}>NOTE</p>
+            <h2 style={{ fontFamily: 'var(--serif)', fontSize: 20, fontWeight: 400, marginBottom: 24 }}>撮影場所について</h2>
+            <div style={{ width: 28, height: 1, background: 'var(--accent)', marginBottom: 28 }} />
+            <p style={{ fontSize: 14, lineHeight: 2.2, color: 'var(--text)', maxWidth: 620 }}>
+              上記以外の場所での撮影も歓迎しています。「いつも行く公園で撮りたい」「自宅近くの神社で七五三を」など、ご家族にゆかりのある場所が一番です。<br /><br />
+              小金井・武蔵野・三鷹・国分寺・府中・調布など、東京都内全域へ出張します。撮影場所の候補がある方も、まだ決まっていない方も、まずはお気軽にご連絡ください。
+            </p>
+            <div style={{ marginTop: 36 }}>
+              <a href="contact.html" className="btn btn--primary">ご予約・お問い合わせ</a>
+            </div>
+          </div>
+        </div>
+
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
