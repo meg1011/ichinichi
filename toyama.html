@@ -111,14 +111,14 @@ function App() {
 
         {/* ① Hero */}
         <div style={{ position: 'relative', background: 'var(--bg)', overflow: 'hidden' }}>
-          <div style={{ position: 'relative', height: 'clamp(260px, 44vw, 520px)', overflow: 'hidden' }}>
+          <div style={{ position: 'relative', height: 'clamp(280px, 46vw, 540px)', overflow: 'hidden' }}>
             <img
               src="images/240824_044.jpg"
               alt="いち日写真館 富山スタジオ"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 50%', display: 'block' }}
+              style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center', display: 'block' }}
             />
-            {/* オーバーレイ（左側のみ） */}
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(250,250,247,0.92) 0%, rgba(250,250,247,0.55) 28%, rgba(250,250,247,0.0) 55%)' }}/>
+            {/* オーバーレイ（左右グラデーション） */}
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(250,250,247,0.92) 0%, rgba(250,250,247,0.3) 22%, rgba(250,250,247,0) 42%, rgba(250,250,247,0) 60%, rgba(250,250,247,0.3) 80%, rgba(250,250,247,0.92) 100%)', pointerEvents: 'none' }}/>
             {/* テキスト（PC） */}
             <div className="hero-text-pc" style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center' }}>
               <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 48px 0 120px', width: '100%' }}>
@@ -441,11 +441,8 @@ function App() {
                 'images/uploads/toyama/250323_007.jpg',
                 'images/uploads/toyama/Z62_8172.jpg',
               ].map((src, i) => (
-                <div key={i} style={{ aspectRatio: '1/1', overflow: 'hidden', background: 'var(--bg-cream)' }}>
-                  <img src={src} alt={`富山 家族写真 ${i+1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}
-                    onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
-                    onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-                  />
+                <div key={i} style={{ aspectRatio: '1/1', overflow: 'hidden', background: 'var(--bg-white)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img src={src} alt={`富山 家族写真 ${i+1}`} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
                 </div>
               ))}
             </div>
