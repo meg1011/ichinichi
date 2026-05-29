@@ -31,6 +31,7 @@ img{display:block;max-width:100%}
 .section--sm{padding:56px 0}
 .section--cream{background:var(--bg-cream)}
 .section--white{background:var(--bg-white)}
+.section--dark{background:var(--text)}
 .section-label{font-family:var(--sans);font-size:10px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
 .section-heading{font-family:var(--serif);font-size:clamp(22px,4vw,34px);font-weight:400;line-height:1.6;color:var(--text);margin-bottom:12px}
 .section-subheading{font-family:var(--sans);font-size:15px;font-weight:500;color:#111111;line-height:1.9;max-width:500px}
@@ -563,7 +564,7 @@ function News() {
 /* ---- Contact teaser ---- */
 function Contact() {
   return (
-    <section id="contact" className="section section--cream">
+    <section id="contact" className="section section--white">
       <div className="container">
         <div style={{ maxWidth: 560, margin: '0 auto', textAlign: 'center' }}>
           <p className="section-label" style={{ justifyContent: 'center', display: 'flex' }}>Contact</p>
