@@ -463,7 +463,8 @@ function App() {
             {[
               {
                 q: '次回の開催日程はいつですか？',
-                a: 'Instagramにて随時お知らせしています。ハイライトの「富山店」に最新情報を載せていますのでご確認ください。日程のリクエストも受け付けていますので、お気軽にLINEかInstagramのDMでご連絡ください。',
+                a: 'Instagramにて随時お知らせしています。ハイライトの「富山店」に最新情報を載せていますのでご確認ください。',
+                link: { label: 'Instagramを見る', href: INSTAGRAM_URL },
               },
               {
                 q: '子どもが小さくて心配です。',
@@ -478,11 +479,11 @@ function App() {
                 a: '富山県富山市八尾町樫尾周辺です。詳細な住所と駐車場の情報は、ご予約後にお知らせしています。',
               },
               {
-                q: '東京と富山で料金は変わりますか？',
-                a: '料金は東京・富山ともに同じです。富山での開催中は出張撮影も承っており、写真館から5km以内は出張料無料です。',
+                q: '東京と富山で出張撮影料金は変わりますか？',
+                a: '料金は東京・富山ともに同じですが、出張料の基準が異なります。富山での出張撮影は写真館から5km以内は出張料無料です。',
               },
             ].map((item, i) => (
-              <FaqItem key={i} q={item.q} a={item.a} />
+              <FaqItem key={i} q={item.q} a={item.a} link={item.link} />
             ))}
           </div>
         </div>
@@ -596,24 +597,16 @@ function App() {
         <div style={{ background: 'var(--bg-cream)', padding: '72px 32px', textAlign: 'center' }}>
           <div className="container">
             <p style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--accent)', marginBottom: 20 }}>RESERVATION & INQUIRY</p>
-            <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(18px,2.2vw,24px)', color: 'var(--text)', marginBottom: 16, lineHeight: 1.7 }}>
+            <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(15px,1.7vw,20px)', color: 'var(--text)', marginBottom: 16, lineHeight: 1.7 }}>
               次の開催を、お待ちしています。
             </p>
             <div style={{ width: 28, height: 1, background: 'var(--accent)', margin: '0 auto 24px' }}/>
             <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 2.2, marginBottom: 36 }}>
               開催前でも、日程のご希望やご質問はお気軽にどうぞ。<br/>
-              LINEまたはInstagramのDMでも受け付けています。
+              LINEで受け付けています。
             </p>
             <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
               <a href={LINE_URL} target="_blank" rel="noopener" className="btn" style={{ background: '#06C755', borderColor: '#06C755', color: '#fff' }}>LINEで相談する</a>
-              <a href={INSTAGRAM_URL} target="_blank" rel="noopener" className="btn btn--dark" style={{ gap: 8 }}>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                </svg>
-                Instagram
-              </a>
               <a href="contact.html" className="btn">お問い合わせフォーム</a>
             </div>
           </div>
@@ -634,7 +627,7 @@ function App() {
   );
 }
 
-function FaqItem({ q, a }) {
+function FaqItem({ q, a, link }) {
   const [open, setOpen] = React.useState(false);
   return (
     <div style={{ borderBottom: '1px solid var(--border)' }}>
@@ -648,6 +641,16 @@ function FaqItem({ q, a }) {
       {open && (
         <div style={{ padding: '0 0 20px 16px' }}>
           <p style={{ fontSize: 13, color: 'var(--text-mid)', lineHeight: 2 }}>A. {a}</p>
+          {link && (
+            <a href={link.href} target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 10, fontSize: 12, color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: 1 }}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+              {link.label}
+            </a>
+          )}
         </div>
       )}
     </div>
