@@ -255,6 +255,32 @@ function Profile() {
   );
 }
 
+/* ---- BizCTA ---- */
+function BizCTA() {
+  return (
+    <section style={{ background: 'var(--bg-cream)', padding: '64px 32px', borderTop: '1px solid var(--border)' }}>
+      <div className="container">
+        <div style={{ maxWidth: 640, margin: '0 auto', textAlign: 'center' }}>
+          <p style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--accent)', marginBottom: 16 }}>FOR BUSINESS</p>
+          <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(18px,2.2vw,24px)', fontWeight: 400, color: 'var(--text)', marginBottom: 16, lineHeight: 1.7 }}>
+            ビジネスフォトのご依頼は<br /><em style={{ fontStyle: 'normal' }}>hito&amp;hito</em> へ
+          </h2>
+          <div style={{ width: 28, height: 1, background: 'var(--accent)', margin: '0 auto 24px' }} />
+          <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 2.2, marginBottom: 32 }}>
+            プロフィール写真・スタッフ撮影・商品撮影など、<br />ビジネス向けの撮影は姉妹サイト hito&amp;hito にて承っています。
+          </p>
+          <a href="https://biz.hitoandhito.com/" target="_blank" rel="noopener"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 32px', border: '1px solid var(--text)', fontSize: 12, letterSpacing: '0.1em', color: 'var(--text)', transition: 'background 0.2s, color 0.2s' }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'var(--text)'; e.currentTarget.style.color = '#fff'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text)'; }}>
+            hito&amp;hito サイトを見る →
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---- Footer ---- */
 function Footer() {
   return (
@@ -285,7 +311,7 @@ function Footer() {
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)', paddingTop: 24, textAlign: 'center' }}>
           <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.08em' }}>
-            © 2024 いち日写真館 All rights reserved.
+            © 2026 いち日写真館 All rights reserved. ／ <a href="https://biz.hitoandhito.com/" target="_blank" rel="noopener" style={{color:'rgba(255,255,255,0.5)',textDecoration:'none'}}>ビジネスフォト → hito&amp;hito</a>
           </p>
         </div>
       </div>
@@ -304,6 +330,7 @@ function App() {
         <StudioAbout />
         <Divider />
         <Profile />
+        <BizCTA />
         <Footer />
       </div>
     </>
