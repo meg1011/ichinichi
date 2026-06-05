@@ -481,6 +481,66 @@ function Pricing() {
 
 }
 
+/* ---- Reviews ---- */
+function Reviews() {
+  const reviews = [
+    {
+      name: 'Misako H',
+      date: '2025年4月',
+      body: 'Megさんに結婚後撮影で初めて会い、その時に撮っていただいた写真がとても素敵で、家族もこれからも撮ってもらいたいねとファンになったほどです。それ以来ずっと毎年だけではなく、七五三などの節目ごとに依頼させていただいておりますが、会うたびにMegさんの優しい人柄に癒されています。いつもありがとうございます。',
+    },
+    {
+      name: '太田有咲',
+      date: '2025年4月',
+      body: 'いち日写真館で子供の入学に合わせて記念に写真をお願いしました。初めは子どもが照れもありダラダラしてしまったりとありましたが、優しく誘導していただき、段々とその気になっていく子供の姿を見て安心しました。様々な小物も使用していただきとても素敵な写真を撮っていただき大満足です。',
+    },
+    {
+      name: 'haruka',
+      date: '2024年10月',
+      body: '公園でマタニティフォトを撮影いただきました。気取らず、自然体に風景も込みで撮影したく当日サッとお伝えしただけでしたが、すぐに希望の雰囲気を汲み取ってくださり、とっても素敵に撮影いただきました。本当にお願いして良かったです。またイベント事の時にお願いしたいです！',
+    },
+    {
+      name: 'ayaka',
+      date: '2025年4月',
+      body: '毎年のように家族写真を出張撮影でお願いしていますが、子どもの自然な表情を透明感のある写真に残してもらえます。初めは緊張している子どもも、megさんの声掛けや誘導でいつの間にか楽しそうにしています。写真は家族の宝物！',
+    },
+  ];
+  const Stars = () => (
+    <span style={{ color: '#F4B400', fontSize: 14, letterSpacing: 1 }}>★★★★★</span>
+  );
+  return (
+    <section className="section section--white" style={{ borderTop: '1px solid var(--border)' }}>
+      <div className="container">
+        <div style={{ textAlign: 'center', marginBottom: 48 }}>
+          <p className="section-label" style={{ display: 'flex', justifyContent: 'center' }}>Reviews</p>
+          <h2 className="section-heading" style={{ textAlign: 'center' }}>お客様の声</h2>
+          <div className="divider" style={{ margin: '16px auto 12px' }} />
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+            <span style={{ color: '#F4B400', fontSize: 18, letterSpacing: 2 }}>★★★★★</span>
+            <span style={{ fontFamily: 'var(--serif)', fontSize: 22, color: 'var(--text)' }}>4.9</span>
+            <span style={{ fontSize: 12, color: 'var(--text-mid)' }}>/ Google クチコミ</span>
+          </div>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20 }} className="reviews-grid">
+          {reviews.map((r, i) => (
+            <div key={i} style={{ background: 'var(--bg)', border: '1px solid var(--border)', padding: '28px 28px 24px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
+                <div>
+                  <p style={{ fontSize: 13, fontWeight: 500, color: 'var(--text)', marginBottom: 4 }}>{r.name}</p>
+                  <Stars />
+                </div>
+                <p style={{ fontSize: 11, color: 'var(--text-light)' }}>{r.date}</p>
+              </div>
+              <p style={{ fontSize: 13, color: 'var(--text-mid)', lineHeight: 2 }}>{r.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <style>{`@media(max-width:700px){.reviews-grid{grid-template-columns:1fr !important}}`}</style>
+    </section>
+  );
+}
+
 /* ---- FAQ ---- */
 function FAQ() {
   const [open, setOpen] = useState(null);
@@ -686,6 +746,7 @@ function App() {
       <Philosophy />
       <Menu />
       <Locations />
+      <Reviews />
       <FAQ />
       <Contact />
       <Footer />
