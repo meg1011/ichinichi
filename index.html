@@ -638,7 +638,69 @@ function FAQ() {
 
 }
 
-/* ---- News ---- */
+/* ---- LatestNews ---- */
+function LatestNews() {
+  const items = [
+    {
+      type: 'キャンペーン',
+      date: '2026.07.01',
+      title: 'ご予約の方に約1分間の動画をプレゼント',
+      desc: '撮影した写真・ムービーのSNS・HP広告への使用をOKいただける方限定の特典です。',
+      highlight: true,
+    },
+  ];
+
+  const badgeStyle = (type) => {
+    const styles = {
+      'キャンペーン': { background: '#F5EAE4', color: '#9B5A3C' },
+      'イベント':     { background: '#E8EEF5', color: '#3A5A8C' },
+      'お知らせ':     { background: '#F2EDE6', color: '#7A6A5A' },
+    };
+    return styles[type] || styles['お知らせ'];
+  };
+
+  return (
+    <section className="section--sm section--white" style={{ borderTop: '1px solid var(--border)' }}>
+      <div className="container">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 64, alignItems: 'start' }} className="news-layout">
+          <div>
+            <p className="section-label">News</p>
+            <h2 className="section-heading">最新情報</h2>
+            <div className="divider" />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {items.map((item, i) => (
+              <div key={i} style={{
+                background: item.highlight ? '#FAF5F2' : 'var(--bg-white)',
+                border: '1px solid var(--border)',
+                borderLeft: item.highlight ? '3px solid var(--accent)' : '1px solid var(--border)',
+                borderRadius: 4,
+                padding: '18px 22px',
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+                  <span style={{
+                    ...badgeStyle(item.type),
+                    fontSize: 10,
+                    letterSpacing: '0.08em',
+                    padding: '2px 8px',
+                    borderRadius: 2,
+                    fontWeight: 500,
+                  }}>{item.type}</span>
+                  <span style={{ fontSize: 11, color: 'var(--text-light)', letterSpacing: '0.04em' }}>{item.date}</span>
+                </div>
+                <p style={{ fontSize: 15, fontWeight: 500, color: 'var(--text)', lineHeight: 1.6, marginBottom: item.desc ? 6 : 0 }}>{item.title}</p>
+                {item.desc && <p style={{ fontSize: 13, color: 'var(--text-light)', lineHeight: 1.8 }}>{item.desc}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <style>{`@media(max-width:700px){.news-layout{grid-template-columns:1fr !important;gap:24px !important}}`}</style>
+    </section>
+  );
+}
+
+/* ---- News (Instagram) ---- */
 function News() {
   return (
     <section className="section--sm section--white" style={{ borderTop: '1px solid var(--border)', textAlign: 'center' }}>
@@ -790,6 +852,7 @@ function App() {
       <Hero />
       <Philosophy />
       <Menu />
+      <LatestNews />
       <Locations />
       <Reviews />
       <FAQ />
