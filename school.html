@@ -177,15 +177,15 @@ function App() {
 
 
   const photoGrid = [
-  { src: 'images/menu_family.jpg', label: '家族写真' },
-  { src: 'images/menu_everyday.jpg', label: 'バースデー' },
-  { src: 'images/menu_maternity.jpg', label: 'マタニティ' },
-  { src: 'images/menu_everyday.jpg', label: '入園・入学' },
-  { src: 'images/menu_everyday.jpg', label: '卒園・卒業' },
+  { src: 'images/menu_seijin.jpg', label: '入学式' },
+  { src: 'images/menu_everyday.jpg', label: '入園式' },
+  { src: 'images/menu_everyday.jpg', label: '卒業式' },
+  { src: 'images/menu_everyday.jpg', label: '卒園式' },
   { src: 'images/menu_family.jpg', label: '記念写真' },
-  { src: 'images/menu_everyday.jpg', label: '誕生日' },
-  { src: 'images/menu_ceremony.jpg', label: 'ファミリー' },
-  { src: 'images/menu_newborn2.jpg', label: '記念日' }];
+  { src: 'images/menu_seijin.jpg', label: '袴撮影' },
+  { src: 'images/menu_everyday.jpg', label: 'ランドセル' },
+  { src: 'images/menu_family.jpg', label: '家族写真' },
+  { src: 'images/menu_everyday.jpg', label: '思い出の場所' }];
 
 
   return (
@@ -196,13 +196,13 @@ function App() {
         {/* Hero */}
         <div style={{ position: 'relative', width: '100%', height: 'clamp(200px,28vw,300px)', overflow: 'hidden', background: 'var(--bg-cream)' }}>
           <div style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: '55%', overflow: 'hidden' }} className="hero-img-wrap">
-            <img src="images/menu_ceremony.jpg" alt="七五三・お宮参り" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}/>
+            <img src="images/menu_seijin.jpg" alt="入学・入園・卒業・卒園" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 35%' }}/>
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, var(--bg-cream) 0%, rgba(242,237,230,0.6) 12%, rgba(242,237,230,0) 30%)' }}/>
           </div>
           <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center' }}>
             <div style={{ paddingLeft: 'clamp(32px,8vw,100px)', maxWidth: '50%' }} className="hero-text">
-              <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(28px,4.2vw,46px)', fontWeight: 400, color: 'var(--text)', letterSpacing: '0.02em', marginBottom: 10, lineHeight: 1.2 }}>Ceremony &amp; Celebration</h1>
-              <p style={{ fontSize: 'clamp(13px,1.4vw,16px)', color: 'var(--text-mid)', letterSpacing: '0.1em' }}>七五三・お宮参り</p>
+              <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(28px,4.2vw,46px)', fontWeight: 400, color: 'var(--text)', letterSpacing: '0.02em', marginBottom: 10, lineHeight: 1.2 }}>School Memories</h1>
+              <p style={{ fontSize: 'clamp(13px,1.4vw,16px)', color: 'var(--text-mid)', letterSpacing: '0.1em' }}>入学・入園・卒業・卒園</p>
             </div>
           </div>
         </div>

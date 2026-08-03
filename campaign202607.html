@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ショートムービープレゼント企画【2026年7月】| いち日写真館</title>
-<meta name="description" content="いち日写真館の出張撮影をご予約の方に、約1分間のショートムービーをプレゼント。撮影した写真・ムービーのSNS・HP広告使用OKな方限定の特典です。">
+<title>ショートムービープレゼント企画 | いち日写真館</title>
+<meta name="description" content="いち日写真館の出張撮影をご予約の方に、ショートムービー（30秒〜1分）をプレゼント。2026年9月末まで募集中。撮影した画像・映像の広告使用OKな方限定。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
@@ -29,11 +29,18 @@ img{display:block;max-width:100%}
 @media(max-width:600px){.container{padding:0 20px}}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 32px;font-family:var(--sans);font-size:13px;font-weight:400;letter-spacing:0.08em;border:1px solid var(--text);color:var(--text);background:transparent;cursor:pointer;transition:background 0.2s,color 0.2s;text-decoration:none}
 .btn:hover{background:var(--text);color:var(--bg)}
-.btn--primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn--primary:hover{background:#A8684A;border-color:#A8684A;color:#fff}
 .btn--line{background:var(--line);border-color:var(--line);color:#fff}
 .btn--line:hover{background:var(--line-dark);border-color:var(--line-dark);color:#fff}
 .btn--sm{padding:10px 20px;font-size:11px}
+.block{background:var(--bg-white);border:1px solid var(--border);padding:28px 32px;margin-bottom:40px}
+.block--accent{background:var(--bg-cream);border-left:3px solid var(--accent)}
+.section-label{font-size:10px;letter-spacing:0.2em;color:var(--accent);margin-bottom:12px}
+.section-heading{font-family:var(--serif);font-size:20px;font-weight:400;margin-bottom:20px}
+.divider{width:32px;height:1px;background:var(--accent);margin-bottom:40px}
+ul.clean{list-style:none;padding:0}
+ul.clean li{padding:10px 0;border-bottom:1px solid var(--border);font-size:15px;color:var(--text-mid);display:flex;gap:10px;align-items:flex-start}
+ul.clean li:last-child{border-bottom:none}
+ul.clean li::before{content:'';display:block;width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:10px;flex-shrink:0}
 </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SG2NXMZXGD"></script>
@@ -98,67 +105,85 @@ function App() {
         <div style={{ background: 'var(--bg-cream)', padding: '72px 32px 64px' }}>
           <div className="container" style={{ textAlign: 'center' }}>
             <p style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--accent)', marginBottom: 20 }}>SPECIAL GIFT</p>
-            <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(26px,4vw,38px)', fontWeight: 400, lineHeight: 1.7, marginBottom: 16 }}>
+            <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(24px,4vw,36px)', fontWeight: 400, lineHeight: 1.8, marginBottom: 20 }}>
               出張撮影ご予約の方に<br/>
-              約1分間の動画をプレゼント
+              ショートムービーをプレゼント
             </h1>
-            <div style={{ width: 36, height: 1, background: 'var(--accent)', margin: '0 auto' }}/>
+            <p style={{ fontSize: 15, color: 'var(--text-mid)', lineHeight: 2, marginBottom: 24 }}>
+              出張撮影をご予約済みの方・これからご予約いただく方で、<br className="sp-hide"/>
+              下記の条件を満たすお客様に、同日撮影した動画で制作した<br className="sp-hide"/>
+              ショートムービー（30秒〜1分）をプレゼントします。
+            </p>
+            <div style={{ display: 'inline-flex', gap: 24, flexWrap: 'wrap', justifyContent: 'center' }}>
+              <div style={{ textAlign: 'center' }}>
+                <p style={{ fontSize: 10, letterSpacing: '0.15em', color: 'var(--text-light)', marginBottom: 4 }}>応募締め切り</p>
+                <p style={{ fontFamily: 'var(--serif)', fontSize: 18, color: 'var(--text)' }}>2026年9月末</p>
+              </div>
+              <div style={{ width: 1, background: 'var(--border)', alignSelf: 'stretch' }}/>
+              <div style={{ textAlign: 'center' }}>
+                <p style={{ fontSize: 10, letterSpacing: '0.15em', color: 'var(--text-light)', marginBottom: 4 }}>撮影期間</p>
+                <p style={{ fontFamily: 'var(--serif)', fontSize: 18, color: 'var(--text)' }}>〜2027年3月まで</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* 企画説明 */}
-        <div style={{ padding: '64px 32px' }}>
+        {/* 本文 */}
+        <div style={{ padding: '64px 32px 80px' }}>
           <div className="container">
 
             {/* 条件 */}
-            <div style={{ marginBottom: 48 }}>
-              <p style={{ fontSize: 10, letterSpacing: '0.2em', color: 'var(--accent)', marginBottom: 16 }}>CONDITION</p>
-              <h2 style={{ fontFamily: 'var(--serif)', fontSize: 20, fontWeight: 400, marginBottom: 20 }}>対象のお客様</h2>
-              <div style={{ background: 'var(--bg-white)', border: '1px solid var(--border)', padding: '28px 32px' }}>
-                <p style={{ fontSize: 16, lineHeight: 2, color: 'var(--text-mid)' }}>
-                  いち日写真館で出張撮影をご予約いただいた方のうち、<br/>
-                  <strong style={{ color: 'var(--text)', fontWeight: 500 }}>撮影した写真・ムービーをいち日写真館のSNSおよびHP広告に使用することをOKいただける方</strong>が対象です。
-                </p>
-              </div>
+            <p className="section-label">CONDITION</p>
+            <h2 className="section-heading">参加条件</h2>
+            <div className="divider"/>
+            <div className="block">
+              <ul className="clean">
+                <li>2027年3月までの出張撮影をご予約の方</li>
+                <li>撮影した画像・映像を、いち日写真館のInstagram・YouTube・Webサイト等の広告・宣伝に使用させていただける方</li>
+                <li>撮影当日、写真撮影のお時間より30分ほど追加でお時間をいただける方</li>
+              </ul>
             </div>
 
-            {/* プレゼント内容 */}
-            <div style={{ marginBottom: 48 }}>
-              <p style={{ fontSize: 10, letterSpacing: '0.2em', color: 'var(--accent)', marginBottom: 16 }}>GIFT</p>
-              <h2 style={{ fontFamily: 'var(--serif)', fontSize: 20, fontWeight: 400, marginBottom: 20 }}>プレゼント内容</h2>
-              <div style={{ background: 'var(--bg-cream)', border: '1px solid var(--border)', padding: '28px 32px', borderLeft: '3px solid var(--accent)' }}>
-                <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(20px,3vw,28px)', fontWeight: 400, color: 'var(--text)', marginBottom: 8 }}>約1分間のショートムービー</p>
-                <p style={{ fontSize: 14, color: 'var(--text-light)', lineHeight: 1.8 }}>
-                  撮影した写真をもとに編集した、思い出のショートムービーをお届けします。<br/>
-                  通常オプション（＋30,000円）が、特典として無料になります。
-                </p>
-              </div>
-            </div>
-
-            {/* 注意事項 */}
-            <div style={{ marginBottom: 64, padding: '20px 24px', background: 'var(--bg)', border: '1px solid var(--border)' }}>
-              <p style={{ fontSize: 12, color: 'var(--text-light)', lineHeight: 2 }}>
-                ※ 使用させていただく写真・ムービーは、いち日写真館のInstagram・HP・広告素材に限ります。<br/>
-                ※ お子様のお顔が映る場合も含みます。ご了承のうえでお申し込みください。<br/>
-                ※ 本企画は予告なく終了する場合があります。
+            {/* 募集ジャンル */}
+            <p className="section-label">GENRE</p>
+            <h2 className="section-heading">募集ジャンル</h2>
+            <div className="divider"/>
+            <div className="block">
+              <ul className="clean" style={{ marginBottom: 16 }}>
+                <li>家族写真（バースデーフォト含）</li>
+                <li>七五三・お宮参り</li>
+                <li>マタニティ</li>
+                <li>ナチュラルニューボーン</li>
+                <li>ハーフ成人式・成人式</li>
+                <li>卒業卒園・入学入園</li>
+              </ul>
+              <p style={{ fontSize: 12, color: 'var(--text-light)', borderTop: '1px solid var(--border)', paddingTop: 16 }}>
+                ※ 神社などの規制のある場所や、レンタルスタジオなどお時間の限られている撮影は要相談となります。
               </p>
+            </div>
+
+            {/* 枠数・補足 */}
+            <p className="section-label">NOTE</p>
+            <h2 className="section-heading">補足・ご注意</h2>
+            <div className="divider"/>
+            <div className="block">
+              <ul className="clean">
+                <li>一定組数が埋まりましたら募集を締め切ります。お早めにお申し込みください。</li>
+                <li>基本的にカメラマン松田が撮影いたしますが、ムービー用にカメラマンが1名同行する場合もございます。</li>
+                <li>編集したムービーについては内容の修正はお受けできませんのでご了承ください。</li>
+              </ul>
             </div>
 
             {/* CTA */}
-            <div style={{ textAlign: 'center' }}>
-              <p style={{ fontSize: 15, color: 'var(--text-mid)', marginBottom: 28, lineHeight: 2 }}>
-                ご予約・ご相談はLINEからお気軽にどうぞ。<br/>
-                「動画プレゼント希望」とお伝えください。
+            <div style={{ textAlign: 'center', marginTop: 64, padding: '48px 32px', background: 'var(--bg-cream)', borderTop: '1px solid var(--border)' }}>
+              <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(18px,2.5vw,22px)', fontWeight: 400, marginBottom: 12 }}>ご興味のある方はLINEへ</p>
+              <p style={{ fontSize: 15, color: 'var(--text-mid)', marginBottom: 32, lineHeight: 2 }}>
+                「出張撮影・ムービー希望」とメッセージをお送りください。
               </p>
-              <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-                <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line" style={{ minWidth: 200 }}>
-                  <svg width="20" height="20" viewBox="0 0 40 40" fill="currentColor"><path d="M20 4C11.163 4 4 10.268 4 18c0 4.773 2.678 8.98 6.8 11.6-.3 1.1-1.07 3.97-1.23 4.59-.2.77.28 1.76 1.15 1.27.7-.4 5.57-3.7 7.84-5.22C19.17 30.42 19.59 30.43 20 30.43c8.837 0 16-6.268 16-14 0-7.732-7.163-12.43-16-12.43z"/></svg>
-                  LINEでご予約
-                </a>
-                <a href="contact.html" className="btn">
-                  お問い合わせページへ
-                </a>
-              </div>
+              <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line" style={{ minWidth: 220, fontSize: 14 }}>
+                <svg width="20" height="20" viewBox="0 0 40 40" fill="currentColor"><path d="M20 4C11.163 4 4 10.268 4 18c0 4.773 2.678 8.98 6.8 11.6-.3 1.1-1.07 3.97-1.23 4.59-.2.77.28 1.76 1.15 1.27.7-.4 5.57-3.7 7.84-5.22C19.17 30.42 19.59 30.43 20 30.43c8.837 0 16-6.268 16-14 0-7.732-7.163-12.43-16-12.43z"/></svg>
+                LINEで「ムービー希望」と送る
+              </a>
             </div>
 
           </div>
@@ -173,6 +198,7 @@ function App() {
         </footer>
 
       </div>
+      <style>{`.sp-hide{display:block}@media(max-width:600px){.sp-hide{display:none}}`}</style>
     </>
   );
 }
