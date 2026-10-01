@@ -107,20 +107,20 @@ function App() {
     {
       num: '01',
       title: 'かしこまった場所でも自然な写真を',
-      body: '神社でのお参り中も、緊張した瞬間の中にある自然な笑顔や表情を逃さず残します。演出なしの、その日だけの写真です。',
+      body: '神社でのお参り中も、緊張した瞬間の中にある自然な笑顔や表情を逃さず残します。ご家族みんなでの記念写真から、ちょっと砕けたオフシーンまで。',
       img: 'images/shichigosan_02.jpg',
       imgAlt: '神社でのお参り'
     },
     {
       num: '02',
-      title: '急な変更も、キャンセル料なし',
+      title: '急な変更も、\nキャンセル料なし',
       body: '雨天・体調不良など、やむを得ない事情での延期はキャンセル料がかかりません。当日の朝でもLINEでご連絡ください。平日・土日・祝日問わず対応しています。',
       img: 'images/shichigosan_01.jpg',
       imgAlt: '撮影日程のご相談'
     },
     {
       num: '03',
-      title: 'はじめての七五三、不安もご相談を',
+      title: 'はじめての七五三、\n不安もご相談を',
       body: '当日のタイムスケジュールや着物・草履選びなど、初めての七五三ならではの心配ごとも気軽にご相談ください。カメラマンとして、また同じ母として、当日がスムーズに楽しく過ごせるようにご一緒に考えます。',
       img: 'images/shichigosan_03.jpg',
       imgAlt: 'カメラマン松田'
@@ -205,7 +205,7 @@ function App() {
                   </div>
                   <div style={{ padding: '24px 24px 28px' }}>
                     <p style={{ fontFamily: 'var(--serif)', fontSize: 28, fontWeight: 300, color: 'var(--accent)', opacity: 0.5, marginBottom: 8, letterSpacing: '0.04em' }}>{r.num}</p>
-                    <p style={{ fontFamily: 'var(--serif)', fontSize: 17, fontWeight: 400, marginBottom: 12, lineHeight: 1.6 }}>{r.title}</p>
+                    <p style={{ fontFamily: 'var(--serif)', fontSize: 17, fontWeight: 400, marginBottom: 12, lineHeight: 1.6, whiteSpace: 'pre-line' }}>{r.title}</p>
                     <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 1.9 }}>{r.body}</p>
                   </div>
                 </div>
