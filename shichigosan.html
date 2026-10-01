@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小金井の七五三 出張撮影 | いち日写真館</title>
+<meta name="description" content="小金井・武蔵野・三鷹エリアの七五三出張撮影。神社でのお参りも公園での家族写真も、慣れた場所で自然な表情を。撮影歴17年。平日36,300円〜。LINEで気軽にご相談。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="いち日写真館">
+<meta property="og:title" content="小金井の七五三 出張撮影 | いち日写真館">
+<meta property="og:description" content="小金井・武蔵野・三鷹エリアの七五三出張撮影。神社でのお参りも公園での家族写真も、慣れた場所で自然な表情を。撮影歴17年。">
+<meta property="og:url" content="https://hitoandhito.com/shichigosan.html">
+<meta property="og:image" content="https://hitoandhito.com/images/menu_ceremony.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAFAF7;--bg-cream:#F2EDE6;--bg-white:#FFFFFF;
+  --text:#1a1818;--text-mid:#1a1818;--text-light:#9A948C;
+  --accent:#C07B5E;--accent-light:#E8D5C8;--border:#E2DDD7;
+  --line:#06C755;--line-dark:#05A847;
+  --serif:'Noto Serif JP',Georgia,serif;
+  --sans:'Noto Sans JP',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:400;font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{max-width:800px;margin:0 auto;padding:0 32px}
+@media(max-width:600px){.container{padding:0 20px}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 32px;font-family:var(--sans);font-size:13px;font-weight:400;letter-spacing:0.08em;border:1px solid var(--text);color:var(--text);background:transparent;cursor:pointer;transition:background 0.2s,color 0.2s;text-decoration:none}
+.btn:hover{background:var(--text);color:var(--bg)}
+.btn--line{background:var(--line);border-color:var(--line);color:#fff}
+.btn--line:hover{background:var(--line-dark);border-color:var(--line-dark);color:#fff}
+.btn--sm{padding:10px 20px;font-size:11px}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SG2NXMZXGD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SG2NXMZXGD');
+</script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState } = React;
+const LINE_URL = 'https://lin.ee/pSxLqqB';
+
+function Nav() {
+  const [open, setOpen] = useState(false);
+  const links = [
+    { href: 'index.html', label: 'TOP' },
+    { href: 'index.html#menu', label: '撮影メニュー' },
+    { href: 'pricing.html', label: '料金' },
+    { href: 'gallery.html', label: 'ギャラリー' },
+    { href: 'photographer.html', label: 'ABOUT' },
+  ];
+  return (
+    <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: '#F2EDE6', borderBottom: '1px solid var(--border)', backdropFilter: 'blur(8px)' }}>
+      <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 88 }}>
+        <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 56, width: 'auto' }}/></a>
+        <nav style={{ display: 'flex', gap: 44, alignItems: 'center' }} className="desk-nav">
+          {links.map(l => (
+            <a key={l.href} href={l.href} style={{ fontSize: 12, letterSpacing: '0.08em', color: 'var(--text-mid)', transition: 'color 0.2s' }}
+              onMouseEnter={e => e.target.style.color = 'var(--accent)'}
+              onMouseLeave={e => e.target.style.color = 'var(--text-mid)'}
+            >{l.label}</a>
+          ))}
+          <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line btn--sm">LINEで相談する</a>
+        </nav>
+        <button onClick={() => setOpen(!open)} className="ham-btn" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 5, padding: 4 }}>
+          {[0,1,2].map(i => <span key={i} style={{ display: 'block', width: 22, height: 1, background: 'var(--text)' }}/>)}
+        </button>
+      </div>
+      {open && (
+        <div style={{ background: 'var(--bg-white)', borderTop: '1px solid var(--border)', padding: '20px 32px 28px' }}>
+          {links.map(l => <a key={l.href} href={l.href} onClick={() => setOpen(false)} style={{ display: 'block', padding: '12px 0', fontSize: 14, borderBottom: '1px solid var(--border)', color: 'var(--text)' }}>{l.label}</a>)}
+          <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line" style={{ marginTop: 20, display: 'inline-flex' }}>LINEで相談する</a>
+        </div>
+      )}
+      <style>{`@media(min-width:800px){.ham-btn{display:none !important}}@media(max-width:799px){.desk-nav{display:none !important}}`}</style>
+    </header>
+  );
+}
+
+function LineIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 40 40" fill="currentColor">
+      <path d="M20 4C11.163 4 4 10.268 4 18c0 4.773 2.678 8.98 6.8 11.6-.3 1.1-1.07 3.97-1.23 4.59-.2.77.28 1.76 1.15 1.27.7-.4 5.57-3.7 7.84-5.22C19.17 30.42 19.59 30.43 20 30.43c8.837 0 16-6.268 16-14 0-7.732-7.163-12.43-16-12.43z"/>
+    </svg>
+  );
+}
+
+function App() {
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const reasons = [
+    {
+      num: '01',
+      title: 'いつもの場所で撮れる',
+      body: 'お参りする神社や、近くの公園へ伺います。慣れた場所なので、お子さんも自然な表情に。',
+      img: 'images/menu_ceremony.jpg',
+      imgAlt: '神社でのお参り'
+    },
+    {
+      num: '02',
+      title: '家族みんなで写れる',
+      body: 'ごきょうだいや、おじいちゃん・おばあちゃんも一緒に。家族の集合写真もお任せください。',
+      img: 'images/menu_family.jpg',
+      imgAlt: '千歳飴を持った笑顔'
+    },
+    {
+      num: '03',
+      title: '撮影歴17年の安心感',
+      body: '子ども撮影を17年続けてきました。ぐずってしまっても大丈夫。ゆっくり待ちながら撮ります。',
+      img: 'images/menu_birthday.jpg',
+      imgAlt: '家族の集合写真'
+    },
+  ];
+
+  const steps = [
+    { num: '1', title: 'LINEでご相談', body: 'ご希望の日にち・場所・人数を教えてください。空き状況をすぐに確認します。' },
+    { num: '2', title: '日程と場所を決定', body: '雨の日の予備日も、このときに決めておきます。神社の撮影許可についてもご相談ください。' },
+    { num: '3', title: '撮影当日', body: 'お参りの様子から家族写真まで、50〜60分ゆっくり撮影します。' },
+    { num: '4', title: '写真データのお届け', body: '撮影から2週間以内に、オンラインで全データをお渡しします。85カット以上。' },
+  ];
+
+  const faqs = [
+    {
+      q: '雨が降ったらどうなりますか？',
+      a: '悪天候の場合は、予備日への振り替えが可能です。当日の朝でも日程変更いただけます。キャンセル料は発生しません。延期日程はLINEで調整します。'
+    },
+    {
+      q: '着付けやヘアメイクはお願いできますか？',
+      a: 'いち日写真館は撮影専門のため、着付けやヘアメイクはお客様ご自身でご手配ください。ご紹介できる美容院についてはLINEでご相談ください。'
+    },
+    {
+      q: 'きょうだいや祖父母も一緒に撮れますか？',
+      a: 'はい、ご家族みんなで撮影できます。人数による追加料金はありません。ぜひご一緒にどうぞ。'
+    },
+    {
+      q: '子どもが泣いてしまわないか心配です',
+      a: '大丈夫です。時間に余裕をもって、お子さんのペースに合わせて撮影します。17年の経験で、ぐずってしまっても自然な笑顔を引き出します。'
+    },
+  ];
+
+  return (
+    <>
+      <Nav />
+      <div style={{ paddingTop: 88 }}>
+
+        {/* Hero */}
+        <div style={{ position: 'relative', overflow: 'hidden', background: 'var(--bg-cream)', minHeight: 'clamp(320px, 50vw, 520px)', display: 'flex', alignItems: 'center' }}>
+          {/* 背景画像 */}
+          <div style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: '52%', overflow: 'hidden' }} className="hero-img-wrap">
+            <img src="images/menu_ceremony.jpg" alt="七五三撮影" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}/>
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, var(--bg-cream) 0%, rgba(242,237,230,0.7) 15%, rgba(242,237,230,0) 35%)' }}/>
+          </div>
+          {/* テキスト */}
+          <div style={{ position: 'relative', zIndex: 1, padding: 'clamp(40px,8vw,80px) clamp(24px,8vw,80px)', maxWidth: '54%' }} className="hero-text">
+            <p style={{ fontSize: 11, letterSpacing: '0.2em', color: 'var(--accent)', marginBottom: 16 }}>2026年 七五三撮影 受付中</p>
+            <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(24px,3.6vw,42px)', fontWeight: 400, lineHeight: 1.7, marginBottom: 20, color: 'var(--text)' }}>
+              小金井の七五三、<br/>
+              出張撮影で<br className="sp-show"/>のこします
+            </h1>
+            <p style={{ fontSize: 'clamp(13px,1.4vw,15px)', color: 'var(--text-mid)', lineHeight: 2, marginBottom: 28 }}>
+              神社でのお参りも、ご家族のいつもの笑顔も。<br/>
+              写真館に行かなくても、まちの中で撮影します。
+            </p>
+            <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line" style={{ fontSize: 13, padding: '14px 28px' }}>
+              <LineIcon />
+              LINEで空き日を聞いてみる
+            </a>
+            <p style={{ fontSize: 11, color: 'var(--text-light)', marginTop: 12, letterSpacing: '0.05em' }}>
+              10〜11月の土日は埋まりやすいため、お早めにご相談ください
+            </p>
+          </div>
+        </div>
+
+        {/* 3つの理由 */}
+        <div style={{ padding: '72px 32px 64px', background: 'var(--bg)' }}>
+          <div className="container">
+            <p style={{ fontSize: 11, letterSpacing: '0.2em', color: 'var(--accent)', marginBottom: 12, textAlign: 'center' }}>WHY CHOOSE US</p>
+            <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(20px,2.4vw,28px)', fontWeight: 400, textAlign: 'center', marginBottom: 48 }}>
+              いち日写真館の七五三<br/>選ばれている3つの理由
+            </h2>
+            <div className="reasons-grid">
+              {reasons.map((r, i) => (
+                <div key={i} style={{ background: 'var(--bg-white)', border: '1px solid var(--border)' }}>
+                  <div style={{ aspectRatio: '4/3', overflow: 'hidden' }}>
+                    <img src={r.img} alt={r.imgAlt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}/>
+                  </div>
+                  <div style={{ padding: '24px 24px 28px' }}>
+                    <p style={{ fontFamily: 'var(--serif)', fontSize: 28, fontWeight: 300, color: 'var(--accent)', opacity: 0.5, marginBottom: 8, letterSpacing: '0.04em' }}>{r.num}</p>
+                    <p style={{ fontFamily: 'var(--serif)', fontSize: 17, fontWeight: 400, marginBottom: 12, lineHeight: 1.6 }}>{r.title}</p>
+                    <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 1.9 }}>{r.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* 料金プラン */}
+        <div style={{ padding: '64px 32px', background: 'var(--bg-cream)' }}>
+          <div className="container">
+            <p style={{ fontSize: 11, letterSpacing: '0.2em', color: 'var(--accent)', marginBottom: 12, textAlign: 'center' }}>PLAN & PRICE</p>
+            <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(20px,2.4vw,28px)', fontWeight: 400, textAlign: 'center', marginBottom: 40 }}>プランと料金</h2>
+
+            {/* プランカード */}
+            <div className="plan-row" style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 32 }}>
+              {[
+                { name: '平日プラン', price: '36,300', note: '月〜金' },
+                { name: '土日祝プラン', price: '41,300', note: '土・日・祝日' },
+              ].map(p => (
+                <div key={p.name} style={{ background: 'var(--bg-white)', border: '1px solid var(--border)', padding: '28px 24px', textAlign: 'center', width: 220 }}>
+                  <p style={{ fontSize: 11, letterSpacing: '0.12em', color: 'var(--text-light)', marginBottom: 10 }}>{p.note}</p>
+                  <p style={{ fontFamily: 'var(--serif)', fontSize: 18, fontWeight: 400, marginBottom: 12 }}>{p.name}</p>
+                  <p style={{ fontFamily: 'var(--serif)', fontSize: 30, fontWeight: 400, letterSpacing: '0.02em' }}>
+                    ¥{p.price}
+                  </p>
+                  <p style={{ fontSize: 11, color: 'var(--text-light)', marginBottom: 20 }}>税込</p>
+                  <div style={{ borderTop: '1px solid var(--border)', paddingTop: 16, display: 'flex', flexDirection: 'column', gap: 8, textAlign: 'left' }}>
+                    {[
+                      '撮影時間　50〜60分',
+                      '85カット以上（全データ）',
+                      '全カットレタッチ済み',
+                    ].map((t, i) => (
+                      <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', fontSize: 13 }}>
+                        <span style={{ color: 'var(--accent)', flexShrink: 0, marginTop: 2 }}>✓</span>
+                        <span style={{ color: 'var(--text-mid)', lineHeight: 1.6 }}>{t}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* 出張費 */}
+            <div style={{ background: 'var(--bg-white)', border: '1px solid var(--border)', padding: '20px 24px', marginBottom: 16 }}>
+              <p style={{ fontSize: 13, fontWeight: 500, marginBottom: 12, display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ fontSize: 16 }}>🚃</span>
+                出張費（JR東小金井駅が基点）
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                {[
+                  { area: '片道20分以内（小金井市・武蔵野市・三鷹市・国分寺市・西東京市ほか）', fee: '無料' },
+                  { area: '片道20〜40分', fee: '1,000円' },
+                  { area: '片道40〜60分', fee: '2,000円' },
+                ].map((f, i) => (
+                  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid var(--border)', gap: 16, alignItems: 'center' }}>
+                    <span style={{ fontSize: 13, color: 'var(--text-mid)', flex: 1 }}>{f.area}</span>
+                    <span style={{ fontSize: 14, fontFamily: 'var(--serif)', flexShrink: 0 }}>{f.fee}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* リピーター割 */}
+            <div style={{ background: 'var(--bg-cream)', border: '1px solid var(--border)', borderLeft: '3px solid var(--accent)', padding: '16px 20px', marginBottom: 28 }}>
+              <p style={{ fontSize: 13, color: 'var(--text-mid)' }}>
+                <span style={{ fontWeight: 500, color: 'var(--text)' }}>リピーター割引 −3,000円 </span>
+                ／ 過去にいち日写真館をご利用の方は合計から割引します
+              </p>
+            </div>
+
+            <p style={{ fontSize: 12, color: 'var(--text-light)', lineHeight: 1.9 }}>
+              ※ 公園使用料・神社への参拝許可が必要な場合はお客様のご負担となります。<br/>
+              ※ オプション（ショートムービー・アルバムなど）は<a href="celebration.html" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>詳細ページ</a>をご覧ください。
+            </p>
+          </div>
+        </div>
+
+        {/* 撮影の流れ */}
+        <div style={{ padding: '64px 32px', background: 'var(--bg)' }}>
+          <div className="container">
+            <p style={{ fontSize: 11, letterSpacing: '0.2em', color: 'var(--accent)', marginBottom: 12, textAlign: 'center' }}>FLOW</p>
+            <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(20px,2.4vw,28px)', fontWeight: 400, textAlign: 'center', marginBottom: 48 }}>撮影の流れ</h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+              {steps.map((s, i) => (
+                <div key={i} style={{ display: 'flex', gap: 0, alignItems: 'stretch' }}>
+                  {/* 左の番号エリア */}
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 48, flexShrink: 0 }}>
+                    <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <span style={{ fontFamily: 'var(--serif)', fontSize: 15, color: '#fff', fontWeight: 400 }}>{s.num}</span>
+                    </div>
+                    {i < steps.length - 1 && (
+                      <div style={{ width: 1, flex: 1, background: 'var(--border)', margin: '8px 0' }}/>
+                    )}
+                  </div>
+                  {/* 右のテキストエリア */}
+                  <div style={{ flex: 1, paddingBottom: i < steps.length - 1 ? 32 : 0, paddingLeft: 16, paddingTop: 4 }}>
+                    <p style={{ fontFamily: 'var(--serif)', fontSize: 17, fontWeight: 400, marginBottom: 6 }}>{s.title}</p>
+                    <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 1.9 }}>{s.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* よくあるご質問 */}
+        <div style={{ padding: '64px 32px', background: 'var(--bg-cream)' }}>
+          <div className="container">
+            <p style={{ fontSize: 11, letterSpacing: '0.2em', color: 'var(--accent)', marginBottom: 12, textAlign: 'center' }}>FAQ</p>
+            <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(20px,2.4vw,28px)', fontWeight: 400, textAlign: 'center', marginBottom: 40 }}>よくあるご質問</h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+              {faqs.map((f, i) => (
+                <div key={i} style={{ borderTop: '1px solid var(--border)', borderBottom: i === faqs.length - 1 ? '1px solid var(--border)' : 'none' }}>
+                  <button
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16, padding: '20px 0', textAlign: 'left' }}
+                  >
+                    <span style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                      <span style={{ fontFamily: 'var(--serif)', fontSize: 14, color: 'var(--accent)', flexShrink: 0, marginTop: 2 }}>Q.</span>
+                      <span style={{ fontSize: 15, color: 'var(--text)', lineHeight: 1.7 }}>{f.q}</span>
+                    </span>
+                    <span style={{ fontSize: 18, color: 'var(--text-light)', flexShrink: 0, transform: openFaq === i ? 'rotate(45deg)' : 'none', transition: 'transform 0.2s', display: 'inline-block' }}>+</span>
+                  </button>
+                  {openFaq === i && (
+                    <div style={{ paddingBottom: 20, paddingLeft: 26, paddingRight: 24 }}>
+                      <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 2 }}>{f.a}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div style={{ padding: '72px 32px 80px', background: 'var(--bg)' }}>
+          <div className="container" style={{ textAlign: 'center' }}>
+            <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(20px,2.6vw,28px)', fontWeight: 400, marginBottom: 16, lineHeight: 1.8 }}>
+              まずはLINEで、<br className="sp-show"/>お気軽にご相談ください
+            </p>
+            <p style={{ fontSize: 15, color: 'var(--text-mid)', lineHeight: 2, marginBottom: 8 }}>
+              空き状況の確認・場所の相談・料金の質問など、なんでも気軽にどうぞ。
+            </p>
+            <p style={{ fontSize: 13, color: 'var(--accent)', marginBottom: 32, fontWeight: 400 }}>
+              10〜11月の土日は埋まりやすいので、お早めにご相談ください。
+            </p>
+            <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line" style={{ fontSize: 15, padding: '16px 40px' }}>
+              <LineIcon />
+              LINEで相談する
+            </a>
+
+            {/* 富山 */}
+            <div style={{ marginTop: 56, paddingTop: 40, borderTop: '1px solid var(--border)' }}>
+              <p style={{ fontSize: 13, color: 'var(--text-light)', lineHeight: 2 }}>
+                帰省のタイミングで、<strong style={{ color: 'var(--text-mid)' }}>富山での七五三撮影</strong>もできます。<br/>
+                富山市・高岡市・射水市など、ご相談ください。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <footer style={{ background: 'var(--text)', color: 'rgba(255,255,255,0.7)', padding: '40px 0 28px' }}>
+          <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
+            <a href="index.html">
+              <img src="images/logo.png" alt="いち日写真館" style={{ height: 28, width: 'auto', filter: 'invert(1)', opacity: 0.85 }}/>
+            </a>
+            <p style={{ fontSize: 11 }}>© 2026 いち日写真館. All rights reserved.</p>
+            <a href="https://biz.hitoandhito.com/" target="_blank" rel="noopener" style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)' }}>ビジネスフォト → hito&hito</a>
+          </div>
+        </footer>
+
+      </div>
+
+      <style>{`
+        .reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .plan-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .sp-show { display: none; }
+        @media(max-width:700px) {
+          .reasons-grid { grid-template-columns: 1fr !important; }
+          .hero-img-wrap { width: 45% !important; }
+          .hero-text { max-width: 60% !important; padding: 36px 20px !important; }
+          .sp-show { display: inline; }
+        }
+        @media(max-width:480px) {
+          .hero-img-wrap { display: none !important; }
+          .hero-text { max-width: 100% !important; padding: 48px 24px !important; }
+        }
+      `}</style>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
