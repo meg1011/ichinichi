@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="富山県八尾町にある期間限定の白い写真館。家族写真・ニューボーン・マタニティ・出張撮影。富山・高岡・砺波エリアの方はこちらへ。">
+<meta name="description" content="富山県八尾町にある期間限定の白い写真館。七五三・成人式前撮り・家族写真・ニューボーン・マタニティ・出張撮影。富山・高岡・砺波エリアの方はこちらへ。">
 <meta name="keywords" content="富山 家族写真,八尾 写真館,富山 出張撮影,富山 ニューボーン,富山 マタニティ,富山 七五三,いち日写真館 富山">
-<title>いち日写真館｜富山 – 八尾町の小さな白い写真館</title>
+<title>いち日写真館｜富山 – 七五三・家族写真　八尾町の小さな白い写真館</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
@@ -37,13 +37,13 @@ img{display:block;max-width:100%}
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="いち日写真館">
-<meta property="og:title" content="いち日写真館｜富山 – 八尾町の小さな白い写真館">
-<meta property="og:description" content="富山県八尾町にある期間限定の白い写真館。家族写真・ニューボーン・マタニティ・出張撮影。">
+<meta property="og:title" content="いち日写真館｜富山 – 七五三・家族写真　八尾町の小さな白い写真館">
+<meta property="og:description" content="富山県八尾町にある期間限定の白い写真館。七五三・成人式前撮り・家族写真・ニューボーン・マタニティ・出張撮影。">
 <meta property="og:url" content="https://hitoandhito.com/toyama.html">
 <meta property="og:image" content="https://hitoandhito.com/images/area_toyama.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="いち日写真館｜富山 – 八尾町の小さな白い写真館">
-<meta name="twitter:description" content="富山県八尾町にある期間限定の白い写真館。家族写真・ニューボーン・マタニティ・出張撮影。">
+<meta name="twitter:title" content="いち日写真館｜富山 – 七五三・家族写真　八尾町の小さな白い写真館">
+<meta name="twitter:description" content="富山県八尾町にある期間限定の白い写真館。七五三・成人式前撮り・家族写真・ニューボーン・マタニティ・出張撮影。">
 <meta name="twitter:image" content="https://hitoandhito.com/images/area_toyama.jpg">
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SG2NXMZXGD"></script>
@@ -102,6 +102,34 @@ function Nav() {
 function Divider() {
   return <div style={{ margin: '20px 0', borderBottom: '1px dashed var(--border)' }}/>;
 }
+
+/* ▼▼ 2026年秋のオープンのご案内（ここから）— 2026/11/26以降は自動で表示されません。片付けるときは、この関数と <AutumnOpen2026 /> の1行を消す ▼▼ */
+function AutumnOpen2026() {
+  const now = new Date();
+  if (now >= new Date('2026-11-26T00:00:00+09:00')) return null;
+  return (
+    <div style={{ background: 'var(--accent-light)', padding: '48px 32px', borderBottom: '1px solid var(--border)' }}>
+      <div className="container" style={{ maxWidth: 720, textAlign: 'center' }}>
+        <p style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--accent)', marginBottom: 10 }}>2026 AUTUMN</p>
+        <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(20px,2.6vw,28px)', fontWeight: 400, color: 'var(--text)', lineHeight: 1.7, marginBottom: 16 }}>富山店、2026年秋のオープン</h2>
+        <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(17px,2.2vw,22px)', color: 'var(--text)', marginBottom: 22 }}>11月22日（日）〜25日（水）</p>
+        <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 20 }}>
+          {['七五三', '成人式の前撮り', '年賀状・家族写真'].map(t => (
+            <span key={t} style={{ fontSize: 13, color: 'var(--text)', background: 'var(--bg-white)', border: '1px solid var(--border)', padding: '6px 14px' }}>{t}</span>
+          ))}
+        </div>
+        <p style={{ fontSize: 15, color: 'var(--text-mid)', lineHeight: 2, marginBottom: 28, textAlign: 'left' }}>
+          七五三、成人式の前撮り、年賀状用の家族写真など、この秋に残したい一枚をお撮りします。白いプライベート空間での撮影なので、雨の日も安心です。番傘などの小物もご用意しています。ご家族いっしょの撮影も大歓迎です。神社などへの出張撮影もご相談ください。
+        </p>
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a href={LINE_URL} target="_blank" rel="noopener" className="btn" style={{ background: '#06C755', borderColor: '#06C755', color: '#fff' }}>LINEで予約・相談する</a>
+          <a href="#plans" className="btn">料金プランを見る</a>
+        </div>
+      </div>
+    </div>
+  );
+}
+/* ▲▲ 2026年秋のオープンのご案内（ここまで） ▲▲ */
 
 function App() {
   return (
@@ -167,6 +195,8 @@ function App() {
             }
           `}</style>
         </div>
+
+        <AutumnOpen2026 />
 
         {/* ② 3つの特徴 */}
         <div style={{ background: 'var(--bg-white)', padding: '40px 32px 36px', borderBottom: '1px solid var(--border)' }}>
@@ -267,7 +297,7 @@ function App() {
         </div>
 
         {/* ⑤ 料金プラン */}
-        <div style={{ background: 'var(--bg-cream)', padding: '56px 32px 40px', textAlign: 'center', borderBottom: '1px solid var(--border)' }}>
+        <div id="plans" style={{ scrollMarginTop: 96, background: 'var(--bg-cream)', padding: '56px 32px 40px', textAlign: 'center', borderBottom: '1px solid var(--border)' }}>
           <p style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--accent)', marginBottom: 10 }}>PRICING</p>
           <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(22px,3vw,28px)', fontWeight: 400, marginBottom: 12, color: 'var(--text)' }}>料金プラン</h2>
           <div style={{ width: 28, height: 1, background: 'var(--accent)', margin: '0 auto' }}/>
