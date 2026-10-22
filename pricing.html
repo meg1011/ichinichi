@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- このファイルは tools/build.js で src/pricing.html から作っています。直すときは src/ を直してください -->
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -8,9 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -50,290 +50,680 @@ a { color: inherit; text-decoration: none; }
 </script>
 </head>
 <body>
-<div id="root"></div>
-<script type="text/babel">
-const { useState } = React;
-
+<div id="root"><header style="position:fixed;top:0;left:0;right:0;z-index:1000;background:#F2EDE6;border-bottom:1px solid var(--border);backdrop-filter:blur(8px)"><div class="container" style="max-width:1080px;display:flex;align-items:center;justify-content:space-between;height:88px"><a href="index.html" style="display:flex;align-items:center"><img src="images/logo.png" alt="いち日写真館" style="height:56px;width:auto"/></a><nav style="display:flex;gap:44px;align-items:center" class="desk-nav"><a href="index.html" style="font-size:12px;letter-spacing:0.08em;color:var(--text-mid);border-bottom:none;padding-bottom:2px">TOP</a><a href="index.html#menu" style="font-size:12px;letter-spacing:0.08em;color:var(--text-mid);border-bottom:none;padding-bottom:2px">撮影メニュー</a><a href="pricing.html" style="font-size:12px;letter-spacing:0.08em;color:var(--text-mid);border-bottom:none;padding-bottom:2px">料金</a><a href="gallery.html" style="font-size:12px;letter-spacing:0.08em;color:var(--text-mid);border-bottom:none;padding-bottom:2px">ギャラリー</a><a href="photographer.html" style="font-size:12px;letter-spacing:0.08em;color:var(--text-mid);border-bottom:none;padding-bottom:2px">ABOUT</a><a href="contact.html" class="btn btn--primary" style="padding:10px 20px;font-size:11px">ご予約・お問い合わせ</a></nav><button class="ham-btn" style="background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:4px"><span style="display:block;width:22px;height:1px;background:var(--text)"></span><span style="display:block;width:22px;height:1px;background:var(--text)"></span><span style="display:block;width:22px;height:1px;background:var(--text)"></span></button></div><style>@media (min-width: 800px) { .ham-btn { display: none !important; } } @media (max-width: 799px) { .desk-nav { display: none !important; } }</style></header><div style="padding-top:64px"><div style="background:var(--bg-cream);padding:60px 0 48px;text-align:center"><p style="font-size:10px;letter-spacing:0.25em;color:var(--accent);margin-bottom:12px">PRICING</p><h1 style="font-family:var(--serif);font-size:clamp(24px, 4vw, 36px);font-weight:400;margin-bottom:12px">料金プラン</h1><div style="width:28px;height:1px;background:var(--accent);margin:0 auto 16px"></div><p style="font-size:15px;color:var(--text-mid);max-width:500px;margin:0 auto;line-height:1.9">撮影ジャンルごとにプランをご用意しています。<br/>すべて税込・出張費別途です。</p></div><div style="position:sticky;top:88px;z-index:100;background:var(--bg-cream);border-bottom:1px solid var(--border);padding:14px 0"><div class="container" style="max-width:1080px;overflow-x:auto"><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a href="#family" style="padding:8px 18px;font-size:12px;letter-spacing:0.06em;color:var(--text);border:1px solid var(--border);border-radius:20px;background:var(--bg);transition:all 0.2s;white-space:nowrap;cursor:pointer;text-decoration:none;display:inline-block">家族写真・バースデー</a><a href="#celebration" style="padding:8px 18px;font-size:12px;letter-spacing:0.06em;color:var(--text);border:1px solid var(--border);border-radius:20px;background:var(--bg);transition:all 0.2s;white-space:nowrap;cursor:pointer;text-decoration:none;display:inline-block">七五三・お宮参り</a><a href="#maternity" style="padding:8px 18px;font-size:12px;letter-spacing:0.06em;color:var(--text);border:1px solid var(--border);border-radius:20px;background:var(--bg);transition:all 0.2s;white-space:nowrap;cursor:pointer;text-decoration:none;display:inline-block">マタニティ</a><a href="#newborn" style="padding:8px 18px;font-size:12px;letter-spacing:0.06em;color:var(--text);border:1px solid var(--border);border-radius:20px;background:var(--bg);transition:all 0.2s;white-space:nowrap;cursor:pointer;text-decoration:none;display:inline-block">ナチュラルニューボーン</a><a href="#coming-of-age" style="padding:8px 18px;font-size:12px;letter-spacing:0.06em;color:var(--text);border:1px solid var(--border);border-radius:20px;background:var(--bg);transition:all 0.2s;white-space:nowrap;cursor:pointer;text-decoration:none;display:inline-block">ハーフ成人式・成人式</a><a href="#school" style="padding:8px 18px;font-size:12px;letter-spacing:0.06em;color:var(--text);border:1px solid var(--border);border-radius:20px;background:var(--bg);transition:all 0.2s;white-space:nowrap;cursor:pointer;text-decoration:none;display:inline-block">入学・入園・卒業・卒園</a></div></div></div><section id="family" style="padding:72px 0;background:var(--bg);border-bottom:1px solid var(--border)"><div class="container"><div style="display:grid;grid-template-columns:220px 1fr;gap:56px;align-items:start" class="pricing-row"><div><p style="font-size:10px;letter-spacing:0.18em;color:var(--accent);margin-bottom:6px">Family / Birthday</p><h2 style="font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:14px">家族写真・バースデー</h2><div style="width:24px;height:1px;background:var(--accent);margin-bottom:14px"></div><p style="font-size:15px;color:var(--text-mid);line-height:1.9">公園・自宅・思い出の場所など、ご家族の好きな場所へ出張します。記念日だけでなく、年に一度の成長記録にもご利用いただいています。</p></div><div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px" class="plan-cards"><div style="border:1px solid var(--border);background:var(--bg-white);padding:32px 24px;position:relative;flex:1;min-width:180px"><p style="font-size:10px;color:var(--accent);letter-spacing:0.12em;margin-bottom:4px">平日撮影</p><p style="font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:4px;margin-top:8px">¥33,000</p><p style="font-size:10px;color:var(--text-mid);margin-bottom:20px">税込 / 出張費別</p><div style="border-top:1px solid var(--border);padding-top:16px;display:flex;flex-direction:column;gap:7px"><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">撮影時間</span><span>50〜60分</span></div><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">お届け枚数</span><span>85カット以上</span></div></div><p style="font-size:13px;color:var(--text-mid);margin-top:14px;line-height:1.7;border-top:1px solid var(--border);padding-top:12px">・<!-- -->全カットレタッチ込み</p></div><div style="border:1px solid var(--border);background:var(--bg-white);padding:32px 24px;position:relative;flex:1;min-width:180px"><p style="font-size:10px;color:var(--accent);letter-spacing:0.12em;margin-bottom:4px">土日祝撮影</p><p style="font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:4px;margin-top:8px">¥38,000</p><p style="font-size:10px;color:var(--text-mid);margin-bottom:20px">税込 / 出張費別</p><div style="border-top:1px solid var(--border);padding-top:16px;display:flex;flex-direction:column;gap:7px"><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">撮影時間</span><span>50〜60分</span></div><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">お届け枚数</span><span>85カット以上</span></div></div><p style="font-size:13px;color:var(--text-mid);margin-top:14px;line-height:1.7;border-top:1px solid var(--border);padding-top:12px">・<!-- -->全カットレタッチ込み</p></div></div><div style="border:1px solid var(--border);background:var(--bg-white)"><div style="padding:12px 20px;border-bottom:1px solid var(--border);background:var(--bg)"><p style="font-size:11px;letter-spacing:0.1em;color:var(--text-mid)">OPTIONS</p></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">ショートムービー撮影・編集</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋30,000円</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">超過料金（30分ごと）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋5,000円</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">DVD（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋3,000円（2枚目〜 ＋1,500円）</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">ブルーレイ（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋5,500円（2枚目〜 ＋3,500円）</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">アルバム制作（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">アルバム代＋8,000円〜</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px"><span style="color:var(--text-mid);flex-shrink:0;width:180px">リピーター割引</span><span style="font-family:var(--serif);letter-spacing:0.04em">－3,000円</span></div></div><div style="margin-top:20px"><a href="family.html" class="btn btn--primary" style="font-size:11px;padding:11px 24px">詳しくはこちら</a></div></div></div></div><style>@media (max-width: 700px) { .pricing-row { grid-template-columns: 1fr !important; gap: 28px !important; } .plan-cards &gt; div { min-width: calc(50% - 6px) !important; } }</style></section><section id="celebration" style="padding:72px 0;background:var(--bg-white);border-bottom:1px solid var(--border)"><div class="container"><div style="display:grid;grid-template-columns:220px 1fr;gap:56px;align-items:start" class="pricing-row"><div><p style="font-size:10px;letter-spacing:0.18em;color:var(--accent);margin-bottom:6px">Ceremony</p><h2 style="font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:14px">七五三・お宮参り</h2><div style="width:24px;height:1px;background:var(--accent);margin-bottom:14px"></div><p style="font-size:15px;color:var(--text-mid);line-height:1.9">お子さんの節目の記念を、神社や自宅周辺でやわらかく記録します。衣装の着付け前後のお支度シーンも承ります。</p><div style="margin-top:20px;padding:12px 14px;background:var(--accent-light);font-size:11px;color:var(--text);line-height:1.8">⚠ <!-- -->七五三は9〜11月が繁忙期です。お早めにご予約ください。</div></div><div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px" class="plan-cards"><div style="border:1px solid var(--border);background:var(--bg-white);padding:32px 24px;position:relative;flex:1;min-width:180px"><p style="font-size:10px;color:var(--accent);letter-spacing:0.12em;margin-bottom:4px">平日撮影</p><p style="font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:4px;margin-top:8px">¥36,300</p><p style="font-size:10px;color:var(--text-mid);margin-bottom:20px">税込 / 出張費別</p><div style="border-top:1px solid var(--border);padding-top:16px;display:flex;flex-direction:column;gap:7px"><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">撮影時間</span><span>50〜60分</span></div><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">お届け枚数</span><span>85カット以上</span></div></div><p style="font-size:13px;color:var(--text-mid);margin-top:14px;line-height:1.7;border-top:1px solid var(--border);padding-top:12px">・<!-- -->全カットレタッチ込み</p></div><div style="border:1px solid var(--border);background:var(--bg-white);padding:32px 24px;position:relative;flex:1;min-width:180px"><p style="font-size:10px;color:var(--accent);letter-spacing:0.12em;margin-bottom:4px">土日祝撮影</p><p style="font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:4px;margin-top:8px">¥41,300</p><p style="font-size:10px;color:var(--text-mid);margin-bottom:20px">税込 / 出張費別</p><div style="border-top:1px solid var(--border);padding-top:16px;display:flex;flex-direction:column;gap:7px"><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">撮影時間</span><span>50〜60分</span></div><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">お届け枚数</span><span>85カット以上</span></div></div><p style="font-size:13px;color:var(--text-mid);margin-top:14px;line-height:1.7;border-top:1px solid var(--border);padding-top:12px">・<!-- -->全カットレタッチ込み</p></div></div><div style="border:1px solid var(--border);background:var(--bg-white)"><div style="padding:12px 20px;border-bottom:1px solid var(--border);background:var(--bg)"><p style="font-size:11px;letter-spacing:0.1em;color:var(--text-mid)">OPTIONS</p></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">ショートムービー撮影・編集</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋30,000円</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">超過料金（30分ごと）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋5,000円</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">DVD（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋3,000円（2枚目〜 ＋1,500円）</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">ブルーレイ（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋5,500円（2枚目〜 ＋3,500円）</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">アルバム制作（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">アルバム代＋8,000円〜</span></div></div><div style="margin-top:20px"><a href="celebration.html" class="btn btn--primary" style="font-size:11px;padding:11px 24px">詳しくはこちら</a></div></div></div></div><style>@media (max-width: 700px) { .pricing-row { grid-template-columns: 1fr !important; gap: 28px !important; } .plan-cards &gt; div { min-width: calc(50% - 6px) !important; } }</style></section><section id="maternity" style="padding:72px 0;background:var(--bg);border-bottom:1px solid var(--border)"><div class="container"><div style="display:grid;grid-template-columns:220px 1fr;gap:56px;align-items:start" class="pricing-row"><div><p style="font-size:10px;letter-spacing:0.18em;color:var(--accent);margin-bottom:6px">Maternity</p><h2 style="font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:14px">マタニティ</h2><div style="width:24px;height:1px;background:var(--accent);margin-bottom:14px"></div><p style="font-size:15px;color:var(--text-mid);line-height:1.9">妊娠7〜9ヶ月頃が撮影に最適な時期です。ご自宅や自然の中で、しなやかで美しい時間を残します。</p></div><div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px" class="plan-cards"><div style="border:1px solid var(--border);background:var(--bg-white);padding:32px 24px;position:relative;flex:1;min-width:180px"><p style="font-size:10px;color:var(--accent);letter-spacing:0.12em;margin-bottom:4px">平日撮影</p><p style="font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:4px;margin-top:8px">¥33,000</p><p style="font-size:10px;color:var(--text-mid);margin-bottom:20px">税込 / 出張費別</p><div style="border-top:1px solid var(--border);padding-top:16px;display:flex;flex-direction:column;gap:7px"><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">撮影時間</span><span>50〜60分</span></div><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">お届け枚数</span><span>85カット以上</span></div></div><p style="font-size:13px;color:var(--text-mid);margin-top:14px;line-height:1.7;border-top:1px solid var(--border);padding-top:12px">・<!-- -->全カットレタッチ込み</p></div><div style="border:1px solid var(--border);background:var(--bg-white);padding:32px 24px;position:relative;flex:1;min-width:180px"><p style="font-size:10px;color:var(--accent);letter-spacing:0.12em;margin-bottom:4px">土日祝撮影</p><p style="font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:4px;margin-top:8px">¥38,000</p><p style="font-size:10px;color:var(--text-mid);margin-bottom:20px">税込 / 出張費別</p><div style="border-top:1px solid var(--border);padding-top:16px;display:flex;flex-direction:column;gap:7px"><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">撮影時間</span><span>50〜60分</span></div><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">お届け枚数</span><span>85カット以上</span></div></div><p style="font-size:13px;color:var(--text-mid);margin-top:14px;line-height:1.7;border-top:1px solid var(--border);padding-top:12px">・<!-- -->全カットレタッチ込み</p></div></div><div style="border:1px solid var(--border);background:var(--bg-white)"><div style="padding:12px 20px;border-bottom:1px solid var(--border);background:var(--bg)"><p style="font-size:11px;letter-spacing:0.1em;color:var(--text-mid)">OPTIONS</p></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">ショートムービー撮影・編集</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋30,000円</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">超過料金（30分ごと）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋5,000円</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">DVD（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋3,000円（2枚目〜 ＋1,500円）</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">ブルーレイ（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋5,500円（2枚目〜 ＋3,500円）</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">アルバム制作（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">アルバム代＋8,000円〜</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px"><span style="color:var(--text-mid);flex-shrink:0;width:180px">リピーター割引</span><span style="font-family:var(--serif);letter-spacing:0.04em">－3,000円</span></div></div><div style="margin-top:20px"><a href="maternity.html" class="btn btn--primary" style="font-size:11px;padding:11px 24px">詳しくはこちら</a></div></div></div></div><style>@media (max-width: 700px) { .pricing-row { grid-template-columns: 1fr !important; gap: 28px !important; } .plan-cards &gt; div { min-width: calc(50% - 6px) !important; } }</style></section><section id="newborn" style="padding:72px 0;background:var(--bg-white);border-bottom:1px solid var(--border)"><div class="container"><div style="display:grid;grid-template-columns:220px 1fr;gap:56px;align-items:start" class="pricing-row"><div><p style="font-size:10px;letter-spacing:0.18em;color:var(--accent);margin-bottom:6px">Natural Newborn</p><h2 style="font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:14px">ナチュラルニューボーン</h2><div style="width:24px;height:1px;background:var(--accent);margin-bottom:14px"></div><p style="font-size:15px;color:var(--text-mid);line-height:1.9">誕生後2〜3週間以内のかけがえない姿をご自宅で撮影します。赤ちゃんのペースに合わせてゆっくり進めます。</p><div style="margin-top:20px;padding:12px 14px;background:var(--accent-light);font-size:11px;color:var(--text);line-height:1.8">⚠ <!-- -->出産予定日の1〜2ヶ月前のご予約をおすすめします。</div></div><div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px" class="plan-cards"><div style="border:1px solid var(--border);background:var(--bg-white);padding:32px 24px;position:relative;flex:1;min-width:180px"><p style="font-size:10px;color:var(--accent);letter-spacing:0.12em;margin-bottom:4px">平日撮影</p><p style="font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:4px;margin-top:8px">¥36,300</p><p style="font-size:10px;color:var(--text-mid);margin-bottom:20px">税込 / 出張費別</p><div style="border-top:1px solid var(--border);padding-top:16px;display:flex;flex-direction:column;gap:7px"><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">撮影時間</span><span>50〜60分</span></div><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">お届け枚数</span><span>85カット以上</span></div></div><p style="font-size:13px;color:var(--text-mid);margin-top:14px;line-height:1.7;border-top:1px solid var(--border);padding-top:12px">・<!-- -->全カットレタッチ込み</p></div><div style="border:1px solid var(--border);background:var(--bg-white);padding:32px 24px;position:relative;flex:1;min-width:180px"><p style="font-size:10px;color:var(--accent);letter-spacing:0.12em;margin-bottom:4px">土日祝撮影</p><p style="font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:4px;margin-top:8px">¥41,300</p><p style="font-size:10px;color:var(--text-mid);margin-bottom:20px">税込 / 出張費別</p><div style="border-top:1px solid var(--border);padding-top:16px;display:flex;flex-direction:column;gap:7px"><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">撮影時間</span><span>50〜60分</span></div><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">お届け枚数</span><span>85カット以上</span></div></div><p style="font-size:13px;color:var(--text-mid);margin-top:14px;line-height:1.7;border-top:1px solid var(--border);padding-top:12px">・<!-- -->全カットレタッチ込み</p></div></div><div style="border:1px solid var(--border);background:var(--bg-white)"><div style="padding:12px 20px;border-bottom:1px solid var(--border);background:var(--bg)"><p style="font-size:11px;letter-spacing:0.1em;color:var(--text-mid)">OPTIONS</p></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">ショートムービー撮影・編集</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋30,000円</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">超過料金（30分ごと）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋5,000円</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">DVD（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋3,000円（2枚目〜 ＋1,500円）</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">ブルーレイ（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋5,500円（2枚目〜 ＋3,500円）</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">アルバム制作（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">アルバム代＋8,000円〜</span></div></div><div style="margin-top:20px"><a href="newborn.html" class="btn btn--primary" style="font-size:11px;padding:11px 24px">詳しくはこちら</a></div></div></div></div><style>@media (max-width: 700px) { .pricing-row { grid-template-columns: 1fr !important; gap: 28px !important; } .plan-cards &gt; div { min-width: calc(50% - 6px) !important; } }</style></section><section id="coming-of-age" style="padding:72px 0;background:var(--bg);border-bottom:1px solid var(--border)"><div class="container"><div style="display:grid;grid-template-columns:220px 1fr;gap:56px;align-items:start" class="pricing-row"><div><p style="font-size:10px;letter-spacing:0.18em;color:var(--accent);margin-bottom:6px">Coming of Age</p><h2 style="font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:14px">ハーフ成人式・成人式</h2><div style="width:24px;height:1px;background:var(--accent);margin-bottom:14px"></div><p style="font-size:15px;color:var(--text-mid);line-height:1.9">10歳・20歳の晴れやかな節目を、着物や衣装とともに。凛とした姿と自然な笑顔の両方を残します。</p></div><div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px" class="plan-cards"><div style="border:1px solid var(--border);background:var(--bg-white);padding:32px 24px;position:relative;flex:1;min-width:180px"><p style="font-size:10px;color:var(--accent);letter-spacing:0.12em;margin-bottom:4px">平日撮影</p><p style="font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:4px;margin-top:8px">¥36,300</p><p style="font-size:10px;color:var(--text-mid);margin-bottom:20px">税込 / 出張費別</p><div style="border-top:1px solid var(--border);padding-top:16px;display:flex;flex-direction:column;gap:7px"><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">撮影時間</span><span>50〜60分</span></div><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">お届け枚数</span><span>85カット以上</span></div></div><p style="font-size:13px;color:var(--text-mid);margin-top:14px;line-height:1.7;border-top:1px solid var(--border);padding-top:12px">・<!-- -->全カットレタッチ込み</p></div><div style="border:1px solid var(--border);background:var(--bg-white);padding:32px 24px;position:relative;flex:1;min-width:180px"><p style="font-size:10px;color:var(--accent);letter-spacing:0.12em;margin-bottom:4px">土日祝撮影</p><p style="font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:4px;margin-top:8px">¥41,300</p><p style="font-size:10px;color:var(--text-mid);margin-bottom:20px">税込 / 出張費別</p><div style="border-top:1px solid var(--border);padding-top:16px;display:flex;flex-direction:column;gap:7px"><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">撮影時間</span><span>50〜60分</span></div><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">お届け枚数</span><span>85カット以上</span></div></div><p style="font-size:13px;color:var(--text-mid);margin-top:14px;line-height:1.7;border-top:1px solid var(--border);padding-top:12px">・<!-- -->全カットレタッチ込み</p></div></div><div style="border:1px solid var(--border);background:var(--bg-white)"><div style="padding:12px 20px;border-bottom:1px solid var(--border);background:var(--bg)"><p style="font-size:11px;letter-spacing:0.1em;color:var(--text-mid)">OPTIONS</p></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">ショートムービー撮影・編集</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋30,000円</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">超過料金（30分ごと）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋5,000円</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">DVD（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋3,000円（2枚目〜 ＋1,500円）</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">ブルーレイ（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋5,500円（2枚目〜 ＋3,500円）</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">アルバム制作（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">アルバム代＋8,000円〜</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px"><span style="color:var(--text-mid);flex-shrink:0;width:180px">リピーター割引</span><span style="font-family:var(--serif);letter-spacing:0.04em">－3,000円</span></div></div><div style="margin-top:20px"><a href="coming-of-age.html" class="btn btn--primary" style="font-size:11px;padding:11px 24px">詳しくはこちら</a></div></div></div></div><style>@media (max-width: 700px) { .pricing-row { grid-template-columns: 1fr !important; gap: 28px !important; } .plan-cards &gt; div { min-width: calc(50% - 6px) !important; } }</style></section><section id="school" style="padding:72px 0;background:var(--bg-white);border-bottom:1px solid var(--border)"><div class="container"><div style="display:grid;grid-template-columns:220px 1fr;gap:56px;align-items:start" class="pricing-row"><div><p style="font-size:10px;letter-spacing:0.18em;color:var(--accent);margin-bottom:6px">School Milestone</p><h2 style="font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:14px">入学・入園・卒業・卒園</h2><div style="width:24px;height:1px;background:var(--accent);margin-bottom:14px"></div><p style="font-size:15px;color:var(--text-mid);line-height:1.9">入学式・卒業式の晴れやかな日を、家族みんなの自然な笑顔とともに残します。桜や校舎を背景に大切な1日を。</p></div><div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px" class="plan-cards"><div style="border:1px solid var(--border);background:var(--bg-white);padding:32px 24px;position:relative;flex:1;min-width:180px"><p style="font-size:10px;color:var(--accent);letter-spacing:0.12em;margin-bottom:4px">平日撮影</p><p style="font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:4px;margin-top:8px">¥33,000</p><p style="font-size:10px;color:var(--text-mid);margin-bottom:20px">税込 / 出張費別</p><div style="border-top:1px solid var(--border);padding-top:16px;display:flex;flex-direction:column;gap:7px"><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">撮影時間</span><span>50〜60分</span></div><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">お届け枚数</span><span>85カット以上</span></div></div><p style="font-size:13px;color:var(--text-mid);margin-top:14px;line-height:1.7;border-top:1px solid var(--border);padding-top:12px">・<!-- -->全カットレタッチ込み</p></div><div style="border:1px solid var(--border);background:var(--bg-white);padding:32px 24px;position:relative;flex:1;min-width:180px"><p style="font-size:10px;color:var(--accent);letter-spacing:0.12em;margin-bottom:4px">土日祝撮影</p><p style="font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:4px;margin-top:8px">¥38,000</p><p style="font-size:10px;color:var(--text-mid);margin-bottom:20px">税込 / 出張費別</p><div style="border-top:1px solid var(--border);padding-top:16px;display:flex;flex-direction:column;gap:7px"><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">撮影時間</span><span>50〜60分</span></div><div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-mid)">お届け枚数</span><span>85カット以上</span></div></div><p style="font-size:13px;color:var(--text-mid);margin-top:14px;line-height:1.7;border-top:1px solid var(--border);padding-top:12px">・<!-- -->全カットレタッチ込み</p></div></div><div style="border:1px solid var(--border);background:var(--bg-white)"><div style="padding:12px 20px;border-bottom:1px solid var(--border);background:var(--bg)"><p style="font-size:11px;letter-spacing:0.1em;color:var(--text-mid)">OPTIONS</p></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">ショートムービー撮影・編集</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋30,000円</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">超過料金（30分ごと）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋5,000円</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">DVD（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋3,000円（2枚目〜 ＋1,500円）</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">ブルーレイ（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">＋5,500円（2枚目〜 ＋3,500円）</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px;font-family:var(--sans)"><span style="color:var(--text-mid);flex-shrink:0;width:180px">アルバム制作（送料込み）</span><span style="font-family:var(--serif);letter-spacing:0.04em">アルバム代＋8,000円〜</span></div><div style="display:flex;padding:12px 20px;border-bottom:1px solid var(--border);gap:24px;font-size:13px"><span style="color:var(--text-mid);flex-shrink:0;width:180px">リピーター割引</span><span style="font-family:var(--serif);letter-spacing:0.04em">－3,000円</span></div></div><div style="margin-top:20px"><a href="school.html" class="btn btn--primary" style="font-size:11px;padding:11px 24px">詳しくはこちら</a></div></div></div></div><style>@media (max-width: 700px) { .pricing-row { grid-template-columns: 1fr !important; gap: 28px !important; } .plan-cards &gt; div { min-width: calc(50% - 6px) !important; } }</style></section><section style="padding:60px 0;background:var(--bg-cream)"><div class="container" style="max-width:700px"><h2 style="font-family:var(--serif);font-size:20px;font-weight:400;margin-bottom:28px">料金に関するご注意</h2><div style="display:flex;gap:24px;padding:14px 0;border-bottom:1px solid var(--border);font-size:15px"><span style="color:var(--text-mid);flex-shrink:0;width:90px">料金</span><span>表示はすべて税込です。</span></div><div style="display:flex;gap:24px;padding:14px 0;border-bottom:1px solid var(--border);font-size:15px"><span style="color:var(--text-mid);flex-shrink:0;width:90px">出張料</span><span>JR東小金井駅を基点に距離に応じて変わります。電車・バス・徒歩で片道20分以内は無料、20〜40分は1,000円、40〜60分は2,000円、60分以上は延長20分ごとに＋1,000円。</span></div><div style="display:flex;gap:24px;padding:14px 0;border-bottom:1px solid var(--border);font-size:15px"><span style="color:var(--text-mid);flex-shrink:0;width:90px">データ納品</span><span>オンライン（ダウンロード形式）で2週間以内にお届けします。ダウンロード期限は納品時にご案内します。</span></div><div style="display:flex;gap:24px;padding:14px 0;border-bottom:1px solid var(--border);font-size:15px"><span style="color:var(--text-mid);flex-shrink:0;width:90px">データ保管</span><span>いち日写真館でのデータ保存期間は3ヶ月です。必ずご自宅で複数のバックアップをお取りください。</span></div><div style="display:flex;gap:24px;padding:14px 0;border-bottom:1px solid var(--border);font-size:15px"><span style="color:var(--text-mid);flex-shrink:0;width:90px">キャンセル</span><span>やむを得ない悪天候・体調不良の場合は延期可能です（当日でも可）。延期なしのキャンセルは：20〜7日前10% / 7〜4日前20% / 3〜2日前50% / 前日80% / 当日100%のキャンセル料が発生します。</span></div><div style="display:flex;gap:24px;padding:14px 0;border-bottom:1px solid var(--border);font-size:15px"><span style="color:var(--text-mid);flex-shrink:0;width:90px">日程変更</span><span>やむを得ない理由による延期は当日でも承ります。延期日程は別途ご連絡にてご調整いたします。</span></div></div></section><section style="padding:40px 0;background:var(--bg-white);text-align:center"><div class="container"><p style="font-family:var(--serif);font-size:16px;margin-bottom:8px">撮影のご相談、お気軽にどうぞ</p><p style="font-size:12px;color:var(--text-mid);margin-bottom:20px">プランや料金についてご不明な点はお気軽にお問い合わせください。</p><a href="contact.html" class="btn btn--primary btn--sm">ご予約・お問い合わせ</a></div></section></div><footer style="background:var(--text);color:rgba(255,255,255,0.7);padding:40px 0 28px"><div class="container" style="max-width:1080px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px"><a href="index.html" style="display:flex;align-items:center"><img src="images/logo.png" alt="いち日写真館" style="height:28px;width:auto;filter:invert(1);opacity:0.85"/></a><p style="font-size:11px">© 2026 いち日写真館. All rights reserved.</p><a href="https://biz.hitoandhito.com/" target="_blank" rel="noopener" style="font-size:11px;color:rgba(255,255,255,0.6)">ビジネスフォト → hito&amp;hito</a></div></footer></div>
+<script>
+const {
+  useState
+} = React;
 function Nav() {
   const [open, setOpen] = useState(false);
-  const links = [
-    { href: 'index.html', label: 'TOP' },
-    { href: 'index.html#menu', label: '撮影メニュー' },
-    { href: 'pricing.html', label: '料金' },
-    { href: 'gallery.html', label: 'ギャラリー' },
-    { href: 'photographer.html', label: 'ABOUT' },
-  ];
-  return (
-    <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: '#F2EDE6', borderBottom: '1px solid var(--border)', backdropFilter: 'blur(8px)' }}>
-      <div className="container" style={{ maxWidth: 1080, display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 88 }}>
-        <a href="index.html" style={{ display: 'flex', alignItems: 'center' }}>
-          <img src="images/logo.png" alt="いち日写真館" style={{ height: 56, width: 'auto' }} />
-        </a>
-        <nav style={{ display: 'flex', gap: 44, alignItems: 'center' }} className="desk-nav">
-          {links.map(l => <a key={l.href} href={l.href} style={{ fontSize: 12, letterSpacing: '0.08em', color: l.active ? 'var(--accent)' : 'var(--text-mid)', borderBottom: l.active ? '1px solid var(--accent)' : 'none', paddingBottom: 2 }}>{l.label}</a>)}
-          <a href="contact.html" className="btn btn--primary" style={{ padding: '10px 20px', fontSize: 11 }}>ご予約・お問い合わせ</a>
-        </nav>
-        <button onClick={() => setOpen(!open)} className="ham-btn" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 5, padding: 4 }}>
-          {[0,1,2].map(i => <span key={i} style={{ display: 'block', width: 22, height: 1, background: 'var(--text)' }}/>)}
-        </button>
-      </div>
-      {open && (
-        <div style={{ background: 'var(--bg-white)', borderTop: '1px solid var(--border)', padding: '20px 32px 28px' }}>
-          {links.map(l => <a key={l.href} href={l.href} onClick={() => setOpen(false)} style={{ display: 'block', padding: '12px 0', fontSize: 14, borderBottom: '1px solid var(--border)', color: l.active ? 'var(--accent)' : 'var(--text)' }}>{l.label}</a>)}
-          <a href="contact.html" className="btn btn--primary" style={{ marginTop: 20, display: 'inline-flex' }}>ご予約・お問い合わせ</a>
-        </div>
-      )}
-      <style>{`@media (min-width: 800px) { .ham-btn { display: none !important; } } @media (max-width: 799px) { .desk-nav { display: none !important; } }`}</style>
-    </header>
-  );
+  const links = [{
+    href: 'index.html',
+    label: 'TOP'
+  }, {
+    href: 'index.html#menu',
+    label: '撮影メニュー'
+  }, {
+    href: 'pricing.html',
+    label: '料金'
+  }, {
+    href: 'gallery.html',
+    label: 'ギャラリー'
+  }, {
+    href: 'photographer.html',
+    label: 'ABOUT'
+  }];
+  return React.createElement("header", {
+    style: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 1000,
+      background: '#F2EDE6',
+      borderBottom: '1px solid var(--border)',
+      backdropFilter: 'blur(8px)'
+    }
+  }, React.createElement("div", {
+    className: "container",
+    style: {
+      maxWidth: 1080,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      height: 88
+    }
+  }, React.createElement("a", {
+    href: "index.html",
+    style: {
+      display: 'flex',
+      alignItems: 'center'
+    }
+  }, React.createElement("img", {
+    src: "images/logo.png",
+    alt: "いち日写真館",
+    style: {
+      height: 56,
+      width: 'auto'
+    }
+  })), React.createElement("nav", {
+    style: {
+      display: 'flex',
+      gap: 44,
+      alignItems: 'center'
+    },
+    className: "desk-nav"
+  }, links.map(l => React.createElement("a", {
+    key: l.href,
+    href: l.href,
+    style: {
+      fontSize: 12,
+      letterSpacing: '0.08em',
+      color: l.active ? 'var(--accent)' : 'var(--text-mid)',
+      borderBottom: l.active ? '1px solid var(--accent)' : 'none',
+      paddingBottom: 2
+    }
+  }, l.label)), React.createElement("a", {
+    href: "contact.html",
+    className: "btn btn--primary",
+    style: {
+      padding: '10px 20px',
+      fontSize: 11
+    }
+  }, "ご予約・お問い合わせ")), React.createElement("button", {
+    onClick: () => setOpen(!open),
+    className: "ham-btn",
+    style: {
+      background: 'none',
+      border: 'none',
+      cursor: 'pointer',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 5,
+      padding: 4
+    }
+  }, [0, 1, 2].map(i => React.createElement("span", {
+    key: i,
+    style: {
+      display: 'block',
+      width: 22,
+      height: 1,
+      background: 'var(--text)'
+    }
+  })))), open && React.createElement("div", {
+    style: {
+      background: 'var(--bg-white)',
+      borderTop: '1px solid var(--border)',
+      padding: '20px 32px 28px'
+    }
+  }, links.map(l => React.createElement("a", {
+    key: l.href,
+    href: l.href,
+    onClick: () => setOpen(false),
+    style: {
+      display: 'block',
+      padding: '12px 0',
+      fontSize: 14,
+      borderBottom: '1px solid var(--border)',
+      color: l.active ? 'var(--accent)' : 'var(--text)'
+    }
+  }, l.label)), React.createElement("a", {
+    href: "contact.html",
+    className: "btn btn--primary",
+    style: {
+      marginTop: 20,
+      display: 'inline-flex'
+    }
+  }, "ご予約・お問い合わせ")), React.createElement("style", null, `@media (min-width: 800px) { .ham-btn { display: none !important; } } @media (max-width: 799px) { .desk-nav { display: none !important; } }`));
 }
-
-const commonOptions = [
-  { label: 'ショートムービー撮影・編集', value: '＋30,000円' },
-  { label: '超過料金（30分ごと）', value: '＋5,000円' },
-  { label: 'DVD（送料込み）', value: '＋3,000円（2枚目〜 ＋1,500円）' },
-  { label: 'ブルーレイ（送料込み）', value: '＋5,500円（2枚目〜 ＋3,500円）' },
-  { label: 'アルバム制作（送料込み）', value: 'アルバム代＋8,000円〜' },
-];
-
-const genres = [
-  {
-    id: 'family',
-    label: '家族写真・バースデー',
-    en: 'Family / Birthday',
-    desc: '公園・自宅・思い出の場所など、ご家族の好きな場所へ出張します。記念日だけでなく、年に一度の成長記録にもご利用いただいています。',
-    plans: [
-      { name: '平日撮影', time: '50〜60分', photos: '85カット以上', price: '¥33,000', note: '全カットレタッチ込み' },
-      { name: '土日祝撮影', time: '50〜60分', photos: '85カット以上', price: '¥38,000', note: '全カットレタッチ込み' },
-    ],
-    extra: [{ label: 'リピーター割引', value: '－3,000円' }],
-  },
-  {
-    id: 'celebration',
-    label: '七五三・お宮参り',
-    en: 'Ceremony',
-    desc: 'お子さんの節目の記念を、神社や自宅周辺でやわらかく記録します。衣装の着付け前後のお支度シーンも承ります。',
-    plans: [
-      { name: '平日撮影', time: '50〜60分', photos: '85カット以上', price: '¥36,300', note: '全カットレタッチ込み' },
-      { name: '土日祝撮影', time: '50〜60分', photos: '85カット以上', price: '¥41,300', note: '全カットレタッチ込み' },
-    ],
-    note: '七五三は9〜11月が繁忙期です。お早めにご予約ください。',
-  },
-  {
-    id: 'maternity',
-    label: 'マタニティ',
-    en: 'Maternity',
-    desc: '妊娠7〜9ヶ月頃が撮影に最適な時期です。ご自宅や自然の中で、しなやかで美しい時間を残します。',
-    plans: [
-      { name: '平日撮影', time: '50〜60分', photos: '85カット以上', price: '¥33,000', note: '全カットレタッチ込み' },
-      { name: '土日祝撮影', time: '50〜60分', photos: '85カット以上', price: '¥38,000', note: '全カットレタッチ込み' },
-    ],
-    extra: [{ label: 'リピーター割引', value: '－3,000円' }],
-  },
-  {
-    id: 'newborn',
-    label: 'ナチュラルニューボーン',
-    en: 'Natural Newborn',
-    desc: '誕生後2〜3週間以内のかけがえない姿をご自宅で撮影します。赤ちゃんのペースに合わせてゆっくり進めます。',
-    plans: [
-      { name: '平日撮影', time: '50〜60分', photos: '85カット以上', price: '¥36,300', note: '全カットレタッチ込み' },
-      { name: '土日祝撮影', time: '50〜60分', photos: '85カット以上', price: '¥41,300', note: '全カットレタッチ込み' },
-    ],
-    note: '出産予定日の1〜2ヶ月前のご予約をおすすめします。',
-  },
-  {
-    id: 'coming-of-age',
-    label: 'ハーフ成人式・成人式',
-    en: 'Coming of Age',
-    desc: '10歳・20歳の晴れやかな節目を、着物や衣装とともに。凛とした姿と自然な笑顔の両方を残します。',
-    plans: [
-      { name: '平日撮影', time: '50〜60分', photos: '85カット以上', price: '¥36,300', note: '全カットレタッチ込み' },
-      { name: '土日祝撮影', time: '50〜60分', photos: '85カット以上', price: '¥41,300', note: '全カットレタッチ込み' },
-    ],
-    extra: [{ label: 'リピーター割引', value: '－3,000円' }],
-  },
-  {
-    id: 'school',
-    label: '入学・入園・卒業・卒園',
-    en: 'School Milestone',
-    desc: '入学式・卒業式の晴れやかな日を、家族みんなの自然な笑顔とともに残します。桜や校舎を背景に大切な1日を。',
-    plans: [
-      { name: '平日撮影', time: '50〜60分', photos: '85カット以上', price: '¥33,000', note: '全カットレタッチ込み' },
-      { name: '土日祝撮影', time: '50〜60分', photos: '85カット以上', price: '¥38,000', note: '全カットレタッチ込み' },
-    ],
-    extra: [{ label: 'リピーター割引', value: '－3,000円' }],
-  },
-];
-
-function PlanCard({ plan }) {
-  return (
-    <div style={{
+const commonOptions = [{
+  label: 'ショートムービー撮影・編集',
+  value: '＋30,000円'
+}, {
+  label: '超過料金（30分ごと）',
+  value: '＋5,000円'
+}, {
+  label: 'DVD（送料込み）',
+  value: '＋3,000円（2枚目〜 ＋1,500円）'
+}, {
+  label: 'ブルーレイ（送料込み）',
+  value: '＋5,500円（2枚目〜 ＋3,500円）'
+}, {
+  label: 'アルバム制作（送料込み）',
+  value: 'アルバム代＋8,000円〜'
+}];
+const genres = [{
+  id: 'family',
+  label: '家族写真・バースデー',
+  en: 'Family / Birthday',
+  desc: '公園・自宅・思い出の場所など、ご家族の好きな場所へ出張します。記念日だけでなく、年に一度の成長記録にもご利用いただいています。',
+  plans: [{
+    name: '平日撮影',
+    time: '50〜60分',
+    photos: '85カット以上',
+    price: '¥33,000',
+    note: '全カットレタッチ込み'
+  }, {
+    name: '土日祝撮影',
+    time: '50〜60分',
+    photos: '85カット以上',
+    price: '¥38,000',
+    note: '全カットレタッチ込み'
+  }],
+  extra: [{
+    label: 'リピーター割引',
+    value: '－3,000円'
+  }]
+}, {
+  id: 'celebration',
+  label: '七五三・お宮参り',
+  en: 'Ceremony',
+  desc: 'お子さんの節目の記念を、神社や自宅周辺でやわらかく記録します。衣装の着付け前後のお支度シーンも承ります。',
+  plans: [{
+    name: '平日撮影',
+    time: '50〜60分',
+    photos: '85カット以上',
+    price: '¥36,300',
+    note: '全カットレタッチ込み'
+  }, {
+    name: '土日祝撮影',
+    time: '50〜60分',
+    photos: '85カット以上',
+    price: '¥41,300',
+    note: '全カットレタッチ込み'
+  }],
+  note: '七五三は9〜11月が繁忙期です。お早めにご予約ください。'
+}, {
+  id: 'maternity',
+  label: 'マタニティ',
+  en: 'Maternity',
+  desc: '妊娠7〜9ヶ月頃が撮影に最適な時期です。ご自宅や自然の中で、しなやかで美しい時間を残します。',
+  plans: [{
+    name: '平日撮影',
+    time: '50〜60分',
+    photos: '85カット以上',
+    price: '¥33,000',
+    note: '全カットレタッチ込み'
+  }, {
+    name: '土日祝撮影',
+    time: '50〜60分',
+    photos: '85カット以上',
+    price: '¥38,000',
+    note: '全カットレタッチ込み'
+  }],
+  extra: [{
+    label: 'リピーター割引',
+    value: '－3,000円'
+  }]
+}, {
+  id: 'newborn',
+  label: 'ナチュラルニューボーン',
+  en: 'Natural Newborn',
+  desc: '誕生後2〜3週間以内のかけがえない姿をご自宅で撮影します。赤ちゃんのペースに合わせてゆっくり進めます。',
+  plans: [{
+    name: '平日撮影',
+    time: '50〜60分',
+    photos: '85カット以上',
+    price: '¥36,300',
+    note: '全カットレタッチ込み'
+  }, {
+    name: '土日祝撮影',
+    time: '50〜60分',
+    photos: '85カット以上',
+    price: '¥41,300',
+    note: '全カットレタッチ込み'
+  }],
+  note: '出産予定日の1〜2ヶ月前のご予約をおすすめします。'
+}, {
+  id: 'coming-of-age',
+  label: 'ハーフ成人式・成人式',
+  en: 'Coming of Age',
+  desc: '10歳・20歳の晴れやかな節目を、着物や衣装とともに。凛とした姿と自然な笑顔の両方を残します。',
+  plans: [{
+    name: '平日撮影',
+    time: '50〜60分',
+    photos: '85カット以上',
+    price: '¥36,300',
+    note: '全カットレタッチ込み'
+  }, {
+    name: '土日祝撮影',
+    time: '50〜60分',
+    photos: '85カット以上',
+    price: '¥41,300',
+    note: '全カットレタッチ込み'
+  }],
+  extra: [{
+    label: 'リピーター割引',
+    value: '－3,000円'
+  }]
+}, {
+  id: 'school',
+  label: '入学・入園・卒業・卒園',
+  en: 'School Milestone',
+  desc: '入学式・卒業式の晴れやかな日を、家族みんなの自然な笑顔とともに残します。桜や校舎を背景に大切な1日を。',
+  plans: [{
+    name: '平日撮影',
+    time: '50〜60分',
+    photos: '85カット以上',
+    price: '¥33,000',
+    note: '全カットレタッチ込み'
+  }, {
+    name: '土日祝撮影',
+    time: '50〜60分',
+    photos: '85カット以上',
+    price: '¥38,000',
+    note: '全カットレタッチ込み'
+  }],
+  extra: [{
+    label: 'リピーター割引',
+    value: '－3,000円'
+  }]
+}];
+function PlanCard({
+  plan
+}) {
+  return React.createElement("div", {
+    style: {
       border: '1px solid var(--border)',
       background: 'var(--bg-white)',
       padding: '32px 24px',
       position: 'relative',
       flex: 1,
-      minWidth: 180,
-    }}>
-      
-      <p style={{ fontSize: 10, color: 'var(--accent)', letterSpacing: '0.12em', marginBottom: 4 }}>{plan.name}</p>
-      <p style={{ fontFamily: 'var(--serif)', fontSize: plan.price === 'ご相談' ? 22 : 28, fontWeight: 400, marginBottom: 4, marginTop: 8 }}>{plan.price}</p>
-      <p style={{ fontSize: 10, color: 'var(--text-mid)', marginBottom: 20 }}>税込 / 出張費別</p>
-      <div style={{ borderTop: '1px solid var(--border)', paddingTop: 16, display: 'flex', flexDirection: 'column', gap: 7 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>
-          <span style={{ color: 'var(--text-mid)' }}>撮影時間</span><span>{plan.time}</span>
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>
-          <span style={{ color: 'var(--text-mid)' }}>お届け枚数</span><span>{plan.photos}</span>
-        </div>
-      </div>
-      {plan.note && <p style={{ fontSize: 13, color: 'var(--text-mid)', marginTop: 14, lineHeight: 1.7, borderTop: '1px solid var(--border)', paddingTop: 12 }}>・{plan.note}</p>}
-    </div>
-  );
+      minWidth: 180
+    }
+  }, React.createElement("p", {
+    style: {
+      fontSize: 10,
+      color: 'var(--accent)',
+      letterSpacing: '0.12em',
+      marginBottom: 4
+    }
+  }, plan.name), React.createElement("p", {
+    style: {
+      fontFamily: 'var(--serif)',
+      fontSize: plan.price === 'ご相談' ? 22 : 28,
+      fontWeight: 400,
+      marginBottom: 4,
+      marginTop: 8
+    }
+  }, plan.price), React.createElement("p", {
+    style: {
+      fontSize: 10,
+      color: 'var(--text-mid)',
+      marginBottom: 20
+    }
+  }, "税込 / 出張費別"), React.createElement("div", {
+    style: {
+      borderTop: '1px solid var(--border)',
+      paddingTop: 16,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 7
+    }
+  }, React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      fontSize: 12
+    }
+  }, React.createElement("span", {
+    style: {
+      color: 'var(--text-mid)'
+    }
+  }, "撮影時間"), React.createElement("span", null, plan.time)), React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      fontSize: 12
+    }
+  }, React.createElement("span", {
+    style: {
+      color: 'var(--text-mid)'
+    }
+  }, "お届け枚数"), React.createElement("span", null, plan.photos))), plan.note && React.createElement("p", {
+    style: {
+      fontSize: 13,
+      color: 'var(--text-mid)',
+      marginTop: 14,
+      lineHeight: 1.7,
+      borderTop: '1px solid var(--border)',
+      paddingTop: 12
+    }
+  }, "・", plan.note));
 }
-
-function GenreSection({ genre, index }) {
-  return (
-    <section id={genre.id} style={{ padding: '72px 0', background: index % 2 === 0 ? 'var(--bg)' : 'var(--bg-white)', borderBottom: '1px solid var(--border)' }}>
-      <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', gap: 56, alignItems: 'start' }} className="pricing-row">
-          {/* Left label */}
-          <div>
-            <p style={{ fontSize: 10, letterSpacing: '0.18em', color: 'var(--accent)', marginBottom: 6 }}>{genre.en}</p>
-            <h2 style={{ fontFamily: 'var(--serif)', fontSize: 22, fontWeight: 400, marginBottom: 14 }}>{genre.label}</h2>
-            <div style={{ width: 24, height: 1, background: 'var(--accent)', marginBottom: 14 }}/>
-            <p style={{ fontSize: 15, color: 'var(--text-mid)', lineHeight: 1.9 }}>{genre.desc}</p>
-            {genre.note && (
-              <div style={{ marginTop: 20, padding: '12px 14px', background: 'var(--accent-light)', fontSize: 11, color: 'var(--text)', lineHeight: 1.8 }}>
-                ⚠ {genre.note}
-              </div>
-            )}
-          </div>
-          {/* Right: plans + options */}
-          <div>
-            {/* Plans */}
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 24 }} className="plan-cards">
-              {genre.plans.map(p => <PlanCard key={p.name} plan={p} />)}
-            </div>
-            {/* Options table */}
-            <div style={{ border: '1px solid var(--border)', background: 'var(--bg-white)' }}>
-              <div style={{ padding: '12px 20px', borderBottom: '1px solid var(--border)', background: 'var(--bg)' }}>
-                <p style={{ fontSize: 11, letterSpacing: '0.1em', color: 'var(--text-mid)' }}>OPTIONS</p>
-              </div>
-              {commonOptions.map(o => (
-                <div key={o.label} style={{ display: 'flex', padding: '12px 20px', borderBottom: '1px solid var(--border)', gap: 24, fontSize: 13, fontFamily: 'var(--sans)' }}>
-                  <span style={{ color: 'var(--text-mid)', flexShrink: 0, width: 180 }}>{o.label}</span>
-                  <span style={{ fontFamily: 'var(--serif)', letterSpacing: '0.04em' }}>{o.value}</span>
-                </div>
-              ))}
-              {genre.extra && genre.extra.map(o => (
-                <div key={o.label} style={{ display: 'flex', padding: '12px 20px', borderBottom: '1px solid var(--border)', gap: 24, fontSize: 13 }}>
-                  <span style={{ color: 'var(--text-mid)', flexShrink: 0, width: 180 }}>{o.label}</span>
-                  <span style={{ fontFamily: 'var(--serif)', letterSpacing: '0.04em' }}>{o.value}</span>
-                </div>
-              ))}
-            </div>
-            <div style={{ marginTop: 20 }}>
-              <a href={`${genre.id}.html`} className="btn btn--primary" style={{ fontSize: 11, padding: '11px 24px' }}>詳しくはこちら</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <style>{`@media (max-width: 700px) { .pricing-row { grid-template-columns: 1fr !important; gap: 28px !important; } .plan-cards > div { min-width: calc(50% - 6px) !important; } }`}</style>
-    </section>
-  );
+function GenreSection({
+  genre,
+  index
+}) {
+  return React.createElement("section", {
+    id: genre.id,
+    style: {
+      padding: '72px 0',
+      background: index % 2 === 0 ? 'var(--bg)' : 'var(--bg-white)',
+      borderBottom: '1px solid var(--border)'
+    }
+  }, React.createElement("div", {
+    className: "container"
+  }, React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '220px 1fr',
+      gap: 56,
+      alignItems: 'start'
+    },
+    className: "pricing-row"
+  }, React.createElement("div", null, React.createElement("p", {
+    style: {
+      fontSize: 10,
+      letterSpacing: '0.18em',
+      color: 'var(--accent)',
+      marginBottom: 6
+    }
+  }, genre.en), React.createElement("h2", {
+    style: {
+      fontFamily: 'var(--serif)',
+      fontSize: 22,
+      fontWeight: 400,
+      marginBottom: 14
+    }
+  }, genre.label), React.createElement("div", {
+    style: {
+      width: 24,
+      height: 1,
+      background: 'var(--accent)',
+      marginBottom: 14
+    }
+  }), React.createElement("p", {
+    style: {
+      fontSize: 15,
+      color: 'var(--text-mid)',
+      lineHeight: 1.9
+    }
+  }, genre.desc), genre.note && React.createElement("div", {
+    style: {
+      marginTop: 20,
+      padding: '12px 14px',
+      background: 'var(--accent-light)',
+      fontSize: 11,
+      color: 'var(--text)',
+      lineHeight: 1.8
+    }
+  }, "⚠ ", genre.note)), React.createElement("div", null, React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 12,
+      flexWrap: 'wrap',
+      marginBottom: 24
+    },
+    className: "plan-cards"
+  }, genre.plans.map(p => React.createElement(PlanCard, {
+    key: p.name,
+    plan: p
+  }))), React.createElement("div", {
+    style: {
+      border: '1px solid var(--border)',
+      background: 'var(--bg-white)'
+    }
+  }, React.createElement("div", {
+    style: {
+      padding: '12px 20px',
+      borderBottom: '1px solid var(--border)',
+      background: 'var(--bg)'
+    }
+  }, React.createElement("p", {
+    style: {
+      fontSize: 11,
+      letterSpacing: '0.1em',
+      color: 'var(--text-mid)'
+    }
+  }, "OPTIONS")), commonOptions.map(o => React.createElement("div", {
+    key: o.label,
+    style: {
+      display: 'flex',
+      padding: '12px 20px',
+      borderBottom: '1px solid var(--border)',
+      gap: 24,
+      fontSize: 13,
+      fontFamily: 'var(--sans)'
+    }
+  }, React.createElement("span", {
+    style: {
+      color: 'var(--text-mid)',
+      flexShrink: 0,
+      width: 180
+    }
+  }, o.label), React.createElement("span", {
+    style: {
+      fontFamily: 'var(--serif)',
+      letterSpacing: '0.04em'
+    }
+  }, o.value))), genre.extra && genre.extra.map(o => React.createElement("div", {
+    key: o.label,
+    style: {
+      display: 'flex',
+      padding: '12px 20px',
+      borderBottom: '1px solid var(--border)',
+      gap: 24,
+      fontSize: 13
+    }
+  }, React.createElement("span", {
+    style: {
+      color: 'var(--text-mid)',
+      flexShrink: 0,
+      width: 180
+    }
+  }, o.label), React.createElement("span", {
+    style: {
+      fontFamily: 'var(--serif)',
+      letterSpacing: '0.04em'
+    }
+  }, o.value)))), React.createElement("div", {
+    style: {
+      marginTop: 20
+    }
+  }, React.createElement("a", {
+    href: `${genre.id}.html`,
+    className: "btn btn--primary",
+    style: {
+      fontSize: 11,
+      padding: '11px 24px'
+    }
+  }, "詳しくはこちら"))))), React.createElement("style", null, `@media (max-width: 700px) { .pricing-row { grid-template-columns: 1fr !important; gap: 28px !important; } .plan-cards > div { min-width: calc(50% - 6px) !important; } }`));
 }
-
 function App() {
-  return (
-    <>
-      <Nav />
-      <div style={{ paddingTop: 64 }}>
-        {/* Header */}
-        <div style={{ background: 'var(--bg-cream)', padding: '60px 0 48px', textAlign: 'center' }}>
-          <p style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--accent)', marginBottom: 12 }}>PRICING</p>
-          <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 400, marginBottom: 12 }}>料金プラン</h1>
-          <div style={{ width: 28, height: 1, background: 'var(--accent)', margin: '0 auto 16px' }}/>
-          <p style={{ fontSize: 15, color: 'var(--text-mid)', maxWidth: 500, margin: '0 auto', lineHeight: 1.9 }}>
-            撮影ジャンルごとにプランをご用意しています。<br/>すべて税込・出張費別途です。
-          </p>
-        </div>
-
-        {/* Jump nav */}
-        <div style={{ position: 'sticky', top: 88, zIndex: 100, background: 'var(--bg-cream)', borderBottom: '1px solid var(--border)', padding: '14px 0' }}>
-          <div className="container" style={{ maxWidth: 1080, overflowX: 'auto' }}>
-            <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
-              {genres.map(g => (
-                <a key={g.id} href={`#${g.id}`}
-                  style={{
-                    padding: '8px 18px', fontSize: 12, letterSpacing: '0.06em',
-                    color: 'var(--text)', border: '1px solid var(--border)',
-                    borderRadius: 20, background: 'var(--bg)',
-                    transition: 'all 0.2s', whiteSpace: 'nowrap', cursor: 'pointer',
-                    textDecoration: 'none', display: 'inline-block',
-                  }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.background = 'var(--accent)';
-                    e.currentTarget.style.borderColor = 'var(--accent)';
-                    e.currentTarget.style.color = '#fff';
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.background = 'var(--bg)';
-                    e.currentTarget.style.borderColor = 'var(--border)';
-                    e.currentTarget.style.color = 'var(--text)';
-                  }}
-                >{g.label}</a>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Genre sections */}
-        {genres.map((g, i) => <GenreSection key={g.id} genre={g} index={i} />)}
-
-        {/* Common notes */}
-        <section style={{ padding: '60px 0', background: 'var(--bg-cream)' }}>
-          <div className="container" style={{ maxWidth: 700 }}>
-            <h2 style={{ fontFamily: 'var(--serif)', fontSize: 20, fontWeight: 400, marginBottom: 28 }}>料金に関するご注意</h2>
-            {[
-              ['料金', '表示はすべて税込です。'],
-              ['出張料', 'JR東小金井駅を基点に距離に応じて変わります。電車・バス・徒歩で片道20分以内は無料、20〜40分は1,000円、40〜60分は2,000円、60分以上は延長20分ごとに＋1,000円。'],
-              ['データ納品', 'オンライン（ダウンロード形式）で2週間以内にお届けします。ダウンロード期限は納品時にご案内します。'],
-              ['データ保管', 'いち日写真館でのデータ保存期間は3ヶ月です。必ずご自宅で複数のバックアップをお取りください。'],
-              ['キャンセル', 'やむを得ない悪天候・体調不良の場合は延期可能です（当日でも可）。延期なしのキャンセルは：20〜7日前10% / 7〜4日前20% / 3〜2日前50% / 前日80% / 当日100%のキャンセル料が発生します。'],
-              ['日程変更', 'やむを得ない理由による延期は当日でも承ります。延期日程は別途ご連絡にてご調整いたします。'],
-            ].map(([label, val]) => (
-              <div key={label} style={{ display: 'flex', gap: 24, padding: '14px 0', borderBottom: '1px solid var(--border)', fontSize: 15 }}>
-                <span style={{ color: 'var(--text-mid)', flexShrink: 0, width: 90 }}>{label}</span>
-                <span>{val}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section style={{ padding: '40px 0', background: 'var(--bg-white)', textAlign: 'center' }}>
-          <div className="container">
-            <p style={{ fontFamily: 'var(--serif)', fontSize: 16, marginBottom: 8 }}>撮影のご相談、お気軽にどうぞ</p>
-            <p style={{ fontSize: 12, color: 'var(--text-mid)', marginBottom: 20 }}>プランや料金についてご不明な点はお気軽にお問い合わせください。</p>
-            <a href="contact.html" className="btn btn--primary btn--sm">ご予約・お問い合わせ</a>
-          </div>
-        </section>
-      </div>
-      <footer style={{ background: 'var(--text)', color: 'rgba(255,255,255,0.7)', padding: '40px 0 28px' }}>
-        <div className="container" style={{ maxWidth: 1080, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-          <a href="index.html" style={{ display: 'flex', alignItems: 'center' }}>
-            <img src="images/logo.png" alt="いち日写真館" style={{ height: 28, width: 'auto', filter: 'invert(1)', opacity: 0.85 }} />
-          </a>
-          <p style={{ fontSize: 11 }}>© 2026 いち日写真館. All rights reserved.</p>
-            <a href="https://biz.hitoandhito.com/" target="_blank" rel="noopener" style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)' }}>ビジネスフォト → hito&amp;hito</a>
-        </div>
-      </footer>
-    </>
-  );
+  return React.createElement(React.Fragment, null, React.createElement(Nav, null), React.createElement("div", {
+    style: {
+      paddingTop: 64
+    }
+  }, React.createElement("div", {
+    style: {
+      background: 'var(--bg-cream)',
+      padding: '60px 0 48px',
+      textAlign: 'center'
+    }
+  }, React.createElement("p", {
+    style: {
+      fontSize: 10,
+      letterSpacing: '0.25em',
+      color: 'var(--accent)',
+      marginBottom: 12
+    }
+  }, "PRICING"), React.createElement("h1", {
+    style: {
+      fontFamily: 'var(--serif)',
+      fontSize: 'clamp(24px, 4vw, 36px)',
+      fontWeight: 400,
+      marginBottom: 12
+    }
+  }, "料金プラン"), React.createElement("div", {
+    style: {
+      width: 28,
+      height: 1,
+      background: 'var(--accent)',
+      margin: '0 auto 16px'
+    }
+  }), React.createElement("p", {
+    style: {
+      fontSize: 15,
+      color: 'var(--text-mid)',
+      maxWidth: 500,
+      margin: '0 auto',
+      lineHeight: 1.9
+    }
+  }, "撮影ジャンルごとにプランをご用意しています。", React.createElement("br", null), "すべて税込・出張費別途です。")), React.createElement("div", {
+    style: {
+      position: 'sticky',
+      top: 88,
+      zIndex: 100,
+      background: 'var(--bg-cream)',
+      borderBottom: '1px solid var(--border)',
+      padding: '14px 0'
+    }
+  }, React.createElement("div", {
+    className: "container",
+    style: {
+      maxWidth: 1080,
+      overflowX: 'auto'
+    }
+  }, React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 10,
+      justifyContent: 'center',
+      flexWrap: 'wrap'
+    }
+  }, genres.map(g => React.createElement("a", {
+    key: g.id,
+    href: `#${g.id}`,
+    style: {
+      padding: '8px 18px',
+      fontSize: 12,
+      letterSpacing: '0.06em',
+      color: 'var(--text)',
+      border: '1px solid var(--border)',
+      borderRadius: 20,
+      background: 'var(--bg)',
+      transition: 'all 0.2s',
+      whiteSpace: 'nowrap',
+      cursor: 'pointer',
+      textDecoration: 'none',
+      display: 'inline-block'
+    },
+    onMouseEnter: e => {
+      e.currentTarget.style.background = 'var(--accent)';
+      e.currentTarget.style.borderColor = 'var(--accent)';
+      e.currentTarget.style.color = '#fff';
+    },
+    onMouseLeave: e => {
+      e.currentTarget.style.background = 'var(--bg)';
+      e.currentTarget.style.borderColor = 'var(--border)';
+      e.currentTarget.style.color = 'var(--text)';
+    }
+  }, g.label))))), genres.map((g, i) => React.createElement(GenreSection, {
+    key: g.id,
+    genre: g,
+    index: i
+  })), React.createElement("section", {
+    style: {
+      padding: '60px 0',
+      background: 'var(--bg-cream)'
+    }
+  }, React.createElement("div", {
+    className: "container",
+    style: {
+      maxWidth: 700
+    }
+  }, React.createElement("h2", {
+    style: {
+      fontFamily: 'var(--serif)',
+      fontSize: 20,
+      fontWeight: 400,
+      marginBottom: 28
+    }
+  }, "料金に関するご注意"), [['料金', '表示はすべて税込です。'], ['出張料', 'JR東小金井駅を基点に距離に応じて変わります。電車・バス・徒歩で片道20分以内は無料、20〜40分は1,000円、40〜60分は2,000円、60分以上は延長20分ごとに＋1,000円。'], ['データ納品', 'オンライン（ダウンロード形式）で2週間以内にお届けします。ダウンロード期限は納品時にご案内します。'], ['データ保管', 'いち日写真館でのデータ保存期間は3ヶ月です。必ずご自宅で複数のバックアップをお取りください。'], ['キャンセル', 'やむを得ない悪天候・体調不良の場合は延期可能です（当日でも可）。延期なしのキャンセルは：20〜7日前10% / 7〜4日前20% / 3〜2日前50% / 前日80% / 当日100%のキャンセル料が発生します。'], ['日程変更', 'やむを得ない理由による延期は当日でも承ります。延期日程は別途ご連絡にてご調整いたします。']].map(([label, val]) => React.createElement("div", {
+    key: label,
+    style: {
+      display: 'flex',
+      gap: 24,
+      padding: '14px 0',
+      borderBottom: '1px solid var(--border)',
+      fontSize: 15
+    }
+  }, React.createElement("span", {
+    style: {
+      color: 'var(--text-mid)',
+      flexShrink: 0,
+      width: 90
+    }
+  }, label), React.createElement("span", null, val))))), React.createElement("section", {
+    style: {
+      padding: '40px 0',
+      background: 'var(--bg-white)',
+      textAlign: 'center'
+    }
+  }, React.createElement("div", {
+    className: "container"
+  }, React.createElement("p", {
+    style: {
+      fontFamily: 'var(--serif)',
+      fontSize: 16,
+      marginBottom: 8
+    }
+  }, "撮影のご相談、お気軽にどうぞ"), React.createElement("p", {
+    style: {
+      fontSize: 12,
+      color: 'var(--text-mid)',
+      marginBottom: 20
+    }
+  }, "プランや料金についてご不明な点はお気軽にお問い合わせください。"), React.createElement("a", {
+    href: "contact.html",
+    className: "btn btn--primary btn--sm"
+  }, "ご予約・お問い合わせ")))), React.createElement("footer", {
+    style: {
+      background: 'var(--text)',
+      color: 'rgba(255,255,255,0.7)',
+      padding: '40px 0 28px'
+    }
+  }, React.createElement("div", {
+    className: "container",
+    style: {
+      maxWidth: 1080,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      gap: 16
+    }
+  }, React.createElement("a", {
+    href: "index.html",
+    style: {
+      display: 'flex',
+      alignItems: 'center'
+    }
+  }, React.createElement("img", {
+    src: "images/logo.png",
+    alt: "いち日写真館",
+    style: {
+      height: 28,
+      width: 'auto',
+      filter: 'invert(1)',
+      opacity: 0.85
+    }
+  })), React.createElement("p", {
+    style: {
+      fontSize: 11
+    }
+  }, "© 2026 いち日写真館. All rights reserved."), React.createElement("a", {
+    href: "https://biz.hitoandhito.com/",
+    target: "_blank",
+    rel: "noopener",
+    style: {
+      fontSize: 11,
+      color: 'rgba(255,255,255,0.6)'
+    }
+  }, "ビジネスフォト → hito&hito"))));
 }
-
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App, null));
 </script>
 </body>
 </html>

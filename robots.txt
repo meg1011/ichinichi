@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /src/
+Disallow: /tools/
+
+Sitemap: https://hitoandhito.com/sitemap.xml

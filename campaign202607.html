@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- このファイルは tools/build.js で src/campaign202607.html から作っています。直すときは src/ を直してください -->
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -8,9 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -52,158 +52,330 @@ ul.clean li::before{content:'';display:block;width:5px;height:5px;border-radius:
 </script>
 </head>
 <body>
-<div id="root"></div>
-<script type="text/babel">
-const { useState } = React;
-
+<div id="root"><header style="position:fixed;top:0;left:0;right:0;z-index:1000;background:#F2EDE6;border-bottom:1px solid var(--border);backdrop-filter:blur(8px)"><div style="max-width:1080px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:88px"><a href="index.html"><img src="images/logo.png" alt="いち日写真館" style="height:56px;width:auto"/></a><nav style="display:flex;gap:44px;align-items:center" class="desk-nav"><a href="index.html" style="font-size:12px;letter-spacing:0.08em;color:var(--text-mid);transition:color 0.2s">TOP</a><a href="index.html#menu" style="font-size:12px;letter-spacing:0.08em;color:var(--text-mid);transition:color 0.2s">撮影メニュー</a><a href="pricing.html" style="font-size:12px;letter-spacing:0.08em;color:var(--text-mid);transition:color 0.2s">料金</a><a href="gallery.html" style="font-size:12px;letter-spacing:0.08em;color:var(--text-mid);transition:color 0.2s">ギャラリー</a><a href="photographer.html" style="font-size:12px;letter-spacing:0.08em;color:var(--text-mid);transition:color 0.2s">ABOUT</a><a href="https://lin.ee/pSxLqqB" target="_blank" rel="noopener" class="btn btn--line btn--sm">LINEで相談する</a></nav><button class="ham-btn" style="background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:4px"><span style="display:block;width:22px;height:1px;background:var(--text)"></span><span style="display:block;width:22px;height:1px;background:var(--text)"></span><span style="display:block;width:22px;height:1px;background:var(--text)"></span></button></div><style>@media(min-width:800px){.ham-btn{display:none !important}}@media(max-width:799px){.desk-nav{display:none !important}}</style></header><div style="padding-top:88px"><div style="background:var(--bg-cream);padding:72px 32px 64px"><div class="container" style="text-align:center"><p style="font-size:10px;letter-spacing:0.25em;color:var(--accent);margin-bottom:20px">SPECIAL GIFT</p><h1 style="font-family:var(--serif);font-size:clamp(24px,4vw,36px);font-weight:400;line-height:1.8;margin-bottom:20px">出張撮影ご予約の方に<br/>ショートムービーをプレゼント</h1><p style="font-size:15px;color:var(--text-mid);line-height:2;margin-bottom:24px">出張撮影をご予約済みの方・これからご予約いただく方で、<br class="sp-hide"/>下記の条件を満たすお客様に、同日撮影した動画で制作した<br class="sp-hide"/>ショートムービー（30秒〜1分）をプレゼントします。</p><div style="display:inline-flex;gap:24px;flex-wrap:wrap;justify-content:center"><div style="text-align:center"><p style="font-size:10px;letter-spacing:0.15em;color:var(--text-light);margin-bottom:4px">応募締め切り</p><p style="font-family:var(--serif);font-size:18px;color:var(--text)">2026年9月末</p></div><div style="width:1px;background:var(--border);align-self:stretch"></div><div style="text-align:center"><p style="font-size:10px;letter-spacing:0.15em;color:var(--text-light);margin-bottom:4px">撮影期間</p><p style="font-family:var(--serif);font-size:18px;color:var(--text)">〜2027年3月まで</p></div></div></div></div><div style="padding:64px 32px 80px"><div class="container"><p class="section-label">CONDITION</p><h2 class="section-heading">参加条件</h2><div class="divider"></div><div class="block"><ul class="clean"><li>2027年3月までの出張撮影をご予約の方</li><li>撮影した画像・映像を、いち日写真館のInstagram・YouTube・Webサイト等の広告・宣伝に使用させていただける方</li><li>撮影当日、写真撮影のお時間より30分ほど追加でお時間をいただける方</li></ul></div><p class="section-label">GENRE</p><h2 class="section-heading">募集ジャンル</h2><div class="divider"></div><div class="block"><ul class="clean" style="margin-bottom:16px"><li>家族写真（バースデーフォト含）</li><li>七五三・お宮参り</li><li>マタニティ</li><li>ナチュラルニューボーン</li><li>ハーフ成人式・成人式</li><li>卒業卒園・入学入園</li></ul><p style="font-size:12px;color:var(--text-light);border-top:1px solid var(--border);padding-top:16px">※ 神社などの規制のある場所や、レンタルスタジオなどお時間の限られている撮影は要相談となります。</p></div><p class="section-label">NOTE</p><h2 class="section-heading">補足・ご注意</h2><div class="divider"></div><div class="block"><ul class="clean"><li>一定組数が埋まりましたら募集を締め切ります。お早めにお申し込みください。</li><li>基本的にカメラマン松田が撮影いたしますが、ムービー用にカメラマンが1名同行する場合もございます。</li><li>編集したムービーについては内容の修正はお受けできませんのでご了承ください。</li></ul></div><div style="text-align:center;margin-top:64px;padding:48px 32px;background:var(--bg-cream);border-top:1px solid var(--border)"><p style="font-family:var(--serif);font-size:clamp(18px,2.5vw,22px);font-weight:400;margin-bottom:12px">ご興味のある方はLINEへ</p><p style="font-size:15px;color:var(--text-mid);margin-bottom:32px;line-height:2">「出張撮影・ムービー希望」とメッセージをお送りください。</p><a href="https://lin.ee/pSxLqqB" target="_blank" rel="noopener" class="btn btn--line" style="min-width:220px;font-size:14px"><svg width="20" height="20" viewBox="0 0 40 40" fill="currentColor"><path d="M20 4C11.163 4 4 10.268 4 18c0 4.773 2.678 8.98 6.8 11.6-.3 1.1-1.07 3.97-1.23 4.59-.2.77.28 1.76 1.15 1.27.7-.4 5.57-3.7 7.84-5.22C19.17 30.42 19.59 30.43 20 30.43c8.837 0 16-6.268 16-14 0-7.732-7.163-12.43-16-12.43z"></path></svg>LINEで「ムービー希望」と送る</a></div></div></div><footer style="background:var(--text);color:rgba(255,255,255,0.7);padding:40px 32px;text-align:center"><a href="index.html"><img src="images/logo.png" alt="いち日写真館" style="height:40px;width:auto;margin:0 auto 16px;filter:brightness(0) invert(1);opacity:0.7"/></a><p style="font-size:11px;letter-spacing:0.1em">© 2024 いち日写真館</p></footer></div><style>.sp-hide{display:block}@media(max-width:600px){.sp-hide{display:none}}</style></div>
+<script>
+const {
+  useState
+} = React;
 const LINE_URL = 'https://lin.ee/pSxLqqB';
-
 function Nav() {
   const [open, setOpen] = useState(false);
-  const links = [
-    { href: 'index.html', label: 'TOP' },
-    { href: 'index.html#menu', label: '撮影メニュー' },
-    { href: 'pricing.html', label: '料金' },
-    { href: 'gallery.html', label: 'ギャラリー' },
-    { href: 'photographer.html', label: 'ABOUT' },
-  ];
-  return (
-    <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: '#F2EDE6', borderBottom: '1px solid var(--border)', backdropFilter: 'blur(8px)' }}>
-      <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 88 }}>
-        <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 56, width: 'auto' }}/></a>
-        <nav style={{ display: 'flex', gap: 44, alignItems: 'center' }} className="desk-nav">
-          {links.map(l => (
-            <a key={l.href} href={l.href} style={{ fontSize: 12, letterSpacing: '0.08em', color: 'var(--text-mid)', transition: 'color 0.2s' }}
-              onMouseEnter={e => e.target.style.color = 'var(--accent)'}
-              onMouseLeave={e => e.target.style.color = 'var(--text-mid)'}
-            >{l.label}</a>
-          ))}
-          <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line btn--sm">LINEで相談する</a>
-        </nav>
-        <button onClick={() => setOpen(!open)} className="ham-btn" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 5, padding: 4 }}>
-          {[0,1,2].map(i => <span key={i} style={{ display: 'block', width: 22, height: 1, background: 'var(--text)' }}/>)}
-        </button>
-      </div>
-      {open && (
-        <div style={{ background: 'var(--bg-white)', borderTop: '1px solid var(--border)', padding: '20px 32px 28px' }}>
-          {links.map(l => <a key={l.href} href={l.href} onClick={() => setOpen(false)} style={{ display: 'block', padding: '12px 0', fontSize: 14, borderBottom: '1px solid var(--border)', color: 'var(--text)' }}>{l.label}</a>)}
-          <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line" style={{ marginTop: 20, display: 'inline-flex' }}>LINEで相談する</a>
-        </div>
-      )}
-      <style>{`@media(min-width:800px){.ham-btn{display:none !important}}@media(max-width:799px){.desk-nav{display:none !important}}`}</style>
-    </header>
-  );
+  const links = [{
+    href: 'index.html',
+    label: 'TOP'
+  }, {
+    href: 'index.html#menu',
+    label: '撮影メニュー'
+  }, {
+    href: 'pricing.html',
+    label: '料金'
+  }, {
+    href: 'gallery.html',
+    label: 'ギャラリー'
+  }, {
+    href: 'photographer.html',
+    label: 'ABOUT'
+  }];
+  return React.createElement("header", {
+    style: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 1000,
+      background: '#F2EDE6',
+      borderBottom: '1px solid var(--border)',
+      backdropFilter: 'blur(8px)'
+    }
+  }, React.createElement("div", {
+    style: {
+      maxWidth: 1080,
+      margin: '0 auto',
+      padding: '0 32px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      height: 88
+    }
+  }, React.createElement("a", {
+    href: "index.html"
+  }, React.createElement("img", {
+    src: "images/logo.png",
+    alt: "いち日写真館",
+    style: {
+      height: 56,
+      width: 'auto'
+    }
+  })), React.createElement("nav", {
+    style: {
+      display: 'flex',
+      gap: 44,
+      alignItems: 'center'
+    },
+    className: "desk-nav"
+  }, links.map(l => React.createElement("a", {
+    key: l.href,
+    href: l.href,
+    style: {
+      fontSize: 12,
+      letterSpacing: '0.08em',
+      color: 'var(--text-mid)',
+      transition: 'color 0.2s'
+    },
+    onMouseEnter: e => e.target.style.color = 'var(--accent)',
+    onMouseLeave: e => e.target.style.color = 'var(--text-mid)'
+  }, l.label)), React.createElement("a", {
+    href: LINE_URL,
+    target: "_blank",
+    rel: "noopener",
+    className: "btn btn--line btn--sm"
+  }, "LINEで相談する")), React.createElement("button", {
+    onClick: () => setOpen(!open),
+    className: "ham-btn",
+    style: {
+      background: 'none',
+      border: 'none',
+      cursor: 'pointer',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 5,
+      padding: 4
+    }
+  }, [0, 1, 2].map(i => React.createElement("span", {
+    key: i,
+    style: {
+      display: 'block',
+      width: 22,
+      height: 1,
+      background: 'var(--text)'
+    }
+  })))), open && React.createElement("div", {
+    style: {
+      background: 'var(--bg-white)',
+      borderTop: '1px solid var(--border)',
+      padding: '20px 32px 28px'
+    }
+  }, links.map(l => React.createElement("a", {
+    key: l.href,
+    href: l.href,
+    onClick: () => setOpen(false),
+    style: {
+      display: 'block',
+      padding: '12px 0',
+      fontSize: 14,
+      borderBottom: '1px solid var(--border)',
+      color: 'var(--text)'
+    }
+  }, l.label)), React.createElement("a", {
+    href: LINE_URL,
+    target: "_blank",
+    rel: "noopener",
+    className: "btn btn--line",
+    style: {
+      marginTop: 20,
+      display: 'inline-flex'
+    }
+  }, "LINEで相談する")), React.createElement("style", null, `@media(min-width:800px){.ham-btn{display:none !important}}@media(max-width:799px){.desk-nav{display:none !important}}`));
 }
-
 function App() {
-  return (
-    <>
-      <Nav />
-      <div style={{ paddingTop: 88 }}>
-
-        {/* Hero */}
-        <div style={{ background: 'var(--bg-cream)', padding: '72px 32px 64px' }}>
-          <div className="container" style={{ textAlign: 'center' }}>
-            <p style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--accent)', marginBottom: 20 }}>SPECIAL GIFT</p>
-            <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(24px,4vw,36px)', fontWeight: 400, lineHeight: 1.8, marginBottom: 20 }}>
-              出張撮影ご予約の方に<br/>
-              ショートムービーをプレゼント
-            </h1>
-            <p style={{ fontSize: 15, color: 'var(--text-mid)', lineHeight: 2, marginBottom: 24 }}>
-              出張撮影をご予約済みの方・これからご予約いただく方で、<br className="sp-hide"/>
-              下記の条件を満たすお客様に、同日撮影した動画で制作した<br className="sp-hide"/>
-              ショートムービー（30秒〜1分）をプレゼントします。
-            </p>
-            <div style={{ display: 'inline-flex', gap: 24, flexWrap: 'wrap', justifyContent: 'center' }}>
-              <div style={{ textAlign: 'center' }}>
-                <p style={{ fontSize: 10, letterSpacing: '0.15em', color: 'var(--text-light)', marginBottom: 4 }}>応募締め切り</p>
-                <p style={{ fontFamily: 'var(--serif)', fontSize: 18, color: 'var(--text)' }}>2026年9月末</p>
-              </div>
-              <div style={{ width: 1, background: 'var(--border)', alignSelf: 'stretch' }}/>
-              <div style={{ textAlign: 'center' }}>
-                <p style={{ fontSize: 10, letterSpacing: '0.15em', color: 'var(--text-light)', marginBottom: 4 }}>撮影期間</p>
-                <p style={{ fontFamily: 'var(--serif)', fontSize: 18, color: 'var(--text)' }}>〜2027年3月まで</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 本文 */}
-        <div style={{ padding: '64px 32px 80px' }}>
-          <div className="container">
-
-            {/* 条件 */}
-            <p className="section-label">CONDITION</p>
-            <h2 className="section-heading">参加条件</h2>
-            <div className="divider"/>
-            <div className="block">
-              <ul className="clean">
-                <li>2027年3月までの出張撮影をご予約の方</li>
-                <li>撮影した画像・映像を、いち日写真館のInstagram・YouTube・Webサイト等の広告・宣伝に使用させていただける方</li>
-                <li>撮影当日、写真撮影のお時間より30分ほど追加でお時間をいただける方</li>
-              </ul>
-            </div>
-
-            {/* 募集ジャンル */}
-            <p className="section-label">GENRE</p>
-            <h2 className="section-heading">募集ジャンル</h2>
-            <div className="divider"/>
-            <div className="block">
-              <ul className="clean" style={{ marginBottom: 16 }}>
-                <li>家族写真（バースデーフォト含）</li>
-                <li>七五三・お宮参り</li>
-                <li>マタニティ</li>
-                <li>ナチュラルニューボーン</li>
-                <li>ハーフ成人式・成人式</li>
-                <li>卒業卒園・入学入園</li>
-              </ul>
-              <p style={{ fontSize: 12, color: 'var(--text-light)', borderTop: '1px solid var(--border)', paddingTop: 16 }}>
-                ※ 神社などの規制のある場所や、レンタルスタジオなどお時間の限られている撮影は要相談となります。
-              </p>
-            </div>
-
-            {/* 枠数・補足 */}
-            <p className="section-label">NOTE</p>
-            <h2 className="section-heading">補足・ご注意</h2>
-            <div className="divider"/>
-            <div className="block">
-              <ul className="clean">
-                <li>一定組数が埋まりましたら募集を締め切ります。お早めにお申し込みください。</li>
-                <li>基本的にカメラマン松田が撮影いたしますが、ムービー用にカメラマンが1名同行する場合もございます。</li>
-                <li>編集したムービーについては内容の修正はお受けできませんのでご了承ください。</li>
-              </ul>
-            </div>
-
-            {/* CTA */}
-            <div style={{ textAlign: 'center', marginTop: 64, padding: '48px 32px', background: 'var(--bg-cream)', borderTop: '1px solid var(--border)' }}>
-              <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(18px,2.5vw,22px)', fontWeight: 400, marginBottom: 12 }}>ご興味のある方はLINEへ</p>
-              <p style={{ fontSize: 15, color: 'var(--text-mid)', marginBottom: 32, lineHeight: 2 }}>
-                「出張撮影・ムービー希望」とメッセージをお送りください。
-              </p>
-              <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line" style={{ minWidth: 220, fontSize: 14 }}>
-                <svg width="20" height="20" viewBox="0 0 40 40" fill="currentColor"><path d="M20 4C11.163 4 4 10.268 4 18c0 4.773 2.678 8.98 6.8 11.6-.3 1.1-1.07 3.97-1.23 4.59-.2.77.28 1.76 1.15 1.27.7-.4 5.57-3.7 7.84-5.22C19.17 30.42 19.59 30.43 20 30.43c8.837 0 16-6.268 16-14 0-7.732-7.163-12.43-16-12.43z"/></svg>
-                LINEで「ムービー希望」と送る
-              </a>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Footer */}
-        <footer style={{ background: 'var(--text)', color: 'rgba(255,255,255,0.7)', padding: '40px 32px', textAlign: 'center' }}>
-          <a href="index.html">
-            <img src="images/logo.png" alt="いち日写真館" style={{ height: 40, width: 'auto', margin: '0 auto 16px', filter: 'brightness(0) invert(1)', opacity: 0.7 }}/>
-          </a>
-          <p style={{ fontSize: 11, letterSpacing: '0.1em' }}>© 2024 いち日写真館</p>
-        </footer>
-
-      </div>
-      <style>{`.sp-hide{display:block}@media(max-width:600px){.sp-hide{display:none}}`}</style>
-    </>
-  );
+  return React.createElement(React.Fragment, null, React.createElement(Nav, null), React.createElement("div", {
+    style: {
+      paddingTop: 88
+    }
+  }, React.createElement("div", {
+    style: {
+      background: 'var(--bg-cream)',
+      padding: '72px 32px 64px'
+    }
+  }, React.createElement("div", {
+    className: "container",
+    style: {
+      textAlign: 'center'
+    }
+  }, React.createElement("p", {
+    style: {
+      fontSize: 10,
+      letterSpacing: '0.25em',
+      color: 'var(--accent)',
+      marginBottom: 20
+    }
+  }, "SPECIAL GIFT"), React.createElement("h1", {
+    style: {
+      fontFamily: 'var(--serif)',
+      fontSize: 'clamp(24px,4vw,36px)',
+      fontWeight: 400,
+      lineHeight: 1.8,
+      marginBottom: 20
+    }
+  }, "出張撮影ご予約の方に", React.createElement("br", null), "ショートムービーをプレゼント"), React.createElement("p", {
+    style: {
+      fontSize: 15,
+      color: 'var(--text-mid)',
+      lineHeight: 2,
+      marginBottom: 24
+    }
+  }, "出張撮影をご予約済みの方・これからご予約いただく方で、", React.createElement("br", {
+    className: "sp-hide"
+  }), "下記の条件を満たすお客様に、同日撮影した動画で制作した", React.createElement("br", {
+    className: "sp-hide"
+  }), "ショートムービー（30秒〜1分）をプレゼントします。"), React.createElement("div", {
+    style: {
+      display: 'inline-flex',
+      gap: 24,
+      flexWrap: 'wrap',
+      justifyContent: 'center'
+    }
+  }, React.createElement("div", {
+    style: {
+      textAlign: 'center'
+    }
+  }, React.createElement("p", {
+    style: {
+      fontSize: 10,
+      letterSpacing: '0.15em',
+      color: 'var(--text-light)',
+      marginBottom: 4
+    }
+  }, "応募締め切り"), React.createElement("p", {
+    style: {
+      fontFamily: 'var(--serif)',
+      fontSize: 18,
+      color: 'var(--text)'
+    }
+  }, "2026年9月末")), React.createElement("div", {
+    style: {
+      width: 1,
+      background: 'var(--border)',
+      alignSelf: 'stretch'
+    }
+  }), React.createElement("div", {
+    style: {
+      textAlign: 'center'
+    }
+  }, React.createElement("p", {
+    style: {
+      fontSize: 10,
+      letterSpacing: '0.15em',
+      color: 'var(--text-light)',
+      marginBottom: 4
+    }
+  }, "撮影期間"), React.createElement("p", {
+    style: {
+      fontFamily: 'var(--serif)',
+      fontSize: 18,
+      color: 'var(--text)'
+    }
+  }, "〜2027年3月まで"))))), React.createElement("div", {
+    style: {
+      padding: '64px 32px 80px'
+    }
+  }, React.createElement("div", {
+    className: "container"
+  }, React.createElement("p", {
+    className: "section-label"
+  }, "CONDITION"), React.createElement("h2", {
+    className: "section-heading"
+  }, "参加条件"), React.createElement("div", {
+    className: "divider"
+  }), React.createElement("div", {
+    className: "block"
+  }, React.createElement("ul", {
+    className: "clean"
+  }, React.createElement("li", null, "2027年3月までの出張撮影をご予約の方"), React.createElement("li", null, "撮影した画像・映像を、いち日写真館のInstagram・YouTube・Webサイト等の広告・宣伝に使用させていただける方"), React.createElement("li", null, "撮影当日、写真撮影のお時間より30分ほど追加でお時間をいただける方"))), React.createElement("p", {
+    className: "section-label"
+  }, "GENRE"), React.createElement("h2", {
+    className: "section-heading"
+  }, "募集ジャンル"), React.createElement("div", {
+    className: "divider"
+  }), React.createElement("div", {
+    className: "block"
+  }, React.createElement("ul", {
+    className: "clean",
+    style: {
+      marginBottom: 16
+    }
+  }, React.createElement("li", null, "家族写真（バースデーフォト含）"), React.createElement("li", null, "七五三・お宮参り"), React.createElement("li", null, "マタニティ"), React.createElement("li", null, "ナチュラルニューボーン"), React.createElement("li", null, "ハーフ成人式・成人式"), React.createElement("li", null, "卒業卒園・入学入園")), React.createElement("p", {
+    style: {
+      fontSize: 12,
+      color: 'var(--text-light)',
+      borderTop: '1px solid var(--border)',
+      paddingTop: 16
+    }
+  }, "※ 神社などの規制のある場所や、レンタルスタジオなどお時間の限られている撮影は要相談となります。")), React.createElement("p", {
+    className: "section-label"
+  }, "NOTE"), React.createElement("h2", {
+    className: "section-heading"
+  }, "補足・ご注意"), React.createElement("div", {
+    className: "divider"
+  }), React.createElement("div", {
+    className: "block"
+  }, React.createElement("ul", {
+    className: "clean"
+  }, React.createElement("li", null, "一定組数が埋まりましたら募集を締め切ります。お早めにお申し込みください。"), React.createElement("li", null, "基本的にカメラマン松田が撮影いたしますが、ムービー用にカメラマンが1名同行する場合もございます。"), React.createElement("li", null, "編集したムービーについては内容の修正はお受けできませんのでご了承ください。"))), React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      marginTop: 64,
+      padding: '48px 32px',
+      background: 'var(--bg-cream)',
+      borderTop: '1px solid var(--border)'
+    }
+  }, React.createElement("p", {
+    style: {
+      fontFamily: 'var(--serif)',
+      fontSize: 'clamp(18px,2.5vw,22px)',
+      fontWeight: 400,
+      marginBottom: 12
+    }
+  }, "ご興味のある方はLINEへ"), React.createElement("p", {
+    style: {
+      fontSize: 15,
+      color: 'var(--text-mid)',
+      marginBottom: 32,
+      lineHeight: 2
+    }
+  }, "「出張撮影・ムービー希望」とメッセージをお送りください。"), React.createElement("a", {
+    href: LINE_URL,
+    target: "_blank",
+    rel: "noopener",
+    className: "btn btn--line",
+    style: {
+      minWidth: 220,
+      fontSize: 14
+    }
+  }, React.createElement("svg", {
+    width: "20",
+    height: "20",
+    viewBox: "0 0 40 40",
+    fill: "currentColor"
+  }, React.createElement("path", {
+    d: "M20 4C11.163 4 4 10.268 4 18c0 4.773 2.678 8.98 6.8 11.6-.3 1.1-1.07 3.97-1.23 4.59-.2.77.28 1.76 1.15 1.27.7-.4 5.57-3.7 7.84-5.22C19.17 30.42 19.59 30.43 20 30.43c8.837 0 16-6.268 16-14 0-7.732-7.163-12.43-16-12.43z"
+  })), "LINEで「ムービー希望」と送る")))), React.createElement("footer", {
+    style: {
+      background: 'var(--text)',
+      color: 'rgba(255,255,255,0.7)',
+      padding: '40px 32px',
+      textAlign: 'center'
+    }
+  }, React.createElement("a", {
+    href: "index.html"
+  }, React.createElement("img", {
+    src: "images/logo.png",
+    alt: "いち日写真館",
+    style: {
+      height: 40,
+      width: 'auto',
+      margin: '0 auto 16px',
+      filter: 'brightness(0) invert(1)',
+      opacity: 0.7
+    }
+  })), React.createElement("p", {
+    style: {
+      fontSize: 11,
+      letterSpacing: '0.1em'
+    }
+  }, "© 2024 いち日写真館"))), React.createElement("style", null, `.sp-hide{display:block}@media(max-width:600px){.sp-hide{display:none}}`));
 }
-
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App, null));
 </script>
 </body>
 </html>

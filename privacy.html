@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- このファイルは tools/build.js で src/privacy.html から作っています。直すときは src/ を直してください -->
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -8,9 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -61,170 +61,304 @@ img{display:block;max-width:100%}
 </script>
 </head>
 <body>
-<div id="root"></div>
-<script type="text/babel">
-const { useState } = React;
-
+<div id="root"><header style="position:fixed;top:0;left:0;right:0;z-index:1000;background:#F2EDE6;border-bottom:1px solid var(--border);backdrop-filter:blur(8px)"><div style="max-width:1080px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:88px"><a href="index.html"><img src="images/logo.png" alt="いち日写真館" style="height:56px;width:auto"/></a><nav style="display:flex;gap:44px;align-items:center" class="desk-nav"><a href="index.html" style="font-size:13px;letter-spacing:0.06em;color:var(--text-mid);transition:color 0.2s">TOP</a><a href="index.html#menu" style="font-size:13px;letter-spacing:0.06em;color:var(--text-mid);transition:color 0.2s">撮影メニュー</a><a href="pricing.html" style="font-size:13px;letter-spacing:0.06em;color:var(--text-mid);transition:color 0.2s">料金</a><a href="gallery.html" style="font-size:13px;letter-spacing:0.06em;color:var(--text-mid);transition:color 0.2s">ギャラリー</a><a href="photographer.html" style="font-size:13px;letter-spacing:0.06em;color:var(--text-mid);transition:color 0.2s">ABOUT</a><a href="https://lin.ee/pSxLqqB" target="_blank" rel="noopener" class="btn btn--line">LINEで相談する</a></nav><button class="ham-btn" style="background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:4px"><span style="display:block;width:22px;height:1px;background:var(--text)"></span><span style="display:block;width:22px;height:1px;background:var(--text)"></span><span style="display:block;width:22px;height:1px;background:var(--text)"></span></button></div><style>@media(min-width:800px){.ham-btn{display:none !important}}@media(max-width:799px){.desk-nav{display:none !important}}</style></header><main style="padding-top:64px"><div style="background:var(--bg-cream);padding:80px 0 64px"><div class="container" style="text-align:center"><p style="font-size:11px;letter-spacing:0.3em;color:var(--accent);margin-bottom:14px">PRIVACY POLICY</p><h1 style="font-family:var(--serif);font-size:32px;font-weight:400;letter-spacing:0.4em;margin-bottom:18px">プライバシーポリシー</h1><div style="width:32px;height:1px;background:var(--accent);margin:0 auto"></div></div></div><div class="container" style="padding:72px 32px 96px"><p style="font-size:14px;color:var(--text-mid);line-height:2;margin-bottom:56px">いち日写真館（以下「当館」といいます。）は、お客様の個人情報保護の重要性を認識し、個人情報保護法および関連法令を遵守し、以下のプライバシーポリシーに基づき、お客様からお預かりする個人情報の適切な取扱いに努めます。</p><section class="pp-section"><h2>1. 個人情報の取得について</h2><p>当館は、適法かつ公正な手段によって、お客様の個人情報を取得いたします。通常、以下の情報が含まれます。</p><ul><li>お名前、ご住所、電話番号、メールアドレス</li><li>出張撮影内容に関するご要望や詳細（イベントの種類、参加人数など）</li><li>『いち日写真館』等の撮影会にご参加いただく際の参加登録情報（お名前、ご連絡先、参加人数など）</li><li>各種撮影当日のお子様の年齢などの情報</li><li>その他、サービス提供のために必要な情報</li></ul></section><section class="pp-section"><h2>2. 個人情報の利用目的</h2><p>当館がお客様からお預かりした個人情報は、以下の目的のためにのみ利用し、目的外で利用することはありません。</p><ul><li>撮影サービスに関するお問い合わせへの対応、打ち合わせ、見積書送付のため</li><li>撮影サービスの提供（撮影日時の調整、撮影場所の確認、撮影内容の確認、撮影の実施）のため</li><li>撮影した写真データのお渡し、納品物の送付のため</li><li>撮影料金のご請求、お支払いに関するご連絡のため</li><li>サービス改善のためのアンケート、またはお客様への情報提供のため</li></ul><p class="note">（事前にお客様の同意を得た場合）</p><ul style="margin-top:4px"><li>緊急時のご連絡、またはお客様からのご要望に対応するため</li><li>法的義務の遵守のため</li></ul></section><section class="pp-section"><h2>3. 撮影写真の掲載について</h2><p>当館では、お客様の撮影事例として、ウェブサイトやSNS、その他の販促媒体等に、撮影させていただいた写真を掲載させていただく場合がございます。</p><p>これらの写真の掲載は、必ず事前にお客様ご本人より掲載許可をいただいた場合に限ります。</p><p>掲載にあたっては、個人が特定できる情報（氏名、連絡先など）は一切掲載いたしません。</p><p>また、一度掲載にご同意いただいた場合でも、お客様から掲載停止のご要望があった場合には、速やかに掲載を停止いたします。</p></section><section class="pp-section"><h2>4. 個人情報の安全管理について</h2><p>当館は、お客様の個人情報の漏洩、滅失または毀損の防止、その他個人情報の安全管理のために必要かつ適切な措置を講じます。</p><ul><li>個人情報を取り扱う責任者を明確にし、適切な管理体制を構築します。</li><li>個人情報への不正アクセス、紛失、破壊、改ざんおよび漏洩などを防止するための適切なセキュリティ対策を講じます。</li><li>関与したスタッフに対し、個人情報の適切な取り扱いに関する教育を実施し、個人情報保護意識の向上を図ります。</li><li>個人情報の取り扱いを外部に委託する場合は、十分な個人情報保護水準を満たしている者を選定し、個人情報保護に関する契約を締結した上で、適切な監督を行います。</li></ul></section><section class="pp-section"><h2>5. 個人情報の第三者提供について</h2><p>当館は、法令に定める場合を除き、事前にお客様の同意を得ることなく、個人情報を第三者に提供することはありません。</p></section><section class="pp-section"><h2>6. 個人情報の開示・訂正・利用停止などについて</h2><p>お客様がご自身の個人情報の開示、訂正、追加、削除、利用停止、または消去をご希望される場合は、ご本人様であることを確認させていただいた上で、法令の定めに従って速やかに対応いたします。</p></section><section class="pp-section"><h2>7. クッキー（COOKIE）について</h2><p>当館のウェブサイトでは、サービス向上およびお客様により適したサービスを提供するため、クッキーを利用する場合があります。</p><p>クッキーはお客様のブラウザ内に保存される情報で、個人を特定するものではありません。ブラウザの設定により、クッキーの利用を拒否することも可能です。</p></section><section class="pp-section"><h2>8. プライバシーポリシーの変更</h2><p>当館は、法令の改定や社会情勢の変化に応じて、本プライバシーポリシーを適宜見直し、改定することがあります。改定されたプライバシーポリシーは、当ウェブサイトに掲載された時点から効力を生じるものとします。</p></section><section class="pp-section" style="margin-bottom:0"><h2>9. お問い合わせ窓口</h2><p>当館の個人情報保護に関するお問い合わせは、下記までご連絡ください。</p><div style="background:var(--bg-cream);padding:24px 28px;margin-top:18px"><p style="font-family:var(--serif);font-size:15px;color:var(--text);margin-bottom:10px;line-height:1.8">いち日写真館</p><p style="font-size:15px;margin-bottom:4px"><a href="contact.html" style="color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:1px">お問い合わせフォーム →</a></p></div></section><div style="margin-top:64px;padding-top:28px;border-top:1px solid var(--border);text-align:right"><p style="font-size:12px;color:var(--text-light);letter-spacing:0.05em">制定日：2026年1月1日</p></div></div></main><footer style="background:var(--text);color:rgba(255,255,255,0.7);padding:40px 0 28px"><div style="max-width:1080px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px"><a href="index.html"><img src="images/logo.png" alt="いち日写真館" style="height:28px;width:auto;filter:invert(1);opacity:0.85"/></a><div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap"><a href="privacy.html" style="font-size:11px;color:rgba(255,255,255,0.85);border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:1px">プライバシーポリシー</a><p style="font-size:11px">© 2026 いち日写真館. All rights reserved.</p><a href="https://biz.hitoandhito.com/" target="_blank" rel="noopener" style="font-size:11px;color:rgba(255,255,255,0.6)">ビジネスフォト → hito&amp;hito</a></div></div></footer></div>
+<script>
+const {
+  useState
+} = React;
 const LINE_URL = 'https://lin.ee/pSxLqqB';
-
 function Nav() {
   const [open, setOpen] = useState(false);
-  const links = [
-    { href: 'index.html', label: 'TOP' },
-    { href: 'index.html#menu', label: '撮影メニュー' },
-    { href: 'pricing.html', label: '料金' },
-    { href: 'gallery.html', label: 'ギャラリー' },
-    { href: 'photographer.html', label: 'ABOUT' },
-  ];
-  return (
-    <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: '#F2EDE6', borderBottom: '1px solid var(--border)', backdropFilter: 'blur(8px)' }}>
-      <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 88 }}>
-        <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 56, width: 'auto' }}/></a>
-        <nav style={{ display: 'flex', gap: 44, alignItems: 'center' }} className="desk-nav">
-          {links.map(l => (
-            <a key={l.href} href={l.href} style={{ fontSize: 13, letterSpacing: '0.06em', color: 'var(--text-mid)', transition: 'color 0.2s' }}
-              onMouseEnter={e => e.target.style.color = 'var(--text)'}
-              onMouseLeave={e => e.target.style.color = 'var(--text-mid)'}
-            >{l.label}</a>
-          ))}
-          <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line">LINEで相談する</a>
-        </nav>
-        <button onClick={() => setOpen(!open)} className="ham-btn" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 5, padding: 4 }}>
-          {[0,1,2].map(i => <span key={i} style={{ display: 'block', width: 22, height: 1, background: 'var(--text)' }}/>)}
-        </button>
-      </div>
-      {open && (
-        <div style={{ background: 'var(--bg-white)', borderTop: '1px solid var(--border)', padding: '20px 32px 28px' }}>
-          {links.map(l => <a key={l.href} href={l.href} onClick={() => setOpen(false)} style={{ display: 'block', padding: '12px 0', fontSize: 14, borderBottom: '1px solid var(--border)', color: 'var(--text)' }}>{l.label}</a>)}
-          <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line" style={{ marginTop: 20, display: 'inline-flex' }}>LINEで相談する</a>
-        </div>
-      )}
-      <style>{`@media(min-width:800px){.ham-btn{display:none !important}}@media(max-width:799px){.desk-nav{display:none !important}}`}</style>
-    </header>
-  );
+  const links = [{
+    href: 'index.html',
+    label: 'TOP'
+  }, {
+    href: 'index.html#menu',
+    label: '撮影メニュー'
+  }, {
+    href: 'pricing.html',
+    label: '料金'
+  }, {
+    href: 'gallery.html',
+    label: 'ギャラリー'
+  }, {
+    href: 'photographer.html',
+    label: 'ABOUT'
+  }];
+  return React.createElement("header", {
+    style: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 1000,
+      background: '#F2EDE6',
+      borderBottom: '1px solid var(--border)',
+      backdropFilter: 'blur(8px)'
+    }
+  }, React.createElement("div", {
+    style: {
+      maxWidth: 1080,
+      margin: '0 auto',
+      padding: '0 32px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      height: 88
+    }
+  }, React.createElement("a", {
+    href: "index.html"
+  }, React.createElement("img", {
+    src: "images/logo.png",
+    alt: "いち日写真館",
+    style: {
+      height: 56,
+      width: 'auto'
+    }
+  })), React.createElement("nav", {
+    style: {
+      display: 'flex',
+      gap: 44,
+      alignItems: 'center'
+    },
+    className: "desk-nav"
+  }, links.map(l => React.createElement("a", {
+    key: l.href,
+    href: l.href,
+    style: {
+      fontSize: 13,
+      letterSpacing: '0.06em',
+      color: 'var(--text-mid)',
+      transition: 'color 0.2s'
+    },
+    onMouseEnter: e => e.target.style.color = 'var(--text)',
+    onMouseLeave: e => e.target.style.color = 'var(--text-mid)'
+  }, l.label)), React.createElement("a", {
+    href: LINE_URL,
+    target: "_blank",
+    rel: "noopener",
+    className: "btn btn--line"
+  }, "LINEで相談する")), React.createElement("button", {
+    onClick: () => setOpen(!open),
+    className: "ham-btn",
+    style: {
+      background: 'none',
+      border: 'none',
+      cursor: 'pointer',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 5,
+      padding: 4
+    }
+  }, [0, 1, 2].map(i => React.createElement("span", {
+    key: i,
+    style: {
+      display: 'block',
+      width: 22,
+      height: 1,
+      background: 'var(--text)'
+    }
+  })))), open && React.createElement("div", {
+    style: {
+      background: 'var(--bg-white)',
+      borderTop: '1px solid var(--border)',
+      padding: '20px 32px 28px'
+    }
+  }, links.map(l => React.createElement("a", {
+    key: l.href,
+    href: l.href,
+    onClick: () => setOpen(false),
+    style: {
+      display: 'block',
+      padding: '12px 0',
+      fontSize: 14,
+      borderBottom: '1px solid var(--border)',
+      color: 'var(--text)'
+    }
+  }, l.label)), React.createElement("a", {
+    href: LINE_URL,
+    target: "_blank",
+    rel: "noopener",
+    className: "btn btn--line",
+    style: {
+      marginTop: 20,
+      display: 'inline-flex'
+    }
+  }, "LINEで相談する")), React.createElement("style", null, `@media(min-width:800px){.ham-btn{display:none !important}}@media(max-width:799px){.desk-nav{display:none !important}}`));
 }
-
 function PrivacyApp() {
-  return (
-    <>
-      <Nav/>
-      <main style={{ paddingTop: 64 }}>
-        {/* Header */}
-        <div style={{ background: 'var(--bg-cream)', padding: '80px 0 64px' }}>
-          <div className="container" style={{ textAlign: 'center' }}>
-            <p style={{ fontSize: 11, letterSpacing: '0.3em', color: 'var(--accent)', marginBottom: 14 }}>PRIVACY POLICY</p>
-            <h1 style={{ fontFamily: 'var(--serif)', fontSize: 32, fontWeight: 400, letterSpacing: '0.4em', marginBottom: 18 }}>プライバシーポリシー</h1>
-            <div style={{ width: 32, height: 1, background: 'var(--accent)', margin: '0 auto' }}/>
-          </div>
-        </div>
-
-        {/* Body */}
-        <div className="container" style={{ padding: '72px 32px 96px' }}>
-          <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 2, marginBottom: 56 }}>
-            いち日写真館（以下「当館」といいます。）は、お客様の個人情報保護の重要性を認識し、個人情報保護法および関連法令を遵守し、以下のプライバシーポリシーに基づき、お客様からお預かりする個人情報の適切な取扱いに努めます。
-          </p>
-
-          <section className="pp-section">
-            <h2>1. 個人情報の取得について</h2>
-            <p>当館は、適法かつ公正な手段によって、お客様の個人情報を取得いたします。通常、以下の情報が含まれます。</p>
-            <ul>
-              <li>お名前、ご住所、電話番号、メールアドレス</li>
-              <li>出張撮影内容に関するご要望や詳細（イベントの種類、参加人数など）</li>
-              <li>『いち日写真館』等の撮影会にご参加いただく際の参加登録情報（お名前、ご連絡先、参加人数など）</li>
-              <li>各種撮影当日のお子様の年齢などの情報</li>
-              <li>その他、サービス提供のために必要な情報</li>
-            </ul>
-          </section>
-
-          <section className="pp-section">
-            <h2>2. 個人情報の利用目的</h2>
-            <p>当館がお客様からお預かりした個人情報は、以下の目的のためにのみ利用し、目的外で利用することはありません。</p>
-            <ul>
-              <li>撮影サービスに関するお問い合わせへの対応、打ち合わせ、見積書送付のため</li>
-              <li>撮影サービスの提供（撮影日時の調整、撮影場所の確認、撮影内容の確認、撮影の実施）のため</li>
-              <li>撮影した写真データのお渡し、納品物の送付のため</li>
-              <li>撮影料金のご請求、お支払いに関するご連絡のため</li>
-              <li>サービス改善のためのアンケート、またはお客様への情報提供のため</li>
-            </ul>
-            <p className="note">（事前にお客様の同意を得た場合）</p>
-            <ul style={{ marginTop: 4 }}>
-              <li>緊急時のご連絡、またはお客様からのご要望に対応するため</li>
-              <li>法的義務の遵守のため</li>
-            </ul>
-          </section>
-
-          <section className="pp-section">
-            <h2>3. 撮影写真の掲載について</h2>
-            <p>当館では、お客様の撮影事例として、ウェブサイトやSNS、その他の販促媒体等に、撮影させていただいた写真を掲載させていただく場合がございます。</p>
-            <p>これらの写真の掲載は、必ず事前にお客様ご本人より掲載許可をいただいた場合に限ります。</p>
-            <p>掲載にあたっては、個人が特定できる情報（氏名、連絡先など）は一切掲載いたしません。</p>
-            <p>また、一度掲載にご同意いただいた場合でも、お客様から掲載停止のご要望があった場合には、速やかに掲載を停止いたします。</p>
-          </section>
-
-          <section className="pp-section">
-            <h2>4. 個人情報の安全管理について</h2>
-            <p>当館は、お客様の個人情報の漏洩、滅失または毀損の防止、その他個人情報の安全管理のために必要かつ適切な措置を講じます。</p>
-            <ul>
-              <li>個人情報を取り扱う責任者を明確にし、適切な管理体制を構築します。</li>
-              <li>個人情報への不正アクセス、紛失、破壊、改ざんおよび漏洩などを防止するための適切なセキュリティ対策を講じます。</li>
-              <li>関与したスタッフに対し、個人情報の適切な取り扱いに関する教育を実施し、個人情報保護意識の向上を図ります。</li>
-              <li>個人情報の取り扱いを外部に委託する場合は、十分な個人情報保護水準を満たしている者を選定し、個人情報保護に関する契約を締結した上で、適切な監督を行います。</li>
-            </ul>
-          </section>
-
-          <section className="pp-section">
-            <h2>5. 個人情報の第三者提供について</h2>
-            <p>当館は、法令に定める場合を除き、事前にお客様の同意を得ることなく、個人情報を第三者に提供することはありません。</p>
-          </section>
-
-          <section className="pp-section">
-            <h2>6. 個人情報の開示・訂正・利用停止などについて</h2>
-            <p>お客様がご自身の個人情報の開示、訂正、追加、削除、利用停止、または消去をご希望される場合は、ご本人様であることを確認させていただいた上で、法令の定めに従って速やかに対応いたします。</p>
-          </section>
-
-          <section className="pp-section">
-            <h2>7. クッキー（COOKIE）について</h2>
-            <p>当館のウェブサイトでは、サービス向上およびお客様により適したサービスを提供するため、クッキーを利用する場合があります。</p>
-            <p>クッキーはお客様のブラウザ内に保存される情報で、個人を特定するものではありません。ブラウザの設定により、クッキーの利用を拒否することも可能です。</p>
-          </section>
-
-          <section className="pp-section">
-            <h2>8. プライバシーポリシーの変更</h2>
-            <p>当館は、法令の改定や社会情勢の変化に応じて、本プライバシーポリシーを適宜見直し、改定することがあります。改定されたプライバシーポリシーは、当ウェブサイトに掲載された時点から効力を生じるものとします。</p>
-          </section>
-
-          <section className="pp-section" style={{ marginBottom: 0 }}>
-            <h2>9. お問い合わせ窓口</h2>
-            <p>当館の個人情報保護に関するお問い合わせは、下記までご連絡ください。</p>
-            <div style={{ background: 'var(--bg-cream)', padding: '24px 28px', marginTop: 18 }}>
-              <p style={{ fontFamily: 'var(--serif)', fontSize: 15, color: 'var(--text)', marginBottom: 10, lineHeight: 1.8 }}>いち日写真館</p>
-              <p style={{ fontSize: 15, marginBottom: 4 }}>
-                <a href="contact.html" style={{ color: 'var(--accent)', borderBottom: '1px solid var(--accent)', paddingBottom: 1 }}>お問い合わせフォーム →</a>
-              </p>
-            </div>
-          </section>
-
-          <div style={{ marginTop: 64, paddingTop: 28, borderTop: '1px solid var(--border)', textAlign: 'right' }}>
-            <p style={{ fontSize: 12, color: 'var(--text-light)', letterSpacing: '0.05em' }}>制定日：2026年1月1日</p>
-          </div>
-        </div>
-      </main>
-
-      <footer style={{ background: 'var(--text)', color: 'rgba(255,255,255,0.7)', padding: '40px 0 28px' }}>
-        <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-          <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 28, width: 'auto', filter: 'invert(1)', opacity: 0.85 }}/></a>
-          <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap' }}>
-            <a href="privacy.html" style={{ fontSize: 11, color: 'rgba(255,255,255,0.85)', borderBottom: '1px solid rgba(255,255,255,0.3)', paddingBottom: 1 }}>プライバシーポリシー</a>
-            <p style={{ fontSize: 11 }}>© 2026 いち日写真館. All rights reserved.</p>
-            <a href="https://biz.hitoandhito.com/" target="_blank" rel="noopener" style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)' }}>ビジネスフォト → hito&amp;hito</a>
-          </div>
-        </div>
-      </footer>
-    </>
-  );
+  return React.createElement(React.Fragment, null, React.createElement(Nav, null), React.createElement("main", {
+    style: {
+      paddingTop: 64
+    }
+  }, React.createElement("div", {
+    style: {
+      background: 'var(--bg-cream)',
+      padding: '80px 0 64px'
+    }
+  }, React.createElement("div", {
+    className: "container",
+    style: {
+      textAlign: 'center'
+    }
+  }, React.createElement("p", {
+    style: {
+      fontSize: 11,
+      letterSpacing: '0.3em',
+      color: 'var(--accent)',
+      marginBottom: 14
+    }
+  }, "PRIVACY POLICY"), React.createElement("h1", {
+    style: {
+      fontFamily: 'var(--serif)',
+      fontSize: 32,
+      fontWeight: 400,
+      letterSpacing: '0.4em',
+      marginBottom: 18
+    }
+  }, "プライバシーポリシー"), React.createElement("div", {
+    style: {
+      width: 32,
+      height: 1,
+      background: 'var(--accent)',
+      margin: '0 auto'
+    }
+  }))), React.createElement("div", {
+    className: "container",
+    style: {
+      padding: '72px 32px 96px'
+    }
+  }, React.createElement("p", {
+    style: {
+      fontSize: 14,
+      color: 'var(--text-mid)',
+      lineHeight: 2,
+      marginBottom: 56
+    }
+  }, "いち日写真館（以下「当館」といいます。）は、お客様の個人情報保護の重要性を認識し、個人情報保護法および関連法令を遵守し、以下のプライバシーポリシーに基づき、お客様からお預かりする個人情報の適切な取扱いに努めます。"), React.createElement("section", {
+    className: "pp-section"
+  }, React.createElement("h2", null, "1. 個人情報の取得について"), React.createElement("p", null, "当館は、適法かつ公正な手段によって、お客様の個人情報を取得いたします。通常、以下の情報が含まれます。"), React.createElement("ul", null, React.createElement("li", null, "お名前、ご住所、電話番号、メールアドレス"), React.createElement("li", null, "出張撮影内容に関するご要望や詳細（イベントの種類、参加人数など）"), React.createElement("li", null, "『いち日写真館』等の撮影会にご参加いただく際の参加登録情報（お名前、ご連絡先、参加人数など）"), React.createElement("li", null, "各種撮影当日のお子様の年齢などの情報"), React.createElement("li", null, "その他、サービス提供のために必要な情報"))), React.createElement("section", {
+    className: "pp-section"
+  }, React.createElement("h2", null, "2. 個人情報の利用目的"), React.createElement("p", null, "当館がお客様からお預かりした個人情報は、以下の目的のためにのみ利用し、目的外で利用することはありません。"), React.createElement("ul", null, React.createElement("li", null, "撮影サービスに関するお問い合わせへの対応、打ち合わせ、見積書送付のため"), React.createElement("li", null, "撮影サービスの提供（撮影日時の調整、撮影場所の確認、撮影内容の確認、撮影の実施）のため"), React.createElement("li", null, "撮影した写真データのお渡し、納品物の送付のため"), React.createElement("li", null, "撮影料金のご請求、お支払いに関するご連絡のため"), React.createElement("li", null, "サービス改善のためのアンケート、またはお客様への情報提供のため")), React.createElement("p", {
+    className: "note"
+  }, "（事前にお客様の同意を得た場合）"), React.createElement("ul", {
+    style: {
+      marginTop: 4
+    }
+  }, React.createElement("li", null, "緊急時のご連絡、またはお客様からのご要望に対応するため"), React.createElement("li", null, "法的義務の遵守のため"))), React.createElement("section", {
+    className: "pp-section"
+  }, React.createElement("h2", null, "3. 撮影写真の掲載について"), React.createElement("p", null, "当館では、お客様の撮影事例として、ウェブサイトやSNS、その他の販促媒体等に、撮影させていただいた写真を掲載させていただく場合がございます。"), React.createElement("p", null, "これらの写真の掲載は、必ず事前にお客様ご本人より掲載許可をいただいた場合に限ります。"), React.createElement("p", null, "掲載にあたっては、個人が特定できる情報（氏名、連絡先など）は一切掲載いたしません。"), React.createElement("p", null, "また、一度掲載にご同意いただいた場合でも、お客様から掲載停止のご要望があった場合には、速やかに掲載を停止いたします。")), React.createElement("section", {
+    className: "pp-section"
+  }, React.createElement("h2", null, "4. 個人情報の安全管理について"), React.createElement("p", null, "当館は、お客様の個人情報の漏洩、滅失または毀損の防止、その他個人情報の安全管理のために必要かつ適切な措置を講じます。"), React.createElement("ul", null, React.createElement("li", null, "個人情報を取り扱う責任者を明確にし、適切な管理体制を構築します。"), React.createElement("li", null, "個人情報への不正アクセス、紛失、破壊、改ざんおよび漏洩などを防止するための適切なセキュリティ対策を講じます。"), React.createElement("li", null, "関与したスタッフに対し、個人情報の適切な取り扱いに関する教育を実施し、個人情報保護意識の向上を図ります。"), React.createElement("li", null, "個人情報の取り扱いを外部に委託する場合は、十分な個人情報保護水準を満たしている者を選定し、個人情報保護に関する契約を締結した上で、適切な監督を行います。"))), React.createElement("section", {
+    className: "pp-section"
+  }, React.createElement("h2", null, "5. 個人情報の第三者提供について"), React.createElement("p", null, "当館は、法令に定める場合を除き、事前にお客様の同意を得ることなく、個人情報を第三者に提供することはありません。")), React.createElement("section", {
+    className: "pp-section"
+  }, React.createElement("h2", null, "6. 個人情報の開示・訂正・利用停止などについて"), React.createElement("p", null, "お客様がご自身の個人情報の開示、訂正、追加、削除、利用停止、または消去をご希望される場合は、ご本人様であることを確認させていただいた上で、法令の定めに従って速やかに対応いたします。")), React.createElement("section", {
+    className: "pp-section"
+  }, React.createElement("h2", null, "7. クッキー（COOKIE）について"), React.createElement("p", null, "当館のウェブサイトでは、サービス向上およびお客様により適したサービスを提供するため、クッキーを利用する場合があります。"), React.createElement("p", null, "クッキーはお客様のブラウザ内に保存される情報で、個人を特定するものではありません。ブラウザの設定により、クッキーの利用を拒否することも可能です。")), React.createElement("section", {
+    className: "pp-section"
+  }, React.createElement("h2", null, "8. プライバシーポリシーの変更"), React.createElement("p", null, "当館は、法令の改定や社会情勢の変化に応じて、本プライバシーポリシーを適宜見直し、改定することがあります。改定されたプライバシーポリシーは、当ウェブサイトに掲載された時点から効力を生じるものとします。")), React.createElement("section", {
+    className: "pp-section",
+    style: {
+      marginBottom: 0
+    }
+  }, React.createElement("h2", null, "9. お問い合わせ窓口"), React.createElement("p", null, "当館の個人情報保護に関するお問い合わせは、下記までご連絡ください。"), React.createElement("div", {
+    style: {
+      background: 'var(--bg-cream)',
+      padding: '24px 28px',
+      marginTop: 18
+    }
+  }, React.createElement("p", {
+    style: {
+      fontFamily: 'var(--serif)',
+      fontSize: 15,
+      color: 'var(--text)',
+      marginBottom: 10,
+      lineHeight: 1.8
+    }
+  }, "いち日写真館"), React.createElement("p", {
+    style: {
+      fontSize: 15,
+      marginBottom: 4
+    }
+  }, React.createElement("a", {
+    href: "contact.html",
+    style: {
+      color: 'var(--accent)',
+      borderBottom: '1px solid var(--accent)',
+      paddingBottom: 1
+    }
+  }, "お問い合わせフォーム →")))), React.createElement("div", {
+    style: {
+      marginTop: 64,
+      paddingTop: 28,
+      borderTop: '1px solid var(--border)',
+      textAlign: 'right'
+    }
+  }, React.createElement("p", {
+    style: {
+      fontSize: 12,
+      color: 'var(--text-light)',
+      letterSpacing: '0.05em'
+    }
+  }, "制定日：2026年1月1日")))), React.createElement("footer", {
+    style: {
+      background: 'var(--text)',
+      color: 'rgba(255,255,255,0.7)',
+      padding: '40px 0 28px'
+    }
+  }, React.createElement("div", {
+    style: {
+      maxWidth: 1080,
+      margin: '0 auto',
+      padding: '0 32px',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      gap: 16
+    }
+  }, React.createElement("a", {
+    href: "index.html"
+  }, React.createElement("img", {
+    src: "images/logo.png",
+    alt: "いち日写真館",
+    style: {
+      height: 28,
+      width: 'auto',
+      filter: 'invert(1)',
+      opacity: 0.85
+    }
+  })), React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 20,
+      alignItems: 'center',
+      flexWrap: 'wrap'
+    }
+  }, React.createElement("a", {
+    href: "privacy.html",
+    style: {
+      fontSize: 11,
+      color: 'rgba(255,255,255,0.85)',
+      borderBottom: '1px solid rgba(255,255,255,0.3)',
+      paddingBottom: 1
+    }
+  }, "プライバシーポリシー"), React.createElement("p", {
+    style: {
+      fontSize: 11
+    }
+  }, "© 2026 いち日写真館. All rights reserved."), React.createElement("a", {
+    href: "https://biz.hitoandhito.com/",
+    target: "_blank",
+    rel: "noopener",
+    style: {
+      fontSize: 11,
+      color: 'rgba(255,255,255,0.6)'
+    }
+  }, "ビジネスフォト → hito&hito")))));
 }
-
-ReactDOM.createRoot(document.getElementById('root')).render(<PrivacyApp/>);
+ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(PrivacyApp, null));
 </script>
 </body>
 </html>
