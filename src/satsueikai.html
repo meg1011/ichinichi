@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>撮影会のご案内 | いち日写真館（西東京・小金井）</title>
+<meta name="description" content="いち日写真館の撮影会のご案内。ここみ助産所さん（西東京市）でのマタニティ・ベビーの撮影会など、少人数で気軽に参加できる撮影会を開いています。お申し込みはLINEから。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAFAF7;--bg-cream:#F2EDE6;--bg-white:#FFFFFF;
+  --text:#1a1818;--text-mid:#1a1818;--text-light:#B8B2AA;
+  --accent:#C07B5E;--accent-light:#E8D5C8;--border:#E2DDD7;
+  --line:#06C755;--line-dark:#05A847;
+  --serif:'Noto Serif JP',Georgia,serif;
+  --sans:'Noto Sans JP',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:400;font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{max-width:720px;margin:0 auto;padding:0 32px}
+@media(max-width:600px){.container{padding:0 20px}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 32px;font-family:var(--sans);font-size:13px;font-weight:400;letter-spacing:0.08em;border:1px solid var(--text);color:var(--text);background:transparent;cursor:pointer;transition:background 0.2s,color 0.2s;text-decoration:none}
+.btn:hover{background:var(--text);color:var(--bg)}
+.btn--line{background:var(--line);border-color:var(--line);color:#fff}
+.btn--line:hover{background:var(--line-dark);border-color:var(--line-dark);color:#fff}
+.btn--sm{padding:10px 20px;font-size:11px}
+.block{background:var(--bg-white);border:1px solid var(--border);padding:28px 32px;margin-bottom:40px}
+.block--accent{background:var(--bg-cream);border-left:3px solid var(--accent)}
+.section-label{font-size:10px;letter-spacing:0.2em;color:var(--accent);margin-bottom:12px}
+.section-heading{font-family:var(--serif);font-size:20px;font-weight:400;margin-bottom:20px}
+.ev{background:var(--bg-white);border:1px solid var(--border);margin-bottom:40px}
+.ev img{width:100%;height:auto}
+.ev-body{padding:28px 32px}
+@media(max-width:600px){.ev-body{padding:24px 20px}}
+.ev-date{font-size:15px;color:#8a837b;letter-spacing:0.05em;margin-bottom:6px}
+.ev-title{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--accent);letter-spacing:0.08em;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--accent-light)}
+.ev dl{display:grid;grid-template-columns:5.5em 1fr;gap:10px 16px;font-size:15px;margin-bottom:20px}
+.ev dt{color:#8a837b}
+.badge{display:inline-block;font-size:13px;padding:4px 14px;border-radius:999px;background:var(--accent);color:#fff;margin-bottom:6px}
+.divider{width:32px;height:1px;background:var(--accent);margin-bottom:40px}
+ul.clean{list-style:none;padding:0}
+ul.clean li{padding:10px 0;border-bottom:1px solid var(--border);font-size:15px;color:var(--text-mid);display:flex;gap:10px;align-items:flex-start}
+ul.clean li:last-child{border-bottom:none}
+ul.clean li::before{content:'';display:block;width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:10px;flex-shrink:0}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SG2NXMZXGD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SG2NXMZXGD');
+</script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState } = React;
+
+const LINE_URL = 'https://lin.ee/pSxLqqB';
+
+function Nav() {
+  const [open, setOpen] = useState(false);
+  const links = [
+    { href: 'index.html', label: 'TOP' },
+    { href: 'index.html#menu', label: '撮影メニュー' },
+    { href: 'pricing.html', label: '料金' },
+    { href: 'gallery.html', label: 'ギャラリー' },
+    { href: 'photographer.html', label: 'ABOUT' },
+  ];
+  return (
+    <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, background: '#F2EDE6', borderBottom: '1px solid var(--border)', backdropFilter: 'blur(8px)' }}>
+      <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 88 }}>
+        <a href="index.html"><img src="images/logo.png" alt="いち日写真館" style={{ height: 56, width: 'auto' }}/></a>
+        <nav style={{ display: 'flex', gap: 44, alignItems: 'center' }} className="desk-nav">
+          {links.map(l => (
+            <a key={l.href} href={l.href} style={{ fontSize: 12, letterSpacing: '0.08em', color: 'var(--text-mid)', transition: 'color 0.2s' }}
+              onMouseEnter={e => e.target.style.color = 'var(--accent)'}
+              onMouseLeave={e => e.target.style.color = 'var(--text-mid)'}
+            >{l.label}</a>
+          ))}
+          <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line btn--sm">LINEで相談する</a>
+        </nav>
+        <button onClick={() => setOpen(!open)} className="ham-btn" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 5, padding: 4 }}>
+          {[0,1,2].map(i => <span key={i} style={{ display: 'block', width: 22, height: 1, background: 'var(--text)' }}/>)}
+        </button>
+      </div>
+      {open && (
+        <div style={{ background: 'var(--bg-white)', borderTop: '1px solid var(--border)', padding: '20px 32px 28px' }}>
+          {links.map(l => <a key={l.href} href={l.href} onClick={() => setOpen(false)} style={{ display: 'block', padding: '12px 0', fontSize: 14, borderBottom: '1px solid var(--border)', color: 'var(--text)' }}>{l.label}</a>)}
+          <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line" style={{ marginTop: 20, display: 'inline-flex' }}>LINEで相談する</a>
+        </div>
+      )}
+      <style>{`@media(min-width:800px){.ham-btn{display:none !important}}@media(max-width:799px){.desk-nav{display:none !important}}`}</style>
+    </header>
+  );
+}
+
+function Event({ img, alt, date, title, rows, status, note }) {
+  return (
+    <div className="ev">
+      <img src={img} alt={alt} loading="lazy"/>
+      <div className="ev-body">
+        <p className="ev-date">{date}</p>
+        <p className="ev-title">{title}</p>
+        <dl>
+          {rows.map(([k, v]) => <React.Fragment key={k}><dt>{k}</dt><dd>{v}</dd></React.Fragment>)}
+        </dl>
+        {status && <p><span className="badge">{status}</span></p>}
+        {note && <p style={{ fontSize: 13, color: '#8a837b', marginTop: 8 }}>{note}</p>}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Nav />
+      <div style={{ paddingTop: 88 }}>
+
+        {/* Hero */}
+        <div style={{ background: 'var(--bg-cream)', padding: '72px 32px 64px' }}>
+          <div className="container" style={{ textAlign: 'center' }}>
+            <p style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--accent)', marginBottom: 20 }}>EVENT</p>
+            <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(24px,4vw,36px)', fontWeight: 400, lineHeight: 1.8, marginBottom: 20 }}>
+              撮影会のご案内
+            </h1>
+            <p style={{ fontSize: 15, color: 'var(--text-mid)', lineHeight: 2 }}>
+              いち日写真館では、季節や場所に合わせて<br className="sp-hide"/>
+              少人数の撮影会を開いています。<br className="sp-hide"/>
+              短い時間で、気軽に、自然な写真を残していただけます。
+            </p>
+          </div>
+        </div>
+
+        <div style={{ padding: '64px 32px 80px' }}>
+          <div className="container">
+
+            <p className="section-label">SCHEDULE</p>
+            <h2 className="section-heading">開催予定の撮影会</h2>
+            <div className="divider"/>
+
+            <Event
+              img="images/uploads/satsueikai/kokomi_202611.jpg"
+              alt="ここみ助産所撮影会　ふわふわのラグの上で撮影した赤ちゃんの写真"
+              date="2026年11月27日（金）"
+              title="「ここみ助産所撮影会」"
+              rows={[
+                ['場所', 'ここみ助産所（西東京市）'],
+                ['対象', '妊娠中の方〜1歳ごろのお子さんとママさん'],
+                ['料金', '3,000円（税込）データ2枚／＋7,000円でデータを10枚追加'],
+              ]}
+              status="11:00〜の部　残り1組"
+              note="ほかの部は満席となりました。以前ご参加いただいた方も、またお気軽にどうぞ。"
+            />
+
+            <p className="section-label">HOW TO</p>
+            <h2 className="section-heading">お申し込み方法</h2>
+            <div className="divider"/>
+            <div className="block">
+              <p style={{ fontSize: 15, marginBottom: 12 }}>いち日写真館の公式LINEに、次の3つを送ってください。</p>
+              <ul className="clean">
+                <li>参加したい撮影会（例：ここみ助産所撮影会）</li>
+                <li>ご希望の時間・部</li>
+                <li>お名前</li>
+              </ul>
+              <p style={{ fontSize: 13, color: '#8a837b', marginTop: 12 }}>定員になり次第、締め切りとなります。次回の撮影会は、LINEにご登録の方へ先にお知らせしています。</p>
+            </div>
+
+            <div style={{ textAlign: 'center', marginTop: 64, padding: '48px 32px', background: 'var(--bg-cream)', borderTop: '1px solid var(--border)' }}>
+              <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(18px,2.5vw,22px)', fontWeight: 400, marginBottom: 12 }}>お申し込み・ご質問はLINEへ</p>
+              <p style={{ fontSize: 15, color: 'var(--text-mid)', marginBottom: 32, lineHeight: 2 }}>
+                撮影会のことで分からないことがあれば、お気軽にどうぞ。
+              </p>
+              <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line" style={{ minWidth: 220, fontSize: 14 }}>
+                <svg width="20" height="20" viewBox="0 0 40 40" fill="currentColor"><path d="M20 4C11.163 4 4 10.268 4 18c0 4.773 2.678 8.98 6.8 11.6-.3 1.1-1.07 3.97-1.23 4.59-.2.77.28 1.76 1.15 1.27.7-.4 5.57-3.7 7.84-5.22C19.17 30.42 19.59 30.43 20 30.43c8.837 0 16-6.268 16-14 0-7.732-7.163-12.43-16-12.43z"/></svg>
+                LINEで申し込む
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <footer style={{ background: 'var(--text)', color: 'rgba(255,255,255,0.7)', padding: '40px 32px', textAlign: 'center' }}>
+          <a href="index.html">
+            <img src="images/logo.png" alt="いち日写真館" style={{ height: 40, width: 'auto', margin: '0 auto 16px', filter: 'brightness(0) invert(1)', opacity: 0.7 }}/>
+          </a>
+          <p style={{ fontSize: 11, letterSpacing: '0.1em' }}>© 2024 いち日写真館</p>
+        </footer>
+
+      </div>
+      <style>{`.sp-hide{display:block}@media(max-width:600px){.sp-hide{display:none}}`}</style>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
