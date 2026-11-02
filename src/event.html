@@ -43,8 +43,10 @@ img{display:block;max-width:100%}
 @media(max-width:600px){.ev-body{padding:24px 20px}}
 .ev-date{font-size:15px;color:#8a837b;letter-spacing:0.05em;margin-bottom:6px}
 .ev-title{font-family:var(--sans);font-size:20px;font-weight:700;color:var(--accent);letter-spacing:0.08em;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--accent-light)}
-.ev dl{display:grid;grid-template-columns:5.5em 1fr;gap:10px 16px;font-size:15px;margin-bottom:20px}
+.ev dl{display:grid;grid-template-columns:4em 1fr;gap:10px 16px;font-size:15px;margin-bottom:20px}
 .ev dt{color:#8a837b}
+.ev-sub{display:block;font-size:13px;color:#8a837b;margin-top:2px}
+@media(max-width:600px){.ev dl{grid-template-columns:1fr;gap:0}.ev dt{font-size:13px}.ev dd{margin-bottom:16px}}
 .badge{display:inline-block;font-size:13px;padding:4px 14px;border-radius:999px;background:var(--accent);color:#fff;margin-bottom:6px}
 .divider{width:32px;height:1px;background:var(--accent);margin-bottom:40px}
 ul.clean{list-style:none;padding:0}
@@ -156,12 +158,14 @@ function App() {
               date="2026年11月27日（金）"
               title="「ここみ助産所撮影会」"
               rows={[
-                ['場所', 'ここみ助産所（西東京市）'],
-                ['対象', '妊娠中の方〜1歳ごろのお子さんとママさん'],
-                ['料金', '3,000円（税込）データ2枚／＋7,000円でデータを10枚追加'],
+                ['日時', <>10:00〜12:00<br/>①10:00〜　妊婦さん〜生後5か月のお子様＆ママ<br/>②11:00〜　生後6か月〜1歳くらいのお子様＆ママ<br/><span className="ev-sub">各回3組限定。定員になり次第、締め切りとなります。</span></>],
+                ['場所', <>ここみ助産所<br/>（東京都西東京市南町1-3-13）<br/><span className="ev-sub">室内での自然なお写真の撮影となります。</span></>],
+                ['対象', <>妊婦さん（妊娠7か月以降が目安。それ以前でも大歓迎です）〜1歳ごろまでのお子さんとママ</>],
+                ['服装', '自由'],
+                ['参加費', <>3,000円（税込）／データ2枚お渡し<br/>「もっと写真が欲しい！」という方は、＋7,000円でさらに10枚追加できます。<br/><span className="ev-sub">お支払いは当日、現金でお願いします。</span></>],
               ]}
-              status="11:00〜の部　残り1組"
-              note="ほかの部は満席となりました。以前ご参加いただいた方も、またお気軽にどうぞ。"
+              status="②11:00〜の部　残り1組"
+              note="①10:00〜の部は満席となりました。以前ご参加いただいた方も、ぜひお越しください。"
             />
 
             <p className="section-label">HOW TO</p>
@@ -170,9 +174,9 @@ function App() {
             <div className="block">
               <p style={{ fontSize: 15, marginBottom: 12 }}>いち日写真館の公式LINEに、次の3つを送ってください。</p>
               <ul className="clean">
-                <li>参加したい撮影会（例：ここみ助産所撮影会）</li>
-                <li>ご希望の時間・部</li>
-                <li>お名前</li>
+                <li>「ここみ助産所撮影会」</li>
+                <li>保護者のお名前</li>
+                <li>お子様のお名前と月齢（妊婦さんは妊娠◯か月）</li>
               </ul>
               <p style={{ fontSize: 13, color: '#8a837b', marginTop: 12 }}>定員になり次第、締め切りとなります。次回の撮影会は、LINEにご登録の方へ先にお知らせしています。</p>
             </div>
