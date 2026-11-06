@@ -107,7 +107,7 @@ function Nav() {
   );
 }
 
-function Event({ img, alt, date, title, rows, status, note }) {
+function Event({ img, alt, date, title, rows, status, note, apply }) {
   return (
     <div className="ev">
       <img src={img} alt={alt} loading="lazy"/>
@@ -119,6 +119,16 @@ function Event({ img, alt, date, title, rows, status, note }) {
         </dl>
         {status && <p><span className="badge">{status}</span></p>}
         {note && <p style={{ fontSize: 13, color: '#8a837b', marginTop: 8 }}>{note}</p>}
+        {apply && (
+          <div style={{ marginTop: 24, paddingTop: 20, borderTop: '1px solid var(--border)' }}>
+            <p style={{ fontSize: 13, letterSpacing: '0.1em', color: 'var(--accent)', marginBottom: 8 }}>お申し込み方法</p>
+            <p style={{ fontSize: 15, marginBottom: 8 }}>いち日写真館の公式LINEに、次の内容を送ってください。</p>
+            <ul className="clean">
+              {apply.map(a => <li key={a}>{a}</li>)}
+            </ul>
+            <a href={LINE_URL} target="_blank" rel="noopener" className="btn btn--line" style={{ marginTop: 16, display: 'inline-flex', fontSize: 14 }}>LINEで申し込む</a>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -166,6 +176,7 @@ function App() {
                 ['雨天', <>中止となります。予備日は11月16日（月）<br/><span className="ev-sub">15日に雨の場合は、16日にお客様のご都合がつけば変更できます。お時間はご相談のうえ調整いたします。</span></>],
               ]}
               status="受付中"
+              apply={['「秋撮影会希望」', 'お名前', 'ご希望の枠（①〜⑤）']}
               note={<>公共の場所のため占有はできず、通行人が写り込む場合がございます。当日のやむを得ないキャンセルも大丈夫です。<br/>七五三や記念日をじっくり残したい方は、<a href="pricing.html" style={{ textDecoration: 'underline' }}>出張撮影</a>をご利用ください。</>}
             />
 
@@ -181,29 +192,12 @@ function App() {
                 ['服装', '自由'],
                 ['参加費', <>3,000円（税込）／データ2枚お渡し<br/>「もっと写真が欲しい！」という方は、＋7,000円でさらに10枚追加できます。<br/><span className="ev-sub">お支払いは当日、現金でお願いします。</span></>],
               ]}
+              apply={['「ここみ助産所撮影会」', '保護者のお名前', 'お子様のお名前と月齢（妊婦さんは妊娠◯か月）']}
               status="②11:00〜の部　残り1組"
               note="①10:00〜の部は満席となりました。以前ご参加いただいた方も、ぜひお越しください。"
             />
 
-            <p className="section-label">HOW TO</p>
-            <h2 className="section-heading">お申し込み方法</h2>
-            <div className="divider"/>
-            <div className="block">
-              <p style={{ fontSize: 15, marginBottom: 12 }}>いち日写真館の公式LINEに、次の内容を送ってください。</p>
-              <p style={{ fontSize: 15, marginBottom: 8 }}>秋の撮影会</p>
-              <ul className="clean" style={{ marginBottom: 20 }}>
-                <li>「秋撮影会希望」</li>
-                <li>お名前</li>
-                <li>ご希望の枠（①〜⑤）</li>
-              </ul>
-              <p style={{ fontSize: 15, marginBottom: 8 }}>ここみ助産所撮影会</p>
-              <ul className="clean">
-                <li>「ここみ助産所撮影会」</li>
-                <li>保護者のお名前</li>
-                <li>お子様のお名前と月齢（妊婦さんは妊娠◯か月）</li>
-              </ul>
-              <p style={{ fontSize: 13, color: '#8a837b', marginTop: 12 }}>定員になり次第、締め切りとなります。次回の撮影会は、LINEにご登録の方へ先にお知らせしています。</p>
-            </div>
+            <p style={{ fontSize: 13, color: '#8a837b', marginTop: 8 }}>各撮影会とも、定員になり次第締め切りとなります。次回の撮影会は、LINEにご登録の方へ先にお知らせしています。</p>
 
             <div style={{ textAlign: 'center', marginTop: 64, padding: '48px 32px', background: 'var(--bg-cream)', borderTop: '1px solid var(--border)' }}>
               <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(18px,2.5vw,22px)', fontWeight: 400, marginBottom: 12 }}>お申し込み・ご質問はLINEへ</p>
