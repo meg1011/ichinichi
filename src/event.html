@@ -153,6 +153,23 @@ function App() {
             <div className="divider"/>
 
             <Event
+              img="images/uploads/satsueikai/koganei_202611.jpg"
+              alt="小金井公園の紅葉の前で、パパに抱き上げられて笑う赤ちゃんの写真"
+              date="2026年11月15日（日）・16日（月）"
+              title="「秋の撮影会」"
+              rows={[
+                ['日時', <>11月15日（日）<br/>①10:00〜　②10:50〜　③11:30〜<br/>11月16日（月）<br/>④10:00〜　⑤10:50〜<br/><span className="ev-sub">1枠30分（撮影時間15分）。各枠1組限定です。</span></>],
+                ['場所', <>集合：都立小金井公園<br/><span className="ev-sub">お客様に合わせた場所で撮影します。詳細は確定した際に、個別にご連絡いたします。</span></>],
+                ['服装', '自由'],
+                ['料金', <>15,000円（税込）／おおよそ20カット前後</>],
+                ['納品', <>カメラマンセレクト・自然なレタッチ込み<br/>オンラインアルバムにて、1週間以内にお渡しします。</>],
+                ['雨天', <>中止となります。予備日は11月16日（月）<br/><span className="ev-sub">お時間はご相談のうえ調整いたします。</span></>],
+              ]}
+              status="受付中"
+              note={<>公共の場所のため占有はできず、通行人が写り込む場合がございます。当日のやむを得ないキャンセルも大丈夫です。<br/>七五三や記念日をじっくり残したい方は、<a href="pricing.html" style={{ textDecoration: 'underline' }}>出張撮影</a>をご利用ください。</>}
+            />
+
+            <Event
               img="images/uploads/satsueikai/kokomi_202611.jpg"
               alt="ここみ助産所撮影会　ふわふわのラグの上で撮影した赤ちゃんの写真"
               date="2026年11月27日（金）"
@@ -172,7 +189,13 @@ function App() {
             <h2 className="section-heading">お申し込み方法</h2>
             <div className="divider"/>
             <div className="block">
-              <p style={{ fontSize: 15, marginBottom: 12 }}>いち日写真館の公式LINEに、次の3つを送ってください。</p>
+              <p style={{ fontSize: 15, marginBottom: 12 }}>いち日写真館の公式LINEに、次の内容を送ってください。</p>
+              <p style={{ fontSize: 15, marginBottom: 8 }}>秋の撮影会</p>
+              <ul className="clean" style={{ marginBottom: 20 }}>
+                <li>「秋撮影会希望」</li>
+                <li>ご希望の枠（①〜⑤）</li>
+              </ul>
+              <p style={{ fontSize: 15, marginBottom: 8 }}>ここみ助産所撮影会</p>
               <ul className="clean">
                 <li>「ここみ助産所撮影会」</li>
                 <li>保護者のお名前</li>
