@@ -372,6 +372,23 @@ function Menu() {
 
 }
 
+/* ---- Event teaser (撮影会へのご案内) ---- */
+function EventTeaser() {
+  return (
+    <section id="event" className="section--sm section--cream" style={{ textAlign: 'center' }}>
+      <div className="container" style={{ maxWidth: 560 }}>
+        <p className="section-label" style={{ justifyContent: 'center', display: 'flex' }}>Event</p>
+        <h3 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(20px,2.4vw,26px)', fontWeight: 400, marginBottom: 16, marginTop: 8 }}>撮影会のご案内</h3>
+        <div className="divider" style={{ margin: '0 auto 20px' }} />
+        <p style={{ fontSize: 15, color: 'var(--text-mid)', lineHeight: 2, marginBottom: 28 }}>
+          季節や場所に合わせて、少人数の撮影会を開いています。<br/>開催予定と、2027年の予定はこちらからご覧いただけます。
+        </p>
+        <a href="event.html" className="btn btn--primary">撮影会のご案内を見る</a>
+      </div>
+    </section>);
+
+}
+
 /* ---- Locations ---- */
 function Locations() {
   return (
@@ -728,6 +745,7 @@ function Footer() {
             { label: '撮影メニュー', href: '#menu' },
             { label: 'ギャラリー', href: 'gallery.html' },
             { label: '料金', href: 'pricing.html' },
+            { label: '撮影会', href: 'event.html' },
             { label: 'ABOUT', href: 'photographer.html' },
             { label: 'FAQ', href: '#faq' },
             { label: 'お問い合わせ', href: 'contact.html' }].
@@ -792,6 +810,7 @@ function App() {
       <Philosophy />
       <Menu />
       <Locations />
+      <EventTeaser />
       <Reviews />
       <FAQ />
       <Contact />
